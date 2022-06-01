@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:park_port/widgets/bottom_bar.dart';
-
 import '../models/user.dart';
 import '../providers/auth_state.dart';
+import '../storage/storage_service.dart';
+import '../widgets/bottom_bar.dart';
+import '../widgets/change_profile_field.dart';
+import '../utils/images.dart';
+import '../widgets/change_profile_pic.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -38,6 +41,7 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final Storage storage = Storage();
 
     return Scaffold(
       appBar: AppBar(
@@ -110,256 +114,14 @@ class _SettingsState extends State<Settings> {
               },
             ),
             ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
-              Container(
-                width: size.width * 0.8,
-                child: RaisedButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          content: Stack(
-                            // overflow: Overflow.visible,
-                            children: <Widget>[
-                              Positioned(
-                                right: -40.0,
-                                top: -40.0,
-                                child: InkResponse(
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: CircleAvatar(
-                                    child: Icon(Icons.close),
-                                    backgroundColor: Colors.red,
-                                  ),
-                                ),
-                              ),
-                              Form(
-                                key: _formKey,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Text(
-                                      'Change Name',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily:
-                                            GoogleFonts.mulish().fontFamily,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: TextFormField(),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: RaisedButton(
-                                        child: Text("Submitß"),
-                                        onPressed: () {
-                                          if (_formKey.currentState!
-                                              .validate()) {
-                                            _formKey.currentState!.save();
-                                          }
-                                        },
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  child: Text(
-                    'Change Name',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: GoogleFonts.mulish().fontFamily,
-                    ),
-                  ),
-                  color: Color(0xFF8eb057),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-              Container(
-                width: size.width * 0.8,
-                child: RaisedButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          content: Stack(
-                            // overflow: Overflow.visible,
-                            children: <Widget>[
-                              Positioned(
-                                right: -40.0,
-                                top: -40.0,
-                                child: InkResponse(
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: CircleAvatar(
-                                    child: Icon(Icons.close),
-                                    backgroundColor: Colors.red,
-                                  ),
-                                ),
-                              ),
-                              Form(
-                                key: _formKey,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Text(
-                                      'Change Email',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily:
-                                            GoogleFonts.mulish().fontFamily,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: TextFormField(),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: RaisedButton(
-                                        child: Text("Submitß"),
-                                        onPressed: () {
-                                          if (_formKey.currentState!
-                                              .validate()) {
-                                            _formKey.currentState!.save();
-                                          }
-                                        },
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  child: Text(
-                    'Change Email',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: GoogleFonts.mulish().fontFamily,
-                    ),
-                  ),
-                  color: Color(0xFF8eb057),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-              Container(
-                width: size.width * 0.8,
-                child: RaisedButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          content: Stack(
-                            clipBehavior: Clip.hardEdge,
-                            children: <Widget>[
-                              Positioned(
-                                right: -40.0,
-                                top: -40.0,
-                                child: InkResponse(
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: CircleAvatar(
-                                    child: Icon(Icons.close),
-                                    backgroundColor: Colors.red,
-                                  ),
-                                ),
-                              ),
-                              Form(
-                                key: _formKey,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Text(
-                                      'Change Password',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily:
-                                            GoogleFonts.mulish().fontFamily,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.all(4.0),
-                                      child: TextFormField(),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 16.0),
-                                      child: Text(
-                                        'Confirm Password',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily:
-                                              GoogleFonts.mulish().fontFamily,
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.all(4.0),
-                                      child: TextFormField(),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: RaisedButton(
-                                        child: Text("Submitß"),
-                                        onPressed: () {
-                                          if (_formKey.currentState!
-                                              .validate()) {
-                                            _formKey.currentState!.save();
-                                          }
-                                        },
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  child: Text(
-                    'Change Password',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: GoogleFonts.mulish().fontFamily,
-                    ),
-                  ),
-                  color: Color(0xFF8eb057),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
+              ChangeProfileField(label: 'Change Name', onChange: () async {}),
+              ChangeProfileField(label: 'Change Email', onChange: () async {}),
+              ChangeProfileField(label: 'Change Password', onChange: () async {}),
+              ChangeProfilePic(label: 'Upload New Profile Pic', onChange: () {
+                // Trigger file picker steps and 'set state' to re-render
+                pickImageFromDevice(context).then((value) => setState(() {}));
+              }),
+              // ChangeProfileField(label: 'Take New Photo', onChange: () async {}),
             ]),
           ],
         ),

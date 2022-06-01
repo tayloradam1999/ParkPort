@@ -76,7 +76,7 @@ class AuthState extends ChangeNotifier {
               'email': signedInUser.email,
               'userName': name,
               'status': 'Excited about Tulsa parks!',
-              'location': 'No location available',
+              'location': 'Tulsa, OK',
               'dateJoined': DateTime.now(),
               'profilePicUrl': 'https://picsum.photos/100/100',
               'points': 0,
@@ -102,7 +102,7 @@ class AuthState extends ChangeNotifier {
       _status = (handleException(e));
     }
     // Not sure if this is necessary
-    notifyListeners();
+    // notifyListeners();
     return _status;
   }
 

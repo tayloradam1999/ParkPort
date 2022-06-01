@@ -10,12 +10,12 @@ void showMessage(context, Errors msg, String type) {
   if (msg == Errors.none && type == 'signup') {
     scaffold.showSnackBar(const SnackBar(
       content: Text("Account created!", textAlign: TextAlign.center),
-      backgroundColor: Colors.green,
+      backgroundColor: Color(0xFF8eb057),
     ));
   } else if (msg == Errors.none && type == 'login') {
     scaffold.showSnackBar(const SnackBar(
       content: Text("Logged in successfully!", textAlign: TextAlign.center),
-      backgroundColor: Colors.green,
+      backgroundColor: Color(0xFF8eb057),
     ));
   }
 
@@ -33,7 +33,7 @@ void showMessage(context, Errors msg, String type) {
       text = "Failed to login! Please try later";
     scaffold.showSnackBar(SnackBar(
       content: Text(text, textAlign: TextAlign.center),
-      backgroundColor: Colors.red,
+      backgroundColor: Color(0xFFe05e4a),
     ));
   }
 }
@@ -45,6 +45,6 @@ void sendResetPassword(context) {
   // Display snackbar
   scaffold.showSnackBar(const SnackBar(
     content: Text("Check your email to reset your password!", textAlign: TextAlign.center),
-    backgroundColor: Colors.green,
+    backgroundColor: Color(0xFF8eb057),
   ));
 }

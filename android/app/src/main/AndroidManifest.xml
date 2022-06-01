@@ -1,5 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.park_port">
+
+    <!-- Give persmission for android to use -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.name.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.name.CAMERA"/>
+
    <application
         android:label="park_port"
         android:name="${applicationName}"
