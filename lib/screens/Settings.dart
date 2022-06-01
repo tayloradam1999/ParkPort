@@ -6,7 +6,6 @@ import '../providers/auth_state.dart';
 import '../storage/storage_service.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/change_profile_field.dart';
-import '../utils/images.dart';
 import '../widgets/change_profile_pic.dart';
 
 class Settings extends StatefulWidget {
