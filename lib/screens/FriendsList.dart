@@ -63,10 +63,22 @@ class _FriendsListState extends State<FriendsList> {
             ),
           ),
         ),
+        leading: Builder(builder: (BuildContext context) {
+          return IconButton(
+            icon: const Icon(
+              Icons.menu,
+              color: Color(0xFFe05e4a),
+            ),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          );
+        }),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.filter_list),
-            color: Colors.white,
+            color: Color(0xFFe05e4a),
             onPressed: () {
               // set state
               setState(() {});

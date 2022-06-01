@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import './sidebar_tile.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
 import '../providers/auth_state.dart';
@@ -107,118 +108,48 @@ class SideBarMenuState extends State<SideBarMenu> {
                 ],
               )),
               const SizedBox(height: 10),
-              ListTile(
-                leading: const Icon(
-                  Icons.account_circle,
-                  color: Color(0xFFe05e4a),
-                ),
-                title: Text('Profile',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: GoogleFonts.mulish().fontFamily,
-                    )),
-                onTap: () {
-                  // show no index
-                  appState.setpageIndex = 5;
-                  Navigator.pushReplacementNamed(context, '/Profile');
-                },
-                mouseCursor: MaterialStateMouseCursor.clickable,
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.notification_add_rounded,
-                  color: Color(0xFFe05e4a),
-                ),
-                title: Text('Notifications',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: GoogleFonts.mulish().fontFamily,
-                    )),
-                onTap: () {
-                  appState.setpageIndex = 1;
-                  Navigator.pushReplacementNamed(context, '/Notifications');
-                },
-                mouseCursor: MaterialStateMouseCursor.clickable,
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.menu_book,
-                  color: Color(0xFFe05e4a),
-                ),
-                title: Text('Passport',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: GoogleFonts.mulish().fontFamily,
-                    )),
-                onTap: () {
-                  appState.setpageIndex = 2;
-                  Navigator.pushReplacementNamed(context, '/Passport');
-                },
-                mouseCursor: MaterialStateMouseCursor.clickable,
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.park_outlined,
-                  color: Color(0xFFe05e4a),
-                ),
-                title: Text('Park Details',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: GoogleFonts.mulish().fontFamily,
-                    )),
-                onTap: () {
-                  appState.setpageIndex = 3;
-                  Navigator.pushReplacementNamed(context, '/ParkDetails');
-                },
-                mouseCursor: MaterialStateMouseCursor.clickable,
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.bar_chart,
-                  color: Color(0xFFe05e4a),
-                ),
-                title: Text('Leaderboards',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: GoogleFonts.mulish().fontFamily,
-                    )),
-                onTap: () {
-                  appState.setpageIndex = 4;
-                  Navigator.pushReplacementNamed(context, '/Leaderboards');
-                },
-                mouseCursor: MaterialStateMouseCursor.clickable,
-              ),
-              ListTile(
-                leading: const Icon(
-                  Icons.emoji_people,
-                  color: Color(0xFFe05e4a),
-                ),
-                title: Text(
-                  'Friends List',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: GoogleFonts.mulish().fontFamily,
-                  ),
-                ),
-                onTap: () {
-                  // show no index on bottom bar
-                  appState.setpageIndex = 5;
-                  Navigator.pushReplacementNamed(context, '/FriendsList');
-                },
-                mouseCursor: MaterialStateMouseCursor.clickable,
-              ),
+              SideBarTile(
+                  icon: Icons.account_circle_rounded,
+                  title: 'Profile',
+                  onTap: () {
+                    appState.setpageIndex = 5;
+                    Navigator.pushReplacementNamed(context, '/Profile');
+                  }),
+              SideBarTile(
+                  icon: Icons.notification_add_rounded,
+                  title: 'Notifications',
+                  onTap: () {
+                    appState.setpageIndex = 1;
+                    Navigator.pushReplacementNamed(context, '/Notifications');
+                  }),
+              SideBarTile(
+                  icon: Icons.menu_book,
+                  title: 'Passport',
+                  onTap: () {
+                    appState.setpageIndex = 2;
+                    Navigator.pushReplacementNamed(context, '/Passport');
+                  }),
+              SideBarTile(
+                  icon: Icons.park_outlined,
+                  title: 'Park Details',
+                  onTap: () {
+                    appState.setpageIndex = 3;
+                    Navigator.pushReplacementNamed(context, '/ParkDetails');
+                  }),
+              SideBarTile(
+                  icon: Icons.bar_chart,
+                  title: 'Leaderboards',
+                  onTap: () {
+                    appState.setpageIndex = 4;
+                    Navigator.pushReplacementNamed(context, '/Leaderboards');
+                  }),
+              SideBarTile(
+                  icon: Icons.emoji_people,
+                  title: 'Friends',
+                  onTap: () {
+                    appState.setpageIndex = 10;
+                    Navigator.pushReplacementNamed(context, '/FriendsList');
+                  }),
               Container(
                 height: 40,
                 child: Divider(

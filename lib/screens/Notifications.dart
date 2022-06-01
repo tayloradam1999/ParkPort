@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/accept_request_button.dart';
 import '../widgets/deny_request_button.dart';
+import '../widgets/no_notifications.dart';
+import '../widgets/notification_item.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({Key? key}) : super(key: key);
@@ -31,37 +33,24 @@ class _NotificationsState extends State<Notifications> {
         bottomOpacity: 0.0,
         elevation: 0.0,
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: double.infinity,
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          SizedBox(
-            height: 100,
-            width: 350,
-            child: Column(
-              children: [
-                Text('No Notifications available',
-                    style: TextStyle(
-                      fontSize: 22,
-                      color: Color(0xFFe05e4a),
-                      fontFamily: GoogleFonts.mulish().fontFamily,
-                      fontWeight: FontWeight.bold,
-                    )),
-                const SizedBox(height: 15),
-                Text(
-                  'When new notifications are found, they will be displayed here.',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.grey.shade600,
-                    fontFamily: GoogleFonts.mulish().fontFamily,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            NotificationItem(
+              name: 'Henry Stevenson',
+              action: 'got_stamp',
+              imgUrl:
+                  'https://www.woolha.com/media/2020/03/flutter-circleavatar-minradius-maxradius.jpg',
             ),
-          )
-        ]),
+            NotificationItem(
+              name: 'Henry Stevenson',
+              action: 'friend_request',
+              imgUrl:
+                  'https://www.woolha.com/media/2020/03/flutter-circleavatar-minradius-maxradius.jpg',
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomMenuBar(),
     );

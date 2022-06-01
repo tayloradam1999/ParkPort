@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/sidebar.dart';
 import '../widgets/map.dart';
+import '../widgets/profile_card.dart';
 import '../models/user.dart';
 import '../providers/auth_state.dart';
 
@@ -53,65 +54,21 @@ class _HomeState extends State<Home> {
           height: 32.5,
         ),
         backgroundColor: Color.fromARGB(199, 192, 231, 130),
+        leading: Builder(builder: (BuildContext context) {
+          return IconButton(
+            icon: const Icon(
+              Icons.menu,
+              color: Color(0xFFe05e4a),
+            ),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          );
+        }),
       ),
       body: SingleChildScrollView(
-        child: Column(children: [
-          Card(
-            child: ListTile(
-              leading: CircleAvatar(
-                radius: 30,
-                backgroundImage: NetworkImage(
-                    Provider.of<AppState>(context, listen: false)
-                        .currentUser
-                        .profilePicUrl),
-                backgroundColor: Colors.transparent,
-              ),
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    Provider.of<AppState>(context, listen: false)
-                        .currentUser
-                        .userName,
-                    style: TextStyle(
-                      color: Color(0xFFe05e4a),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: GoogleFonts.mulish().fontFamily,
-                    ),
-                  ),
-                  Text(
-                    Provider.of<AppState>(context, listen: false)
-                        .currentUser
-                        .status,
-                    style: TextStyle(
-                      color: Colors.grey.shade500,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: GoogleFonts.mulish().fontFamily,
-                    ),
-                  ),
-                ],
-              ),
-              subtitle: Text(
-                '${Provider.of<AppState>(context, listen: false).currentUser.collectedStampList.length} Stamps, ${Provider.of<AppState>(context, listen: false).currentUser.points} Merits',
-                style: TextStyle(color: Color(0xFFe7b732)),
-              ),
-              trailing: GFToggle(
-                value: true,
-                onChanged: (value) {},
-                enabledTrackColor: Color(0xFFe05e4a),
-              ),
-            ),
-            elevation: 15,
-            shadowColor: Color(0xFFe05e4a),
-            margin: EdgeInsets.all(15),
-            shape: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Color(0xFFe7b732), width: 1.5)),
-          ),
-          Map()
-        ]),
+        child: Column(children: [ProfileCard(), Map()]),
       ),
       bottomNavigationBar: BottomMenuBar(),
     );
