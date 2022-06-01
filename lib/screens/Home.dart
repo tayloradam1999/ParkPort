@@ -22,6 +22,17 @@ class _HomeState extends State<Home> {
   void initState() {
     // init state
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _asyncMethod();
+    });
+  }
+
+  _asyncMethod() async {
+    PPUser user = await AuthState().getCurrentUserModel();
+    setState(() {
+      // Get user data from Firebase
+      Provider.of<AppState>(context, listen: false).currentUser = user;
+    });
   }
 
   @override
@@ -44,57 +55,47 @@ class _HomeState extends State<Home> {
         backgroundColor: Color.fromARGB(199, 192, 231, 130),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            FutureBuilder(
-              future: AuthState().getCurrentUserModel(),
-              builder: (BuildContext context, AsyncSnapshot<PPUser> snapshot) {
-                if (snapshot.hasData &&
-                    snapshot.connectionState == ConnectionState.done) {
-                  return Card(
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 30,
-                        backgroundImage:
-                            NetworkImage(snapshot.data!.profilePicUrl),
-                        backgroundColor: Colors.transparent,
-                      ),
-                      title: Text(
-                        snapshot.data!.userName,
-                        style: TextStyle(
-                          color: Colors.grey.shade400,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: GoogleFonts.mulish().fontFamily,
-                        ),
-                      ),
-                      subtitle: Text(
-                        '${snapshot.data!.friendList.length} Friends, ${snapshot.data!.points} Merits',
-                      ),
-                      trailing: GFToggle(
-                        value: true,
-                        onChanged: (value) {},
-                        enabledTrackColor: Color(0xFFe05e4a),
-                      ),
-                    ),
-                    elevation: 8,
-                    shadowColor: Color(0xFFe05e4a),
-                    margin: EdgeInsets.all(20),
-                    shape: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide:
-                            BorderSide(color: Color(0xFFe7b732), width: 1.5)),
-                  );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
+        child: Column(children: [
+          Card(
+            // Getting user info from Consumer
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 30,
+                backgroundImage: NetworkImage(
+                    Provider.of<AppState>(context, listen: false)
+                        .currentUser
+                        .profilePicUrl),
+                backgroundColor: Colors.transparent,
+              ),
+              title: Text(
+                Provider.of<AppState>(context, listen: false)
+                    .currentUser
+                    .userName,
+                style: TextStyle(
+                  color: Colors.grey.shade400,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: GoogleFonts.mulish().fontFamily,
+                ),
+              ),
+              subtitle: Text(
+                '${Provider.of<AppState>(context, listen: false).currentUser.friendList.length} Friends, ${Provider.of<AppState>(context, listen: false).currentUser.points} Merits',
+              ),
+              trailing: GFToggle(
+                value: true,
+                onChanged: (value) {},
+                enabledTrackColor: Color(0xFFe05e4a),
+              ),
             ),
-            Map(),
-          ],
-        ),
+            elevation: 8,
+            shadowColor: Color(0xFFe05e4a),
+            margin: EdgeInsets.all(20),
+            shape: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: Color(0xFFe7b732), width: 1.5)),
+          ),
+          Map()
+        ]),
       ),
       bottomNavigationBar: BottomMenuBar(),
     );

@@ -6,10 +6,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
 
-Future<void> pickImageFromDevice(context) async {
+Future<String> pickImageFromDevice(context) async {
   final scaffold = ScaffoldMessenger.of(context);
   final Storage storage = Storage();
-  
+
   // Allow user to pick one image from their device of specified types
   final results = await FilePicker.platform.pickFiles(
     allowMultiple: false,
@@ -18,20 +18,23 @@ Future<void> pickImageFromDevice(context) async {
   );
   // If clicks out without selecting an image, show message
   if (results == null) {
-      scaffold.showSnackBar(SnackBar(
+    scaffold.showSnackBar(SnackBar(
       content: Text('No image selected', textAlign: TextAlign.center),
       backgroundColor: Color(0xFFe05e4a),
     ));
-
   }
   // If image selected, get path and pass to storage to upload/retrieve with Firebase
   final path = results!.files.single.path;
-  await storage.uploadImageFile(context, path!);
+  String url = await storage.uploadImageFile(context, path!);
   // After successful upload, show snackbar
   scaffold.showSnackBar(SnackBar(
-      content: Text('Image uploaded successfully!', textAlign: TextAlign.center),
-      backgroundColor: Color(0xFF8eb057),
-    ));
+    content: Text('Image uploaded successfully!', textAlign: TextAlign.center),
+    backgroundColor: Color(0xFF8eb057),
+  ));
+  // Note that url has been set in Firebase at this point
+  // If finish before returning, all will be changed on any click to different page
+  // But need to make sure setState is called after returning so can re-render page and update pic
+  return url;
 }
 
 class Storage {
@@ -39,7 +42,7 @@ class Storage {
   final firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
-  Future<void> uploadImageFile(context, String filePath) async {
+  Future<String> uploadImageFile(context, String filePath) async {
     final scaffold = ScaffoldMessenger.of(context);
     // Create file reference from path
     File file = File(filePath);
@@ -48,17 +51,18 @@ class Storage {
     try {
       // Upload file to Firebase Storage
       await storage.ref('file/$email').putFile(file);
-      // After successful upload, retrieve file url
-      getImageUrl();
+      // After successful upload, retrieve file url (return url to caller)
+      return getImageUrl();
     } on firebase_core.FirebaseException catch (e) {
       scaffold.showSnackBar(SnackBar(
-      content: Text('Error uploading file!', textAlign: TextAlign.center),
-      backgroundColor: Color(0xFFe05e4a),
-    ));
+        content: Text('Error uploading file!', textAlign: TextAlign.center),
+        backgroundColor: Color(0xFFe05e4a),
+      ));
+      return '';
     }
   }
 
-  Future<void> getImageUrl() async {
+  Future<String> getImageUrl() async {
     String? email = FirebaseAuth.instance.currentUser!.email;
     String userID = FirebaseAuth.instance.currentUser!.uid;
     // Get reference to image in Firebase Storage (for each user, file name is email)
@@ -67,5 +71,7 @@ class Storage {
     await FirebaseFirestore.instance.collection('users').doc(userID).update({
       'profilePicUrl': url,
     });
+    // Begin to pass url back to caller
+    return url;
   }
 }

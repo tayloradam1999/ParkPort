@@ -23,6 +23,10 @@ class AppState extends ChangeNotifier {
       friendList: [],
       collectedStampList: []);
   PPUser get currentUser => _currentUser;
+  set currentUser(PPUser value) {
+    _currentUser = value;
+    notifyListeners();
+  }
 
   int _pageIndex = 0;
   int get pageIndex {
