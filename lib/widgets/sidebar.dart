@@ -37,14 +37,8 @@ class SideBarMenuState extends State<SideBarMenu> {
             padding: EdgeInsets.zero,
             children: <Widget>[
               DrawerHeader(
-                // Everything inside drawer can use auth state for current user
-                child: FutureBuilder(
-                  future: AuthState().getCurrentUserModel(),
-                  builder:
-                      (BuildContext context, AsyncSnapshot<PPUser> snapshot) {
-                    if (snapshot.hasData &&
-                        snapshot.connectionState == ConnectionState.done) {
-                      return Column(
+                // Everything inside drawer uses Consumer
+                child: Column(
                         children: <Widget>[
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +46,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                               CircleAvatar(
                                 radius: 30,
                                 backgroundImage:
-                                    NetworkImage(snapshot.data!.profilePicUrl),
+                                    NetworkImage(Provider.of<AppState>(context, listen: false).currentUser.profilePicUrl),
                                 backgroundColor: Colors.transparent,
                               ),
                             ],
@@ -63,7 +57,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  snapshot.data!.userName,
+                                  Provider.of<AppState>(context, listen: false).currentUser.userName,
                                   style: TextStyle(
                                     color: Color(0xFFe05e4a),
                                     fontSize: 18,
@@ -79,7 +73,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                '${snapshot.data!.friendList.length} Friends',
+                                '${Provider.of<AppState>(context, listen: false).currentUser.friendList.length} Friends',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
@@ -89,7 +83,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                               ),
                               const SizedBox(width: 10), // psuedo spacing
                               Text(
-                                '${snapshot.data!.points} Merits',
+                                '${Provider.of<AppState>(context, listen: false).currentUser.points} Merits',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
@@ -100,14 +94,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                             ],
                           ),
                         ],
-                      );
-                    } else {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                  },
-                ),
+                      )
               ),
               const SizedBox(height: 10),
               ListTile(
