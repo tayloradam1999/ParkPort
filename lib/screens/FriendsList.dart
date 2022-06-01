@@ -37,7 +37,7 @@ class _FriendsListState extends State<FriendsList> {
     return Scaffold(
       drawer: SideBarMenu(),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(167, 153, 226, 34),
+        backgroundColor: Color.fromARGB(199, 192, 231, 130),
         bottomOpacity: 0.0,
         elevation: 0.0,
         // leading: Container(

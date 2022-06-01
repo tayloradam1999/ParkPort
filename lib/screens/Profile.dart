@@ -27,10 +27,10 @@ class Profile extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CircleAvatar(
-                          backgroundImage:
-                              NetworkImage(Provider.of<AppState>(context, listen: false)
-                        .currentUser
-                        .profilePicUrl),
+                          backgroundImage: NetworkImage(
+                              Provider.of<AppState>(context, listen: false)
+                                  .currentUser
+                                  .profilePicUrl),
                           radius: 50.0,
                         ),
                         SizedBox(
@@ -38,8 +38,8 @@ class Profile extends StatelessWidget {
                         ),
                         Text(
                           Provider.of<AppState>(context, listen: false)
-                        .currentUser
-                        .userName,
+                              .currentUser
+                              .userName,
                           style: TextStyle(
                             fontSize: 22.0,
                             color: Colors.white,
@@ -74,9 +74,11 @@ class Profile extends StatelessWidget {
                                         height: 5.0,
                                       ),
                                       Text(
-                                        Provider.of<AppState>(context, listen: false)
-                        .currentUser
-                        .collectedStampList.length
+                                        Provider.of<AppState>(context,
+                                                listen: false)
+                                            .currentUser
+                                            .collectedStampList
+                                            .length
                                             .toString(),
                                         style: TextStyle(
                                           fontSize: 20.0,
@@ -101,9 +103,11 @@ class Profile extends StatelessWidget {
                                         height: 5.0,
                                       ),
                                       Text(
-                                        Provider.of<AppState>(context, listen: false)
-                        .currentUser
-                        .points.toString(),
+                                        Provider.of<AppState>(context,
+                                                listen: false)
+                                            .currentUser
+                                            .points
+                                            .toString(),
                                         style: TextStyle(
                                           fontSize: 20.0,
                                           color: Color(0xFFe7b732),
@@ -127,9 +131,11 @@ class Profile extends StatelessWidget {
                                         height: 5.0,
                                       ),
                                       Text(
-                                        Provider.of<AppState>(context, listen: false)
-                        .currentUser
-                        .friendList.length
+                                        Provider.of<AppState>(context,
+                                                listen: false)
+                                            .currentUser
+                                            .friendList
+                                            .length
                                             .toString(),
                                         style: TextStyle(
                                           fontSize: 20.0,
@@ -166,8 +172,8 @@ class Profile extends StatelessWidget {
                     ),
                     Text(
                       Provider.of<AppState>(context, listen: false)
-                        .currentUser
-                        .status,
+                          .currentUser
+                          .status,
                       style: TextStyle(
                         fontSize: 18.0,
                         fontStyle: FontStyle.italic,
@@ -299,6 +305,7 @@ class Profile extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottomMenuBar(),
     );
   }
 }

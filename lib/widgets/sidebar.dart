@@ -32,70 +32,80 @@ class SideBarMenuState extends State<SideBarMenu> {
     return Consumer<AppState>(
       builder: (context, appState, child) {
         return Drawer(
-          semanticLabel: 'Sidebar',
+          elevation: 0.0,
+          width: MediaQuery.of(context).size.width * 0.8,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.0),
+              topRight: Radius.circular(20.0),
+            ),
+          ),
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
               DrawerHeader(
-                // Everything inside drawer uses Consumer
-                child: Column(
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              CircleAvatar(
-                                radius: 30,
-                                backgroundImage:
-                                    NetworkImage(Provider.of<AppState>(context, listen: false).currentUser.profilePicUrl),
-                                backgroundColor: Colors.transparent,
-                              ),
-                            ],
+                  // Everything inside drawer uses Consumer
+                  child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      CircleAvatar(
+                        radius: 30,
+                        backgroundImage: NetworkImage(
+                            Provider.of<AppState>(context, listen: false)
+                                .currentUser
+                                .profilePicUrl),
+                        backgroundColor: Colors.transparent,
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          Provider.of<AppState>(context, listen: false)
+                              .currentUser
+                              .userName,
+                          style: TextStyle(
+                            color: Color(0xFFe05e4a),
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: GoogleFonts.mulish().fontFamily,
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(top: 15),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  Provider.of<AppState>(context, listen: false).currentUser.userName,
-                                  style: TextStyle(
-                                    color: Color(0xFFe05e4a),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: GoogleFonts.mulish().fontFamily,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 10), // psuedo spacing
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                '${Provider.of<AppState>(context, listen: false).currentUser.friendList.length} Friends',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: GoogleFonts.mulish().fontFamily,
-                                ),
-                              ),
-                              const SizedBox(width: 10), // psuedo spacing
-                              Text(
-                                '${Provider.of<AppState>(context, listen: false).currentUser.points} Merits',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: GoogleFonts.mulish().fontFamily,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
-              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10), // psuedo spacing
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        '${Provider.of<AppState>(context, listen: false).currentUser.friendList.length} Friends',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: GoogleFonts.mulish().fontFamily,
+                        ),
+                      ),
+                      const SizedBox(width: 10), // psuedo spacing
+                      Text(
+                        '${Provider.of<AppState>(context, listen: false).currentUser.points} Merits',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: GoogleFonts.mulish().fontFamily,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              )),
               const SizedBox(height: 10),
               ListTile(
                 leading: const Icon(
@@ -129,8 +139,8 @@ class SideBarMenuState extends State<SideBarMenu> {
                       fontFamily: GoogleFonts.mulish().fontFamily,
                     )),
                 onTap: () {
-                  appState.setpageIndex = 2;
-                  Navigator.pushReplacementNamed(context, '/ParkDetails');
+                  appState.setpageIndex = 1;
+                  Navigator.pushReplacementNamed(context, '/Notifications');
                 },
                 mouseCursor: MaterialStateMouseCursor.clickable,
               ),
@@ -147,7 +157,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                       fontFamily: GoogleFonts.mulish().fontFamily,
                     )),
                 onTap: () {
-                  appState.setpageIndex = 1;
+                  appState.setpageIndex = 2;
                   Navigator.pushReplacementNamed(context, '/Passport');
                 },
                 mouseCursor: MaterialStateMouseCursor.clickable,
@@ -165,7 +175,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                       fontFamily: GoogleFonts.mulish().fontFamily,
                     )),
                 onTap: () {
-                  appState.setpageIndex = 2;
+                  appState.setpageIndex = 3;
                   Navigator.pushReplacementNamed(context, '/ParkDetails');
                 },
                 mouseCursor: MaterialStateMouseCursor.clickable,
@@ -183,7 +193,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                       fontFamily: GoogleFonts.mulish().fontFamily,
                     )),
                 onTap: () {
-                  appState.setpageIndex = 3;
+                  appState.setpageIndex = 4;
                   Navigator.pushReplacementNamed(context, '/Leaderboards');
                 },
                 mouseCursor: MaterialStateMouseCursor.clickable,

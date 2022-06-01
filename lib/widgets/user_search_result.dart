@@ -15,7 +15,8 @@ class UsersSearchResultsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 10, top: 10),
+      // margin: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -32,7 +33,7 @@ class UsersSearchResultsWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.only(top: 5),
+                  padding: const EdgeInsets.only(top: 7.5),
                   child: Text(
                     name,
                     style: const TextStyle(
@@ -51,8 +52,8 @@ class UsersSearchResultsWidget extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+          Container(
+            margin: const EdgeInsets.only(right: 10, top: 10),
             child: Container(
               child: ElevatedButton(
                   onPressed: () {},
@@ -63,6 +64,15 @@ class UsersSearchResultsWidget extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      // horizontal line
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.grey,
+            width: 1,
+          ),
+        ),
       ),
     );
   }

@@ -68,60 +68,75 @@ class _SettingsState extends State<Settings> {
         child: Column(
           children: <Widget>[
             Card(
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 30,
-                        backgroundImage:
-                            NetworkImage(Provider.of<AppState>(context, listen: false)
-                        .currentUser
-                        .profilePicUrl),
-                        backgroundColor: Colors.transparent,
-                      ),
-                      title: Text(
-                        Provider.of<AppState>(context, listen: false)
-                        .currentUser
-                        .userName,
-                        style: TextStyle(
-                          color: Colors.grey.shade400,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: GoogleFonts.mulish().fontFamily,
-                        ),
-                      ),
-                      subtitle: Text(
-                        '${Provider.of<AppState>(context, listen: false)
-                        .currentUser
-                        .friendList.length} Friends, ${Provider.of<AppState>(context, listen: false)
-                        .currentUser
-                        .points} Merits',
-                      ),
-                      trailing: GFToggle(
-                        value: true,
-                        onChanged: (value) {},
-                        enabledTrackColor: Color.fromARGB(255, 255, 177, 41),
+              child: ListTile(
+                leading: CircleAvatar(
+                  radius: 30,
+                  backgroundImage: NetworkImage(
+                      Provider.of<AppState>(context, listen: false)
+                          .currentUser
+                          .profilePicUrl),
+                  backgroundColor: Colors.transparent,
+                ),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      Provider.of<AppState>(context, listen: false)
+                          .currentUser
+                          .userName,
+                      style: TextStyle(
+                        color: Color(0xFFe05e4a),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: GoogleFonts.mulish().fontFamily,
                       ),
                     ),
-                    elevation: 8,
-                    shadowColor: Color.fromARGB(255, 255, 136, 34),
-                    margin: EdgeInsets.all(20),
-                    shape: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 177, 41),
-                            width: 1)),
-                
+                    Text(
+                      Provider.of<AppState>(context, listen: false)
+                          .currentUser
+                          .status,
+                      style: TextStyle(
+                        color: Colors.grey.shade500,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: GoogleFonts.mulish().fontFamily,
+                      ),
+                    ),
+                  ],
+                ),
+                subtitle: Text(
+                  '${Provider.of<AppState>(context, listen: false).currentUser.collectedStampList.length} Stamps, ${Provider.of<AppState>(context, listen: false).currentUser.points} Merits',
+                  style: TextStyle(color: Color(0xFFe7b732)),
+                ),
+                trailing: GFToggle(
+                  value: true,
+                  onChanged: (value) {},
+                  enabledTrackColor: Color(0xFFe05e4a),
+                ),
+              ),
+              elevation: 15,
+              shadowColor: Color(0xFFe05e4a),
+              margin: EdgeInsets.all(15),
+              shape: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Color(0xFFe7b732), width: 1.5)),
             ),
             ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
               ChangeProfileField(label: 'Change Name', onChange: () async {}),
               ChangeProfileField(label: 'Change Email', onChange: () async {}),
-              ChangeProfileField(label: 'Change Password', onChange: () async {}),
-              ChangeProfilePic(label: 'Upload New Profile Pic', onChange: () async {
-                // Trigger file picker steps and set state so will re-render
-                String url = await pickImageFromDevice(context);
-                  setState(() {
-                    Provider.of<AppState>(context, listen: false).currentUser.profilePicUrl = url;
-                  });
-              }),
+              ChangeProfileField(
+                  label: 'Change Password', onChange: () async {}),
+              ChangeProfilePic(
+                  label: 'Upload New Profile Pic',
+                  onChange: () async {
+                    // Trigger file picker steps and set state so will re-render
+                    String url = await pickImageFromDevice(context);
+                    setState(() {
+                      Provider.of<AppState>(context, listen: false)
+                          .currentUser
+                          .profilePicUrl = url;
+                    });
+                  }),
               // ChangeProfileField(label: 'Take New Photo', onChange: () async {}),
             ]),
           ],

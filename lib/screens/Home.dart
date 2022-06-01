@@ -57,7 +57,6 @@ class _HomeState extends State<Home> {
       body: SingleChildScrollView(
         child: Column(children: [
           Card(
-            // Getting user info from Consumer
             child: ListTile(
               leading: CircleAvatar(
                 radius: 30,
@@ -67,19 +66,36 @@ class _HomeState extends State<Home> {
                         .profilePicUrl),
                 backgroundColor: Colors.transparent,
               ),
-              title: Text(
-                Provider.of<AppState>(context, listen: false)
-                    .currentUser
-                    .userName,
-                style: TextStyle(
-                  color: Colors.grey.shade400,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: GoogleFonts.mulish().fontFamily,
-                ),
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    Provider.of<AppState>(context, listen: false)
+                        .currentUser
+                        .userName,
+                    style: TextStyle(
+                      color: Color(0xFFe05e4a),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: GoogleFonts.mulish().fontFamily,
+                    ),
+                  ),
+                  Text(
+                    Provider.of<AppState>(context, listen: false)
+                        .currentUser
+                        .status,
+                    style: TextStyle(
+                      color: Colors.grey.shade500,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: GoogleFonts.mulish().fontFamily,
+                    ),
+                  ),
+                ],
               ),
               subtitle: Text(
-                '${Provider.of<AppState>(context, listen: false).currentUser.friendList.length} Friends, ${Provider.of<AppState>(context, listen: false).currentUser.points} Merits',
+                '${Provider.of<AppState>(context, listen: false).currentUser.collectedStampList.length} Stamps, ${Provider.of<AppState>(context, listen: false).currentUser.points} Merits',
+                style: TextStyle(color: Color(0xFFe7b732)),
               ),
               trailing: GFToggle(
                 value: true,
@@ -87,9 +103,9 @@ class _HomeState extends State<Home> {
                 enabledTrackColor: Color(0xFFe05e4a),
               ),
             ),
-            elevation: 8,
+            elevation: 15,
             shadowColor: Color(0xFFe05e4a),
-            margin: EdgeInsets.all(20),
+            margin: EdgeInsets.all(15),
             shape: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: Color(0xFFe7b732), width: 1.5)),

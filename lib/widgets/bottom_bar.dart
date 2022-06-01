@@ -57,8 +57,9 @@ class _BottomMenuBarState extends State<BottomMenuBar> {
             child: Icon(
               _icons[index],
               size: 25.0,
-              color:
-                  appState.pageIndex == index ? Color(0xFFe05e4a) : Colors.grey,
+              color: appState.pageIndex == index
+                  ? Color(0xFFe05e4a)
+                  : Colors.grey.shade500,
             ),
           ),
         );
@@ -69,7 +70,6 @@ class _BottomMenuBarState extends State<BottomMenuBar> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: Colors.transparent,
       elevation: 0.0,
       child: SizedBox(
         height: 60,

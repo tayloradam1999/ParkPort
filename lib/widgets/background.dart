@@ -38,7 +38,7 @@ class Background extends StatelessWidget {
           Positioned(
             top: 60,
             left: 22.5,
-            child: Image.asset("assets/images/pplogo.png",
+            child: Image.asset("assets/images/pplogo2.png",
                 width: size.width * 0.25, height: size.width * 0.25),
           ),
           Positioned(
