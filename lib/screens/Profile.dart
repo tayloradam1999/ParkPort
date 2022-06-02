@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../widgets/bottom_bar.dart';
+import 'package:park_port/widgets/bottom_bar.dart';
 import '../widgets/edit_profile_button.dart';
+import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
+import '../providers/auth_state.dart';
 
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser = Provider.of<AppState>(context).currentUser;
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -29,15 +28,19 @@ class Profile extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CircleAvatar(
-                          backgroundImage:
-                              NetworkImage(currentUser.profilePicUrl),
+                          backgroundImage: NetworkImage(
+                              Provider.of<AppState>(context, listen: false)
+                                  .currentUser
+                                  .profilePicUrl),
                           radius: 50.0,
                         ),
                         SizedBox(
                           height: 10.0,
                         ),
                         Text(
-                          currentUser.userName,
+                          Provider.of<AppState>(context, listen: false)
+                              .currentUser
+                              .userName,
                           style: TextStyle(
                             fontSize: 22.0,
                             color: Colors.white,
@@ -72,7 +75,11 @@ class Profile extends StatelessWidget {
                                         height: 5.0,
                                       ),
                                       Text(
-                                        currentUser.collectedStampList.length
+                                        Provider.of<AppState>(context,
+                                                listen: false)
+                                            .currentUser
+                                            .collectedStampList
+                                            .length
                                             .toString(),
                                         style: TextStyle(
                                           fontSize: 20.0,
@@ -97,7 +104,11 @@ class Profile extends StatelessWidget {
                                         height: 5.0,
                                       ),
                                       Text(
-                                        currentUser.points.toString(),
+                                        Provider.of<AppState>(context,
+                                                listen: false)
+                                            .currentUser
+                                            .points
+                                            .toString(),
                                         style: TextStyle(
                                           fontSize: 20.0,
                                           color: Color(0xFFe7b732),
@@ -121,7 +132,11 @@ class Profile extends StatelessWidget {
                                         height: 5.0,
                                       ),
                                       Text(
-                                        currentUser.friendList.length
+                                        Provider.of<AppState>(context,
+                                                listen: false)
+                                            .currentUser
+                                            .friendList
+                                            .length
                                             .toString(),
                                         style: TextStyle(
                                           fontSize: 20.0,
@@ -157,7 +172,9 @@ class Profile extends StatelessWidget {
                       height: 10.0,
                     ),
                     Text(
-                      currentUser.status,
+                      Provider.of<AppState>(context, listen: false)
+                          .currentUser
+                          .status,
                       style: TextStyle(
                         fontSize: 18.0,
                         fontStyle: FontStyle.italic,

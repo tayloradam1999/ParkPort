@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import './accept_request_button.dart';
-import './deny_request_button.dart';
+
+import 'accept_request_button.dart';
+import 'deny_request_button.dart';
 
 class NotificationItem extends StatelessWidget {
   final String name;
   final String imgUrl;
   final String action;
-  final String userID;
 
   NotificationItem({
     Key? key,
     required this.name,
     required this.imgUrl,
     required this.action,
-    required this.userID,
   }) : super(key: key);
 
   @override
@@ -72,8 +71,8 @@ class NotificationItem extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10, top: 5),
               child: Row(
                 children: [
-                  AcceptRequestButton(userID: userID),
-                  DenyRequestButton(userID: userID),
+                  AcceptRequestButton(),
+                  DenyRequestButton(),
                 ],
               ),
             ),

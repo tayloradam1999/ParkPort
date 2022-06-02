@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import '../utils/friend_requests.dart';
-import '../models/user.dart';
-import '../providers/app_state.dart';
 import '../widgets/bottom_bar.dart';
+import '../widgets/accept_request_button.dart';
+import '../widgets/deny_request_button.dart';
 import '../widgets/no_notifications.dart';
 import '../widgets/notification_item.dart';
 
@@ -18,8 +16,6 @@ class Notifications extends StatefulWidget {
 class _NotificationsState extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser = Provider.of<AppState>(context).currentUser;
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -37,31 +33,24 @@ class _NotificationsState extends State<Notifications> {
         bottomOpacity: 0.0,
         elevation: 0.0,
       ),
-      body: FutureBuilder<List<PPUser>>(
-        future: getInfoAboutFriendRequests(currentUser),
-        builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              if (snapshot.data!.length != 0) {
-              return ListView.builder(
-                itemCount: snapshot.data?.length,
-                itemBuilder: (context, index) {
-                  return NotificationItem(
-                    name: snapshot.data![index].userName,
-                    action: 'friend_request',
-                    imgUrl: snapshot.data![index].profilePicUrl,
-                    userID: snapshot.data![index].userID,
-                  );
-                },
-              );
-            } else {
-              return NoNotifications();
-            }
-          } else {
-            return const Center(
-                child: CircularProgressIndicator(),
-              );
-          }
-        },
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            NotificationItem(
+              name: 'Henry Stevenson',
+              action: 'got_stamp',
+              imgUrl:
+                  'https://www.woolha.com/media/2020/03/flutter-circleavatar-minradius-maxradius.jpg',
+            ),
+            NotificationItem(
+              name: 'Henry Stevenson',
+              action: 'friend_request',
+              imgUrl:
+                  'https://www.woolha.com/media/2020/03/flutter-circleavatar-minradius-maxradius.jpg',
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomMenuBar(),
     );
