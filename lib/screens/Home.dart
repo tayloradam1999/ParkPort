@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:getwidget/getwidget.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:park_port/providers/app_state.dart';
 import 'package:provider/provider.dart';
 import '../widgets/bottom_bar.dart';
@@ -67,7 +65,7 @@ class _HomeState extends State<Home> {
           );
         }),
       ),
-      body: SingleChildScrollView(
+      body: Container(
         child: Column(children: [ProfileCard(), Map()]),
       ),
       bottomNavigationBar: BottomMenuBar(),

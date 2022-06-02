@@ -10,6 +10,10 @@
         android:label="park_port"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDK_9LQvg1nTK92hqM9PiTqMCR1bFk5118"/>
+
         <activity
             android:name="com.example.park_port.MainActivity"
             android:exported="true"

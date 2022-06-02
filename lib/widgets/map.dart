@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:getwidget/getwidget.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Map extends StatefulWidget {
   const Map({Key? key}) : super(key: key);
 
   @override
-  _MapState createState() => _MapState();
+  MapState createState() => MapState();
 }
 
-class _MapState extends State<Map> {
+class MapState extends State<Map> {
+  late GoogleMapController mapController;
+
+  final LatLng _center = const LatLng(36.15643, -95.99486);
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 20),
-      height: MediaQuery.of(context).size.height * 0.6,
-      child: PageView(
-        children: <Widget>[
-          Container(
-            color: Colors.black,
-          ),
-        ],
+    Size size = MediaQuery.of(context).size;
+    return Expanded(
+      child: GoogleMap(
+        onMapCreated: _onMapCreated,
+        initialCameraPosition: CameraPosition(
+          target: _center,
+          zoom: 15.0,
+        ),
       ),
     );
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/app_state.dart';
 
 class ProfileCard extends StatefulWidget {
@@ -59,10 +58,9 @@ class _ProfileCardState extends State<ProfileCard> {
       ),
       elevation: 15,
       shadowColor: Color(0xFFe05e4a),
-      margin: EdgeInsets.all(15),
       shape: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: Color(0xFFe7b732), width: 1.5)),
+          borderSide: BorderSide(color: Color(0xFFe05e4a), width: 1.5)),
     );
   }
 }
