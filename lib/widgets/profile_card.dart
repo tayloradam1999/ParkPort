@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:provider/provider.dart';
-
+import '../models/user.dart';
 import '../providers/app_state.dart';
 
 class ProfileCard extends StatefulWidget {
-  ProfileCard({Key? key}) : super(key: key);
+  const ProfileCard({Key? key}) : super(key: key);
 
   @override
   _ProfileCardState createState() => _ProfileCardState();
@@ -14,23 +14,20 @@ class ProfileCard extends StatefulWidget {
 class _ProfileCardState extends State<ProfileCard> {
   @override
   Widget build(BuildContext context) {
+    PPUser currentUser = Provider.of<AppState>(context).currentUser;
+
     return Card(
       child: ListTile(
         leading: CircleAvatar(
           radius: 30,
-          backgroundImage: NetworkImage(
-              Provider.of<AppState>(context, listen: false)
-                  .currentUser
-                  .profilePicUrl),
+          backgroundImage: NetworkImage(currentUser.profilePicUrl),
           backgroundColor: Colors.transparent,
         ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              Provider.of<AppState>(context, listen: false)
-                  .currentUser
-                  .userName,
+              currentUser.userName,
               style: TextStyle(
                 color: Color(0xFFe05e4a),
                 fontSize: 16,
@@ -38,7 +35,7 @@ class _ProfileCardState extends State<ProfileCard> {
               ),
             ),
             Text(
-              Provider.of<AppState>(context, listen: false).currentUser.status,
+              currentUser.status,
               style: TextStyle(
                 color: Colors.grey.shade500,
                 fontSize: 13,
@@ -48,7 +45,7 @@ class _ProfileCardState extends State<ProfileCard> {
           ],
         ),
         subtitle: Text(
-          '${Provider.of<AppState>(context, listen: false).currentUser.collectedStampList.length} Stamps, ${Provider.of<AppState>(context, listen: false).currentUser.points} Merits',
+          '${currentUser.collectedStampList.length} Stamps, ${currentUser.points} Merits',
           style: TextStyle(color: Color(0xFFe7b732)),
         ),
         trailing: GFToggle(

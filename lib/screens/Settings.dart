@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import '../models/user.dart';
 import '../providers/app_state.dart';
-import '../providers/auth_state.dart';
 import '../storage/storage_service.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/change_profile_field.dart';
@@ -22,7 +19,6 @@ class _SettingsState extends State<Settings> {
   late TextEditingController _nameEditingController;
   late TextEditingController _emailEditingController;
   late TextEditingController _passwordEditingController;
-  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {

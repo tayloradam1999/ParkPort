@@ -30,6 +30,8 @@ class SideBarMenuState extends State<SideBarMenu> {
 
   @override
   Widget build(BuildContext context) {
+    PPUser currentUser = Provider.of<AppState>(context).currentUser;
+
     return Consumer<AppState>(
       builder: (context, appState, child) {
         return Drawer(
@@ -54,8 +56,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                       CircleAvatar(
                         radius: 30,
                         backgroundImage: NetworkImage(
-                            Provider.of<AppState>(context, listen: false)
-                                .currentUser
+                            currentUser
                                 .profilePicUrl),
                         backgroundColor: Colors.transparent,
                       ),
@@ -67,8 +68,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          Provider.of<AppState>(context, listen: false)
-                              .currentUser
+                          currentUser
                               .userName,
                           style: TextStyle(
                             color: Color(0xFFe05e4a),
@@ -85,7 +85,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        '${Provider.of<AppState>(context, listen: false).currentUser.friendList.length} Friends',
+                        '${currentUser.friendList.length} Friends',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -95,7 +95,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                       ),
                       const SizedBox(width: 10), // psuedo spacing
                       Text(
-                        '${Provider.of<AppState>(context, listen: false).currentUser.points} Merits',
+                        '${currentUser.points} Merits',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,

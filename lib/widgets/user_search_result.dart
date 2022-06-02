@@ -1,21 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/user.dart';
+import '../providers/app_state.dart';
+import '../utils/friend_requests.dart';
 
-class UsersSearchResultsWidget extends StatelessWidget {
+class UsersSearchResultsWidget extends StatefulWidget {
   final String name;
   final String merits;
   final String imgUrl;
+  final String userID;
 
-  const UsersSearchResultsWidget(
-      {Key? key,
-      required this.name,
-      required this.merits,
-      required this.imgUrl})
-      : super(key: key);
+  const UsersSearchResultsWidget({
+    Key? key,
+    required this.name,
+    required this.merits,
+    required this.imgUrl,
+    required this.userID,
+  }) : super(key: key);
+
+  @override
+  State<UsersSearchResultsWidget> createState() =>
+      _UsersSearchResultsWidgetState();
+}
+
+class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
+  @override
+  @mustCallSuper
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    PPUser currentUser = Provider.of<AppState>(context).currentUser;
+
     return Container(
-      // margin: const EdgeInsets.only(top: 10),
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,7 +43,7 @@ class UsersSearchResultsWidget extends StatelessWidget {
             margin: const EdgeInsets.only(right: 5),
             padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: CircleAvatar(
-              backgroundImage: NetworkImage(imgUrl),
+              backgroundImage: NetworkImage(widget.imgUrl),
               minRadius: 25,
             ),
           ),
@@ -35,7 +54,7 @@ class UsersSearchResultsWidget extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.only(top: 7.5),
                   child: Text(
-                    name,
+                    widget.name,
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -43,7 +62,7 @@ class UsersSearchResultsWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  merits + ' merits',
+                  widget.merits + ' merits',
                   style: const TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
@@ -55,13 +74,14 @@ class UsersSearchResultsWidget extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(right: 10, top: 10),
             child: Container(
-              child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Send Request'),
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Color(0xFFe7b732)))),
-            ),
+                child: ElevatedButton(
+                    onPressed: () {
+                      sendFriendRequest(currentUser.userID, widget.userID);
+                    },
+                    child: const Text('Send Request'),
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Color(0xFFe7b732))))),
           ),
         ],
       ),

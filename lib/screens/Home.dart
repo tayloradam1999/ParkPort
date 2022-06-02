@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:getwidget/getwidget.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:park_port/providers/app_state.dart';
 import 'package:provider/provider.dart';
 import '../widgets/bottom_bar.dart';
@@ -19,16 +17,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  StreamController<double> controller = StreamController<double>();
+
   @override
   void initState() {
     // init state
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _asyncMethod();
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) => _asyncMethod(context));
   }
 
-  _asyncMethod() async {
+  _asyncMethod(context) async {
     PPUser user = await AuthState().getCurrentUserModel();
     setState(() {
       // Get user data from Firebase

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:getwidget/getwidget.dart';
 
 class Map extends StatefulWidget {
   const Map({Key? key}) : super(key: key);

@@ -76,10 +76,11 @@ class AuthState extends ChangeNotifier {
               'email': signedInUser.email,
               'userName': name,
               'status': 'Excited about Tulsa parks!',
-              'location': 'Tulsa, OK',
+              'lowercaseName': name.toLowerCase(),
               'dateJoined': DateTime.now(),
               'profilePicUrl': 'https://picsum.photos/100/100',
               'points': 0,
+              'friendNotifs': [],
               'friendList': [],
               'collectedStampList': [],
             }));
@@ -117,8 +118,18 @@ class AuthState extends ChangeNotifier {
     final snapshot = await usersRef.doc(_auth.currentUser!.uid).get();
     // Convert data to JSON format
     final user = snapshot.data()?.toJson();
+    print(user.toString());
     // Convert JSON to PPUser - there is no way to convert from Firestore snapshot to PPUser directly
     return PPUser.fromJson(user!);
+  }
+
+  Future<PPUser> getUserByID(String userID) async {
+    // Get the user from Firebase users collection
+    final snapshot = await usersRef.doc(userID).get();
+    // Convert data to JSON format
+    final user = snapshot.data()!.toJson();
+    // Return JSON converted to PPUser object
+    return PPUser.fromJson(user);
   }
 
   Future<void> resetPassword(String email) async {
