@@ -113,7 +113,12 @@ class AuthState extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<PPUser> getCurrentUserModel() async {
+  Future<void> resetPassword(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
+  }
+
+
+    Future<PPUser> getCurrentUserModel() async {
     // Get the user from Firebase users collection
     final snapshot = await usersRef.doc(_auth.currentUser!.uid).get();
     // Convert data to JSON format
@@ -122,7 +127,12 @@ class AuthState extends ChangeNotifier {
     return PPUser.fromJson(user!);
   }
 
-  Future<void> resetPassword(String email) async {
-    await _auth.sendPasswordResetEmail(email: email);
+  Future<PPUser> getUserByID(String userID) async {
+    // Get the user from Firebase users collection
+    final snapshot = await usersRef.doc(userID).get();
+    // Convert data to JSON format
+    final user = snapshot.data()!.toJson();
+    // Return JSON converted to PPUser object
+    return PPUser.fromJson(user);
   }
 }
