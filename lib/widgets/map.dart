@@ -19,7 +19,6 @@ class MapState extends State<Map> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Expanded(
       child: GoogleMap(
         onMapCreated: _onMapCreated,

@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:park_port/providers/app_state.dart';
 import 'package:provider/provider.dart';
+import '../providers/auth_state.dart';
+import '../providers/app_state.dart';
+import '../models/user.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/sidebar.dart';
 import '../widgets/map.dart';
 import '../widgets/profile_card.dart';
-import '../models/user.dart';
-import '../providers/auth_state.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -22,11 +22,11 @@ class _HomeState extends State<Home> {
     // init state
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _asyncMethod();
+      _populateCurrentUserInfo();
     });
   }
 
-  _asyncMethod() async {
+  _populateCurrentUserInfo() async {
     PPUser user = await AuthState().getCurrentUserModel();
     setState(() {
       // Get user data from Firebase

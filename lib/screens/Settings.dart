@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import '../models/user.dart';
 import '../providers/app_state.dart';
-import '../providers/auth_state.dart';
-import '../storage/storage_service.dart';
+import '../utils/storage_service.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/change_profile_field.dart';
 import '../widgets/change_profile_pic.dart';
@@ -42,9 +39,6 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    final Storage storage = Storage();
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
