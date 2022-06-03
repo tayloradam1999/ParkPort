@@ -75,12 +75,13 @@ class AuthState extends ChangeNotifier {
               'userID': signedInUser.uid,
               'email': signedInUser.email,
               'userName': name,
+              'lowercaseName': name.toLowerCase(),
               'status': 'Excited about Tulsa parks!',
-              'location': 'Tulsa, OK',
               'dateJoined': DateTime.now(),
               'profilePicUrl': 'https://picsum.photos/100/100',
               'points': 0,
               'friendList': [],
+              'friendNotifs': [],
               'collectedStampList': [],
             }));
       }

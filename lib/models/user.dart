@@ -4,10 +4,11 @@ class PPUser {
   String email;
   String userName;
   String status;
-  String location;
+  String lowercaseName;
   DateTime dateJoined;
   String profilePicUrl;
   int points;
+  List<String> friendNotifs;
   List<String> friendList;
   List<String> collectedStampList;
 
@@ -16,12 +17,13 @@ class PPUser {
     required this.userID,
     required this.email,
     required this.userName,
+    required this.lowercaseName,
     required this.status,
-    required this.location,
     required this.dateJoined,
     required this.profilePicUrl,
     required this.points,
     required this.friendList,
+    required this.friendNotifs,
     required this.collectedStampList,
   });
 
@@ -30,14 +32,15 @@ class PPUser {
         userID: map['userID'],
         email: map['email'],
         userName: map['userName'],
+        lowercaseName: map['lowercaseName'],
         status: map['status'],
-        location: map['location'],
         // Firebase stores dates as "timestamp" so need to convert to DateTime
         dateJoined: DateTime.fromMillisecondsSinceEpoch(
             map['dateJoined'].millisecondsSinceEpoch),
         profilePicUrl: map['profilePicUrl'],
         points: map['points'],
         friendList: List<String>.from(map['friendList']),
+        friendNotifs: List<String>.from(map['friendNotifs']),
         collectedStampList: List<String>.from(map['collectedStampList']),
       );
 
@@ -46,12 +49,13 @@ class PPUser {
         "userID": userID,
         "email": email,
         "userName": userName,
+        "lowercaseName": lowercaseName,
         "status": status,
-        "location": location,
         "dateJoined": dateJoined,
         "profilePicUrl": profilePicUrl,
         "points": points,
         "friendList": friendList,
+        "friendNotifs": friendNotifs,
         "collectedStampList": collectedStampList,
       };
 }

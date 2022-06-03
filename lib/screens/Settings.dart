@@ -19,7 +19,6 @@ class _SettingsState extends State<Settings> {
   late TextEditingController _nameEditingController;
   late TextEditingController _emailEditingController;
   late TextEditingController _passwordEditingController;
-  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
