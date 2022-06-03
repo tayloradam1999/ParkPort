@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:park_port/providers/app_state.dart';
 import 'package:provider/provider.dart';
+import '../providers/auth_state.dart';
+import '../providers/app_state.dart';
+import '../models/user.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/sidebar.dart';
 import '../widgets/map.dart';
 import '../widgets/profile_card.dart';
-import '../models/user.dart';
-import '../providers/auth_state.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -23,10 +23,12 @@ class _HomeState extends State<Home> {
   void initState() {
     // init state
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _asyncMethod(context));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _populateCurrentUserInfo();
+    });
   }
 
-  _asyncMethod(context) async {
+  _populateCurrentUserInfo() async {
     PPUser user = await AuthState().getCurrentUserModel();
     setState(() {
       // Get user data from Firebase
@@ -65,7 +67,7 @@ class _HomeState extends State<Home> {
           );
         }),
       ),
-      body: SingleChildScrollView(
+      body: Container(
         child: Column(children: [ProfileCard(), Map()]),
       ),
       bottomNavigationBar: BottomMenuBar(),
