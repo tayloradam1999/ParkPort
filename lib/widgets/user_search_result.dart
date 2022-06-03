@@ -1,40 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../models/user.dart';
-import '../providers/app_state.dart';
-import '../utils/friend_requests.dart';
 
-class UsersSearchResultsWidget extends StatefulWidget {
+class UsersSearchResultsWidget extends StatelessWidget {
   final String name;
   final String merits;
   final String imgUrl;
-  final String userID;
 
-  const UsersSearchResultsWidget({
-    Key? key,
-    required this.name,
-    required this.merits,
-    required this.imgUrl,
-    required this.userID,
-  }) : super(key: key);
-
-  @override
-  State<UsersSearchResultsWidget> createState() =>
-      _UsersSearchResultsWidgetState();
-}
-
-class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
-  @override
-  @mustCallSuper
-  void initState() {
-    super.initState();
-  }
+  const UsersSearchResultsWidget(
+      {Key? key,
+      required this.name,
+      required this.merits,
+      required this.imgUrl})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser = Provider.of<AppState>(context).currentUser;
-
     return Container(
+      // margin: const EdgeInsets.only(top: 10),
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +24,7 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
             margin: const EdgeInsets.only(right: 5),
             padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: CircleAvatar(
-              backgroundImage: NetworkImage(widget.imgUrl),
+              backgroundImage: NetworkImage(imgUrl),
               minRadius: 25,
             ),
           ),
@@ -54,7 +35,7 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
                 Container(
                   padding: const EdgeInsets.only(top: 7.5),
                   child: Text(
-                    widget.name,
+                    name,
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -62,7 +43,7 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
                   ),
                 ),
                 Text(
-                  widget.merits + ' merits',
+                  merits + ' merits',
                   style: const TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
@@ -74,14 +55,13 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
           Container(
             margin: const EdgeInsets.only(right: 10, top: 10),
             child: Container(
-                child: ElevatedButton(
-                    onPressed: () {
-                      sendFriendRequest(currentUser.userID, widget.userID);
-                    },
-                    child: const Text('Send Request'),
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Color(0xFFe7b732))))),
+              child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Send Request'),
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Color(0xFFe7b732)))),
+            ),
           ),
         ],
       ),

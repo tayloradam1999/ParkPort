@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:provider/provider.dart';
-import '../models/user.dart';
 import '../providers/app_state.dart';
 
 class ProfileCard extends StatefulWidget {
-  const ProfileCard({Key? key}) : super(key: key);
+  ProfileCard({Key? key}) : super(key: key);
 
   @override
   _ProfileCardState createState() => _ProfileCardState();
@@ -14,20 +13,23 @@ class ProfileCard extends StatefulWidget {
 class _ProfileCardState extends State<ProfileCard> {
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser = Provider.of<AppState>(context).currentUser;
-
     return Card(
       child: ListTile(
         leading: CircleAvatar(
           radius: 30,
-          backgroundImage: NetworkImage(currentUser.profilePicUrl),
+          backgroundImage: NetworkImage(
+              Provider.of<AppState>(context, listen: false)
+                  .currentUser
+                  .profilePicUrl),
           backgroundColor: Colors.transparent,
         ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              currentUser.userName,
+              Provider.of<AppState>(context, listen: false)
+                  .currentUser
+                  .userName,
               style: TextStyle(
                 color: Color(0xFFe05e4a),
                 fontSize: 16,
@@ -35,7 +37,7 @@ class _ProfileCardState extends State<ProfileCard> {
               ),
             ),
             Text(
-              currentUser.status,
+              Provider.of<AppState>(context, listen: false).currentUser.status,
               style: TextStyle(
                 color: Colors.grey.shade500,
                 fontSize: 13,
@@ -45,7 +47,7 @@ class _ProfileCardState extends State<ProfileCard> {
           ],
         ),
         subtitle: Text(
-          '${currentUser.collectedStampList.length} Stamps, ${currentUser.points} Merits',
+          '${Provider.of<AppState>(context, listen: false).currentUser.collectedStampList.length} Stamps, ${Provider.of<AppState>(context, listen: false).currentUser.points} Merits',
           style: TextStyle(color: Color(0xFFe7b732)),
         ),
         trailing: GFToggle(
@@ -56,10 +58,9 @@ class _ProfileCardState extends State<ProfileCard> {
       ),
       elevation: 15,
       shadowColor: Color(0xFFe05e4a),
-      margin: EdgeInsets.all(15),
       shape: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: Color(0xFFe7b732), width: 1.5)),
+          borderSide: BorderSide(color: Color(0xFFe05e4a), width: 1.5)),
     );
   }
 }

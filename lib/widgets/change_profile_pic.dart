@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../storage/storage_service.dart';
+
 class ChangeProfilePic extends StatefulWidget {
   final String label;
   final onChange;
+  
 
   const ChangeProfilePic(
       {Key? key, required this.label, required this.onChange})
@@ -14,11 +17,14 @@ class ChangeProfilePic extends StatefulWidget {
 }
 
 class _ChangeProfilePicState extends State<ChangeProfilePic> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     String label = widget.label;
     var onChange = widget.onChange;
+    final Storage storage = Storage();
 
     return Container(
       width: size.width * 0.8,
