@@ -70,9 +70,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   child: TextField(
                     controller: _emailController,
                     cursorColor: Color(0xFF8eb057),
-                    style: TextStyle(
-                      color: Color(0xFF8eb057),
-                    ),
                     decoration: InputDecoration(
                       labelText: "Email",
                       fillColor: Color(0xFF8eb057),
@@ -111,8 +108,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           style: TextStyle(
                             color: Color(0xFF7a8e4d),
                             fontFamily: GoogleFonts.mulish().fontFamily,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
+                            fontSize: 16,
                           ),
                         ),
                       ),

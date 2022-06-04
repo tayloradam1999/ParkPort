@@ -64,11 +64,12 @@ class _SignInState extends State<SignIn> {
               alignment: Alignment.center,
               margin: EdgeInsets.symmetric(horizontal: 40),
               child: TextField(
+                cursorColor: Color(0xFF8eb057),
                 decoration: InputDecoration(
                   labelText: "Email",
                   fillColor: Color(0xFFf2f2f2),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF8eb057)),
+                    borderSide: BorderSide(color: Color(0xFF7a8e4d), width: 2),
                   ),
                   labelStyle: TextStyle(color: Color(0xFF8eb057)),
                 ),
@@ -80,11 +81,12 @@ class _SignInState extends State<SignIn> {
               alignment: Alignment.center,
               margin: EdgeInsets.symmetric(horizontal: 40),
               child: TextField(
+                cursorColor: Color(0xFF8eb057),
                 decoration: InputDecoration(
                   labelText: "Password",
                   fillColor: Color(0xFF8eb057),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF8eb057)),
+                    borderSide: BorderSide(color: Color(0xFF7a8e4d), width: 2),
                   ),
                   labelStyle: TextStyle(color: Color(0xFF8eb057)),
                 ),
@@ -101,7 +103,7 @@ class _SignInState extends State<SignIn> {
                 margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                 child: Text(
                   "Forgot your password?",
-                  style: TextStyle(fontSize: 12, color: Color(0xFF7a8e4d)),
+                  style: TextStyle(fontSize: 15, color: Color(0xFF7a8e4d)),
                 ),
               ),
             ),
@@ -124,10 +126,8 @@ class _SignInState extends State<SignIn> {
                       showMessage(context, msg, 'login');
                       Provider.of<AppState>(context, listen: false)
                           .setpageIndex = 0;
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Home()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Home()));
                     } else {
                       showMessage(context, msg, 'login');
                     }
@@ -135,7 +135,7 @@ class _SignInState extends State<SignIn> {
                   child: Container(
                     alignment: Alignment.center,
                     height: 50.0,
-                    width: size.width * 0.5,
+                    width: size.width * 0.575,
                     decoration: new BoxDecoration(
                         borderRadius: BorderRadius.circular(80.0),
                         gradient: new LinearGradient(colors: [
@@ -160,10 +160,7 @@ class _SignInState extends State<SignIn> {
                     {Navigator.pushReplacementNamed(context, '/SignUp')},
                 child: Text(
                   "Don't Have an Account? Sign up",
-                  style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF7a8e4d)),
+                  style: TextStyle(fontSize: 14, color: Color(0xFF7a8e4d)),
                 ),
               ),
             )
@@ -173,121 +170,3 @@ class _SignInState extends State<SignIn> {
     );
   }
 }
-// class SignIn extends StatefulWidget {
-//   const SignIn({Key? key}) : super(key: key);
-
-//   @override
-//   _SignInState createState() => _SignInState();
-// }
-
-// class _SignInState extends State<SignIn> {
-//   late TextEditingController _emailController;
-//   late TextEditingController _passwordController;
-
-//   @override
-//   void initState() {
-//     // init state
-//     super.initState();
-//     // set controllers
-//     _emailController = TextEditingController();
-//     _passwordController = TextEditingController();
-//   }
-
-//   @override
-//   void dispose() {
-//     // dispose controllers
-//     _emailController.dispose();
-//     _passwordController.dispose();
-//     // dispose state
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         centerTitle: true,
-//         leading: IconButton(
-//           icon: const Icon(Icons.arrow_back),
-//           color: GFColors.SUCCESS,
-//           onPressed: () => Navigator.pop(context),
-//         ),
-//         title: Text(
-//           'Sign In',
-//           style: TextStyle(
-//             color: const Color.fromARGB(255, 0, 0, 0),
-//             fontFamily: GoogleFonts.poppins().fontFamily,
-//             fontWeight: FontWeight.w800,
-//             fontSize: 22,
-//           ),
-//         ),
-//         backgroundColor: Colors.transparent,
-//         bottomOpacity: 0.0,
-//         elevation: 0.0,
-//       ),
-//       body: Container(
-//         margin: const EdgeInsets.symmetric(horizontal: 15),
-//         child: Center(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: <Widget>[
-//               CustomEntryField(
-//                 hint: 'Email',
-//                 controller: _emailController,
-//               ),
-//               const SizedBox(height: 20.0),
-//               CustomEntryField(
-//                 hint: 'Password',
-//                 controller: _passwordController,
-//                 isPassword: true,
-//               ),
-//               const SizedBox(height: 20.0),
-//               Container(
-//                 margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-//                 child: CustomSubmitButton(
-//                   label: 'Sign Up',
-//                   onPressed: () {
-//                     Navigator.pushNamed(context, '/Home');
-//                   },
-//                 ),
-//               ),
-//               Container(
-//                 margin: const EdgeInsets.fromLTRB(40, 20, 40, 20),
-//                 child: GestureDetector(
-//                   onTap: () {
-//                     Navigator.pushNamed(context, '/SignUp');
-//                   },
-//                   child: Text(
-//                     'Sign up',
-//                     style: TextStyle(
-//                       fontSize: 16,
-//                       fontWeight: FontWeight.w500,
-//                       color: GFColors.SUCCESS,
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//               Container(
-//                 margin: const EdgeInsets.fromLTRB(40, 0, 40, 20),
-//                 child: GestureDetector(
-//                   onTap: () {
-//                     Navigator.pushNamed(context, '/ForgotPassword');
-//                   },
-//                   child: Text(
-//                     'Forgot Password?',
-//                     style: TextStyle(
-//                       fontSize: 16,
-//                       fontWeight: FontWeight.w500,
-//                       color: GFColors.SUCCESS,
-//                     ),
-//                   ),
-//                 ),
-//               )
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-

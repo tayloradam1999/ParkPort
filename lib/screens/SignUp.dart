@@ -62,6 +62,7 @@ class _SignUpState extends State<SignUp> {
               Container(
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.symmetric(horizontal: 40),
+                margin: EdgeInsets.only(top: 40),
                 child: Text(
                   "REGISTER",
                   style: TextStyle(
@@ -76,11 +77,13 @@ class _SignUpState extends State<SignUp> {
                 margin: EdgeInsets.symmetric(horizontal: 40),
                 child: TextField(
                   controller: _nameController,
+                  cursorColor: Color(0xFF8eb057),
                   decoration: InputDecoration(
                     labelText: "Name",
                     fillColor: Color(0xFF8eb057),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFF8eb057)),
+                      borderSide:
+                          BorderSide(color: Color(0xFF7a8e4d), width: 2),
                     ),
                     labelStyle: TextStyle(
                       color: Color(0xFF8eb057),
@@ -94,11 +97,13 @@ class _SignUpState extends State<SignUp> {
                 margin: EdgeInsets.symmetric(horizontal: 40),
                 child: TextField(
                   controller: _emailController,
+                  cursorColor: Color(0xFF8eb057),
                   decoration: InputDecoration(
                     labelText: "Email",
                     fillColor: Color(0xFF8eb057),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFF8eb057)),
+                      borderSide:
+                          BorderSide(color: Color(0xFF7a8e4d), width: 2),
                     ),
                     labelStyle: TextStyle(
                       color: Color(0xFF8eb057),
@@ -112,6 +117,7 @@ class _SignUpState extends State<SignUp> {
                 margin: EdgeInsets.symmetric(horizontal: 40),
                 child: TextField(
                   controller: _passwordController,
+                  cursorColor: Color(0xFF8eb057),
                   decoration: InputDecoration(
                     labelText: "Password",
                     fillColor: Color(0xFF7a8e4d),
@@ -132,6 +138,7 @@ class _SignUpState extends State<SignUp> {
                 margin: EdgeInsets.symmetric(horizontal: 40),
                 child: TextField(
                   controller: _confirmController,
+                  cursorColor: Color(0xFF8eb057),
                   decoration: InputDecoration(
                     labelText: "Confirm password",
                     fillColor: Color(0xFF7a8e4d),
@@ -174,7 +181,7 @@ class _SignUpState extends State<SignUp> {
                   child: Container(
                     alignment: Alignment.center,
                     height: 50.0,
-                    width: size.width * 0.5,
+                    width: size.width * 0.51,
                     decoration: new BoxDecoration(
                         borderRadius: BorderRadius.circular(80.0),
                         gradient: new LinearGradient(
@@ -198,11 +205,8 @@ class _SignUpState extends State<SignUp> {
                         MaterialPageRoute(builder: (context) => SignIn()))
                   },
                   child: Text(
-                    "Already Have an Account? Sign in",
-                    style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF7a8e4d)),
+                    "Already Have an Account?\nSign in",
+                    style: TextStyle(fontSize: 15, color: Color(0xFF7a8e4d)),
                   ),
                 ),
               )

@@ -45,7 +45,7 @@ class Welcome extends StatelessWidget {
                 },
                 child: Text(
                   "Forgot your password?",
-                  style: TextStyle(fontSize: 12, color: Color(0xFF7a8e4d)),
+                  style: TextStyle(fontSize: 14, color: Color(0xFF7a8e4d)),
                 ),
               ),
             ),

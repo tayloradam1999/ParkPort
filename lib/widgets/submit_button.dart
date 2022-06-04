@@ -18,6 +18,11 @@ class CustomSubmitButton extends StatelessWidget {
         onPressed();
       },
       text: label,
+      textStyle: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: Colors.white,
+      ),
       shape: GFButtonShape.pills,
       size: GFSize.LARGE,
       fullWidthButton: true,

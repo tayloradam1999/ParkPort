@@ -27,7 +27,7 @@ class _SideBarTileState extends State<SideBarTile> {
       ),
       title: Text(widget.title,
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.black87,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           )),

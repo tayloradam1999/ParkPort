@@ -6,9 +6,9 @@ class NoNotifications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
-      width: 350,
+      height: MediaQuery.of(context).size.height * 0.5,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('No Notifications available',
               style: TextStyle(
