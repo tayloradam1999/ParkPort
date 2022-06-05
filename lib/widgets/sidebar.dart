@@ -49,7 +49,6 @@ class SideBarMenuState extends State<SideBarMenu> {
               children: <Widget>[
                 DrawerHeader(
                     margin: EdgeInsets.all(0),
-
                     // Everything inside drawer uses Consumer
                     child: Column(
                       children: <Widget>[

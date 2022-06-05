@@ -113,6 +113,7 @@ class _SignInState extends State<SignIn> {
               margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
               child: RaisedButton(
                 // What is this???
+                // Answer: button.
                 onPressed: () {},
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(80.0)),

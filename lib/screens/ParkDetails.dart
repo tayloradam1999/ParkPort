@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/park_details_card.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class ParkDetails extends StatefulWidget {
   const ParkDetails({Key? key}) : super(key: key);
@@ -32,9 +33,23 @@ class _ParkDetailsState extends State<ParkDetails> {
         elevation: 0.0,
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ParkDetailsCard(),
+        child: Column(
+          children: <Widget>[
+            CarouselSlider(
+              items: [ParkDetailsCard(), ParkDetailsCard(), ParkDetailsCard()],
+              options: CarouselOptions(
+                height: size.height,
+                viewportFraction: 0.9,
+                // enlargeCenterPage: true, // looks great, but overflows on transition
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 4),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                pauseAutoPlayOnTouch: true,
+                scrollDirection: Axis.horizontal,
+              ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomMenuBar(),

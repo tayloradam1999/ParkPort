@@ -133,15 +133,18 @@ class _ParkDetailsCardState extends State<ParkDetailsCard> {
             children: [
               TextButton(
                 onPressed: () {},
-                child: const Text('Event1'),
+                child: const Text('Event1',
+                    style: TextStyle(color: Color(0xFFe05e4a))),
               ),
               TextButton(
                 onPressed: () {},
-                child: const Text('Event2'),
+                child: const Text('Event2',
+                    style: TextStyle(color: Color(0xFFe05e4a))),
               ),
               TextButton(
                 onPressed: () {},
-                child: const Text('Event3'),
+                child: const Text('Event3',
+                    style: TextStyle(color: Color(0xFFe05e4a))),
               ),
             ],
           ),

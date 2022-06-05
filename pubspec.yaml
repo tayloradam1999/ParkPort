@@ -50,6 +50,7 @@ dependencies:
   firebase_storage: ^10.2.17
   google_maps_flutter: ^2.1.6
   google_maps_flutter_web: ^0.3.3
+  carousel_slider: ^4.1.1
 
 dev_dependencies:
   flutter_test:
