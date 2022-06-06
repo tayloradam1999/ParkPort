@@ -78,7 +78,6 @@ class SideBarMenuState extends State<SideBarMenu> {
                                   color: Color(0xFFe05e4a),
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
-                                  fontFamily: GoogleFonts.mulish().fontFamily,
                                 ),
                               ),
                             ],
@@ -94,7 +93,6 @@ class SideBarMenuState extends State<SideBarMenu> {
                                 color: Colors.black,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
-                                fontFamily: GoogleFonts.mulish().fontFamily,
                               ),
                             ),
                             const SizedBox(width: 10), // psuedo spacing
@@ -104,7 +102,6 @@ class SideBarMenuState extends State<SideBarMenu> {
                                 color: Colors.black,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
-                                fontFamily: GoogleFonts.mulish().fontFamily,
                               ),
                             ),
                             const SizedBox(width: 10), // psuedo spacing
@@ -114,7 +111,6 @@ class SideBarMenuState extends State<SideBarMenu> {
                                 color: Colors.black,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
-                                fontFamily: GoogleFonts.mulish().fontFamily,
                               ),
                             ),
                           ],
@@ -165,10 +161,8 @@ class SideBarMenuState extends State<SideBarMenu> {
                     }),
                 ListTile(
                   title: Text('Settings and privacy',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: GoogleFonts.mulish().fontFamily)),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
                   onTap: () {
                     // show no index on bottom bar
                     appState.setpageIndex = 5;
@@ -177,10 +171,8 @@ class SideBarMenuState extends State<SideBarMenu> {
                 ),
                 ListTile(
                   title: Text('Logout',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: GoogleFonts.mulish().fontFamily)),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
                   onTap: () {
                     AuthState().logout();
                     Navigator.pushReplacementNamed(context, '/Welcome');

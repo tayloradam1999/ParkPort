@@ -62,7 +62,7 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
                   ),
                 ),
                 Text(
-                  widget.merits + ' merits',
+                  widget.merits + ' merits ',
                   style: const TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
@@ -89,7 +89,7 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
-            color: Colors.grey,
+            color: Color(0xFFe05e4a),
             width: 1,
           ),
         ),

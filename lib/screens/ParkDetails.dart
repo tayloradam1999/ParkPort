@@ -39,7 +39,7 @@ class _ParkDetailsState extends State<ParkDetails> {
               items: [ParkDetailsCard(), ParkDetailsCard(), ParkDetailsCard()],
               options: CarouselOptions(
                 height: size.height,
-                viewportFraction: 0.9,
+                viewportFraction: 0.95,
                 // enlargeCenterPage: true, // looks great, but overflows on transition
                 autoPlay: true,
                 autoPlayInterval: Duration(seconds: 4),
