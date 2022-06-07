@@ -40,20 +40,20 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser = Provider.of<AppState>(context, listen: false).currentUser;
+    PPUser currentUser =
+        Provider.of<AppState>(context, listen: false).currentUser;
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            color: Colors.black,
+            color: Color(0xFFe05e4a),
             onPressed: () => Navigator.pushReplacementNamed(context, '/Home')),
         title: Text(
           'Settings',
           style: TextStyle(
-            color: Colors.black,
-            fontFamily: GoogleFonts.poppins().fontFamily,
+            color: Color(0xFFe05e4a),
             fontWeight: FontWeight.w800,
             fontSize: 22,
           ),
@@ -85,7 +85,8 @@ class _SettingsState extends State<Settings> {
             ]),
             TextButton(
                 onPressed: () {
-                  addStampToUser(context, currentUser.userID, 'FGsLCt5wF1mufMdheXzq');
+                  addStampToUser(
+                      context, currentUser.userID, 'FGsLCt5wF1mufMdheXzq');
                 },
                 child: Text('Button!'))
           ],

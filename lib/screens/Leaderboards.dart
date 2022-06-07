@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../widgets/bottom_bar.dart';
+import '../widgets/sidebar.dart';
 
 class Leaderboards extends StatefulWidget {
   const Leaderboards({Key? key}) : super(key: key);
@@ -13,24 +14,34 @@ class _LeaderboardsState extends State<Leaderboards> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: SideBarMenu(),
       appBar: AppBar(
         centerTitle: true,
-        automaticallyImplyLeading: false,
         title: Text(
           'Leaderboards',
           style: TextStyle(
-            color: Colors.black,
-            fontFamily: GoogleFonts.poppins().fontFamily,
+            color: Color(0xFFe05e4a),
             fontWeight: FontWeight.w800,
-            fontSize: 22,
+            fontSize: 26,
           ),
         ),
-        backgroundColor: Colors.transparent,
-        bottomOpacity: 0.0,
-        elevation: 0.0,
+        backgroundColor: Color.fromARGB(199, 192, 231, 130),
+        leading: Builder(builder: (BuildContext context) {
+          return IconButton(
+            icon: const Icon(
+              Icons.menu,
+              color: Color(0xFFe05e4a),
+            ),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          );
+        }),
       ),
       body: Column(
         children: [
+          SizedBox(height: 5.0),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             RaisedButton(
               onPressed: () {},

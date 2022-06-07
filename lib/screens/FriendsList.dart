@@ -106,13 +106,9 @@ class _FriendsListState extends State<FriendsList> {
               ),
             ),
           ),
-          Column(
-            children: [
-              SearchFriends(searchText: _searchController.text),
-              SearchUsers(
-                searchText: _searchController.text,
-              ),
-            ],
+          SearchFriends(searchText: _searchController.text),
+          SearchUsers(
+            searchText: _searchController.text,
           ),
         ]),
       ),

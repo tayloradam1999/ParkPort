@@ -19,7 +19,7 @@ class Profile extends StatelessWidget {
             ProfileHeader(),
             ProfileStatus(),
             ProfileStamps(),
-            SizedBox(height: 90.0),
+            SizedBox(height: 110.0),
             if (Provider.of<AppState>(context, listen: false).pageIndex == 5)
               EditProfileButton(),
           ],

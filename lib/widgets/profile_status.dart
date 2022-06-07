@@ -24,17 +24,29 @@ class ProfileStatus extends StatelessWidget {
             SizedBox(
               height: 10.0,
             ),
-            Text(
-              Provider.of<AppState>(context, listen: false).currentUser.status,
-              style: TextStyle(
-                fontSize: 18.0,
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.w300,
-                color: Colors.black,
-                letterSpacing: 2.0,
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                border: Border.all(
+                  color: Color(0xFFe05e4a),
+                  width: 2.0,
+                ),
+              ),
+              child: Text(
+                Provider.of<AppState>(context, listen: false)
+                    .currentUser
+                    .status,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.black,
+                  letterSpacing: 2.0,
+                ),
               ),
             ),
-            SizedBox(height: 40),
+            SizedBox(height: 30.0),
             Container(
               width: 300.00,
               child: RaisedButton(
@@ -43,7 +55,7 @@ class ProfileStatus extends StatelessWidget {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text('Change Status'),
+                          title: Text('Update Status'),
                           content: TextField(
                             maxLength: 20,
                             decoration: InputDecoration(

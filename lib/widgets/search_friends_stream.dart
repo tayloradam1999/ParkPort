@@ -12,37 +12,38 @@ class SearchFriends extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser = Provider.of<AppState>(context, listen: false).currentUser;
+    PPUser currentUser =
+        Provider.of<AppState>(context, listen: false).currentUser;
 
     return StreamBuilder<List<PPUser>>(
         stream: getAllUsers(context, searchText.toLowerCase(), currentUser),
         builder: (BuildContext context, AsyncSnapshot<List<PPUser>> snapshot) {
-            if (snapshot.hasData && snapshot.data!.length != 0) {
-              final users = snapshot.data!;
-              return ListView(
-                shrinkWrap: true,
-                children: users.map(
-                  (user) {
-                    return isFriend(currentUser, user.userID) ?
-                    GestureDetector(
-                            onTap: () {
-                              Navigator.pushReplacementNamed(
-                                  context, '/Profile');
-                            },
-                            child: UsersSearchResultsWidget(
-                              name: user.userName,
-                              merits: user.points.toString(),
-                              imgUrl: user.profilePicUrl,
-                              userID: user.userID,
-                              action: 'friend',
-                            ),
-                          ) : Container();
-                  },
-                ).toList(),
-              );
-            } else {
-              return Text('No users with that name');
-            }
-          });
+          if (snapshot.hasData && snapshot.data!.length != 0) {
+            final users = snapshot.data!;
+            return ListView(
+              shrinkWrap: true,
+              children: users.map(
+                (user) {
+                  return isFriend(currentUser, user.userID)
+                      ? GestureDetector(
+                          onTap: () {
+                            Navigator.pushReplacementNamed(context, '/Profile');
+                          },
+                          child: UsersSearchResultsWidget(
+                            name: user.userName,
+                            merits: user.points.toString(),
+                            imgUrl: user.profilePicUrl,
+                            userID: user.userID,
+                            action: 'friend',
+                          ),
+                        )
+                      : Container();
+                },
+              ).toList(),
+            );
+          } else {
+            return Text('No users with that name');
+          }
+        });
   }
 }

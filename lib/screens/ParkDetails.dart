@@ -4,6 +4,8 @@ import '../widgets/bottom_bar.dart';
 import '../widgets/park_details_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import '../widgets/sidebar.dart';
+
 class ParkDetails extends StatefulWidget {
   const ParkDetails({Key? key}) : super(key: key);
 
@@ -16,21 +18,30 @@ class _ParkDetailsState extends State<ParkDetails> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      drawer: SideBarMenu(),
       appBar: AppBar(
         centerTitle: true,
-        automaticallyImplyLeading: false,
         title: Text(
           'Park Details',
           style: TextStyle(
-            color: Colors.black,
-            fontFamily: GoogleFonts.poppins().fontFamily,
+            color: Color(0xFFe05e4a),
             fontWeight: FontWeight.w800,
-            fontSize: 22,
+            fontSize: 26,
           ),
         ),
-        backgroundColor: Colors.transparent,
-        bottomOpacity: 0.0,
-        elevation: 0.0,
+        backgroundColor: Color.fromARGB(199, 192, 231, 130),
+        leading: Builder(builder: (BuildContext context) {
+          return IconButton(
+            icon: const Icon(
+              Icons.menu,
+              color: Color(0xFFe05e4a),
+            ),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          );
+        }),
       ),
       body: SingleChildScrollView(
         child: Column(

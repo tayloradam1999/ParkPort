@@ -13,7 +13,7 @@ class NoNotifications extends StatelessWidget {
           Text('No Notifications available',
               style: TextStyle(
                 fontSize: 22,
-                color: Color(0xFFe05e4a),
+                color: Colors.black,
                 fontWeight: FontWeight.bold,
               )),
           const SizedBox(height: 15),
