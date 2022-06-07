@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:park_port/widgets/search_friends_stream.dart';
 import '../widgets/bottom_bar.dart';
-import '../widgets/matching_users_list.dart';
+import '../widgets/search_users_stream.dart';
 import '../widgets/sidebar.dart';
 
 class FriendsList extends StatefulWidget {
@@ -105,8 +106,13 @@ class _FriendsListState extends State<FriendsList> {
               ),
             ),
           ),
-          SearchUsers(
-            searchText: _searchController.text,
+          Column(
+            children: [
+              SearchFriends(searchText: _searchController.text),
+              SearchUsers(
+                searchText: _searchController.text,
+              ),
+            ],
           ),
         ]),
       ),
