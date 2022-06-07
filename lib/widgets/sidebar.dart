@@ -32,90 +32,106 @@ class SideBarMenuState extends State<SideBarMenu> {
   Widget build(BuildContext context) {
     return Consumer<AppState>(
       builder: (context, appState, child) {
+        Size size = MediaQuery.of(context).size;
         return Drawer(
           width: MediaQuery.of(context).size.width * 0.8,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20.0),
-              topRight: Radius.circular(20.0),
-            ),
-          ),
           child: Container(
-            decoration: BoxDecoration(
-              color: Color.fromARGB(199, 192, 231, 130),
-            ),
+            color: Color.fromARGB(199, 192, 231, 130),
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
                 DrawerHeader(
                     margin: EdgeInsets.all(0),
                     // Everything inside drawer uses Consumer
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: NetworkImage(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(18.0),
+                          ),
+                          color: Color.fromARGB(255, 245, 236, 160),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0xFFe05e4a),
+                              spreadRadius: 4,
+                              blurRadius: 5,
+                            ),
+                            BoxShadow(
+                              color: Color(0xFFe05e4a),
+                              spreadRadius: -4,
+                              blurRadius: 5,
+                            )
+                          ]),
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.only(top: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                CircleAvatar(
+                                  radius: 30,
+                                  backgroundImage: NetworkImage(
+                                      Provider.of<AppState>(context,
+                                              listen: false)
+                                          .currentUser
+                                          .profilePicUrl),
+                                  backgroundColor: Colors.transparent,
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
                                   Provider.of<AppState>(context, listen: false)
                                       .currentUser
-                                      .profilePicUrl),
-                              backgroundColor: Colors.transparent,
+                                      .userName,
+                                  style: TextStyle(
+                                    color: Color(0xFFe05e4a),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(top: 10),
-                          child: Row(
+                          ),
+                          const SizedBox(height: 5), // psuedo spacing
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                Provider.of<AppState>(context, listen: false)
-                                    .currentUser
-                                    .userName,
+                                '${Provider.of<AppState>(context, listen: false).currentUser.friendList.length} Friends',
                                 style: TextStyle(
-                                  color: Color(0xFFe05e4a),
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                              const SizedBox(width: 10), // psuedo spacing
+                              Text(
+                                '${Provider.of<AppState>(context, listen: false).currentUser.collectedStampList.length} Stamps',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                              const SizedBox(width: 10), // psuedo spacing
+                              Text(
+                                '${Provider.of<AppState>(context, listen: false).currentUser.points} Merits',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w800,
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                        const SizedBox(height: 10), // psuedo spacing
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              '${Provider.of<AppState>(context, listen: false).currentUser.friendList.length} Friends',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            const SizedBox(width: 10), // psuedo spacing
-                            Text(
-                              '${Provider.of<AppState>(context, listen: false).currentUser.collectedStampList.length} Stamps',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            const SizedBox(width: 10), // psuedo spacing
-                            Text(
-                              '${Provider.of<AppState>(context, listen: false).currentUser.points} Merits',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                        ],
+                      ),
                     )),
                 SideBarTile(
                     icon: Icons.account_circle_rounded,

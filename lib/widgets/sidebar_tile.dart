@@ -25,15 +25,18 @@ class _SideBarTileState extends State<SideBarTile> {
         widget.icon,
         color: Color(0xFFe05e4a),
       ),
-      title: Text(widget.title,
-          style: TextStyle(
-            color: Colors.black87,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          )),
+      title: Text(
+        widget.title,
+        style: TextStyle(
+          color: Colors.black87,
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
       onTap: () {
         widget.onTap();
       },
+      minLeadingWidth: 0,
       mouseCursor: MaterialStateMouseCursor.clickable,
     );
   }
