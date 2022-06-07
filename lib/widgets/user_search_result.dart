@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:park_port/utils/utils.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
@@ -9,6 +10,7 @@ class UsersSearchResultsWidget extends StatefulWidget {
   final String merits;
   final String imgUrl;
   final String userID;
+  final String action;
 
   const UsersSearchResultsWidget({
     Key? key,
@@ -16,6 +18,7 @@ class UsersSearchResultsWidget extends StatefulWidget {
     required this.merits,
     required this.imgUrl,
     required this.userID,
+    required this.action,
   }) : super(key: key);
 
   @override
@@ -71,18 +74,32 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
               ],
             ),
           ),
-          Container(
-            margin: const EdgeInsets.only(right: 10, top: 10),
-            child: Container(
-                child: ElevatedButton(
-                    onPressed: () {
-                      sendFriendRequest(currentUser.userID, widget.userID);
-                    },
-                    child: const Text('Send Request'),
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Color(0xFFe7b732))))),
-          ),
+          if (widget.action == 'friend') Container(),
+          if (widget.action == 'true')
+            Container(
+              margin: const EdgeInsets.only(right: 10, top: 10),
+              child: Container(
+                  child: ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Pending Friend Request'),
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Color(0xFFe7b732))))),
+            ),
+          if (widget.action == 'false')
+            Container(
+              margin: const EdgeInsets.only(right: 10, top: 10),
+              child: Container(
+                  child: ElevatedButton(
+                      onPressed: () {
+                        sendFriendRequest(currentUser.userID, widget.userID);
+                        setState(() {});
+                      },
+                      child: const Text('Send Friend Request'),
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Color(0xFF8eb057))))),
+            ),
         ],
       ),
       // horizontal line

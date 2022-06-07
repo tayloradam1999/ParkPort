@@ -3,10 +3,15 @@ import 'package:provider/provider.dart';
 import '../providers/app_state.dart';
 import '../utils/friend_requests.dart';
 
-class AcceptRequestButton extends StatelessWidget {
+class AcceptRequestButton extends StatefulWidget {
   final String userID;
   const AcceptRequestButton({Key? key, required this.userID}) : super(key: key);
 
+  @override
+  State<AcceptRequestButton> createState() => _AcceptRequestButtonState();
+}
+
+class _AcceptRequestButtonState extends State<AcceptRequestButton> {
   @override
   Widget build(BuildContext context) {
     String currentUser = Provider.of<AppState>(context).currentUser.userID;
@@ -17,7 +22,8 @@ class AcceptRequestButton extends StatelessWidget {
         highlightColor: Colors.blue,
         child: Icon(Icons.check_circle_outline, size: 40, color: Colors.green),
         onTap: () {
-          acceptFriendRequest(currentUser, userID);
+          acceptFriendRequest(currentUser, widget.userID);
+          setState(() {});
         },
       ),
     );
