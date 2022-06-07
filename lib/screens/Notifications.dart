@@ -16,7 +16,7 @@ class Notifications extends StatefulWidget {
 class _NotificationsState extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser = Provider.of<AppState>(context).currentUser;
+    PPUser currentUser = Provider.of<AppState>(context, listen: false).currentUser;
 
     return Scaffold(
       appBar: AppBar(

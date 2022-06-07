@@ -35,7 +35,7 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser = Provider.of<AppState>(context).currentUser;
+    PPUser currentUser = Provider.of<AppState>(context, listen: false).currentUser;
 
     return Container(
       padding: const EdgeInsets.only(bottom: 10),

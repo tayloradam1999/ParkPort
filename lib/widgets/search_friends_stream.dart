@@ -3,7 +3,6 @@ import 'package:park_port/utils/user_search.dart';
 import 'package:park_port/utils/utils.dart';
 import 'package:provider/provider.dart';
 import '../providers/app_state.dart';
-import '../utils/friend_requests.dart';
 import '../widgets/user_search_result.dart';
 import '../models/user.dart';
 
@@ -13,11 +12,11 @@ class SearchFriends extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser = Provider.of<AppState>(context).currentUser;
+    PPUser currentUser = Provider.of<AppState>(context, listen: false).currentUser;
 
     return StreamBuilder<List<PPUser>>(
         stream: getAllUsers(context, searchText.toLowerCase(), currentUser),
-        builder: (context, snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<List<PPUser>> snapshot) {
             if (snapshot.hasData && snapshot.data!.length != 0) {
               final users = snapshot.data!;
               return ListView(

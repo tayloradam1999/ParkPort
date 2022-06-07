@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:park_port/widgets/stamp_list_stream.dart';
 import '../widgets/bottom_bar.dart';
 
 class Passports extends StatefulWidget {
@@ -29,6 +30,7 @@ class _PassportsState extends State<Passports> {
         bottomOpacity: 0.0,
         elevation: 0.0,
       ),
+      body: StampList(),
       bottomNavigationBar: BottomMenuBar(),
     );
   }

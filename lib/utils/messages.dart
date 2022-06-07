@@ -41,10 +41,39 @@ void showMessage(context, Errors msg, String type) {
 void sendResetPassword(context) {
   // Tap into scaffold to show snackbar
   final scaffold = ScaffoldMessenger.of(context);
-
   // Display snackbar
   scaffold.showSnackBar(const SnackBar(
     content: Text("Check your email to reset your password!", textAlign: TextAlign.center),
+    backgroundColor: Color(0xFF8eb057),
+  ));
+}
+
+void acceptFriendMessage(context) {
+  // Tap into scaffold to show snackbar
+  final scaffold = ScaffoldMessenger.of(context);
+  // Display snackbar
+  scaffold.showSnackBar(const SnackBar(
+    content: Text("You have a new friend!", textAlign: TextAlign.center),
+    backgroundColor: Color(0xFF8eb057),
+  ));
+}
+
+void denyFriendMessage(context) {
+  // Tap into scaffold to show snackbar
+  final scaffold = ScaffoldMessenger.of(context);
+  // Display snackbar
+  scaffold.showSnackBar(const SnackBar(
+    content: Text("Friend request removed", textAlign: TextAlign.center),
+    backgroundColor: Color(0xFFe05e4a),
+  ));
+}
+
+void addStampMessage(context) {
+  // Tap into scaffold to show snackbar
+  final scaffold = ScaffoldMessenger.of(context);
+  // Display snackbar
+  scaffold.showSnackBar(const SnackBar(
+    content: Text("You have a new stamp!", textAlign: TextAlign.center),
     backgroundColor: Color(0xFF8eb057),
   ));
 }

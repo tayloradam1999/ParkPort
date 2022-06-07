@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../providers/app_state.dart';
 
 class ProfileStamps extends StatelessWidget {
   const ProfileStamps({Key? key}) : super(key: key);
