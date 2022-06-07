@@ -11,6 +11,7 @@ class PPUser {
   List<String> friendNotifs;
   List<String> friendList;
   List<String> collectedStampList;
+  List<String> stampNotifs;
 
   // Constructor to initialize all fields
   PPUser({
@@ -25,6 +26,7 @@ class PPUser {
     required this.friendList,
     required this.friendNotifs,
     required this.collectedStampList,
+    required this.stampNotifs,
   });
 
   // named constructor for when get JSON object from firebase
@@ -42,6 +44,7 @@ class PPUser {
         friendList: List<String>.from(map['friendList']),
         friendNotifs: List<String>.from(map['friendNotifs']),
         collectedStampList: List<String>.from(map['collectedStampList']),
+        stampNotifs: List<String>.from(map['stampNotifs']),
       );
 
   // instance method that returns Map<String, dynamic> so can be stored in firestore
@@ -57,5 +60,6 @@ class PPUser {
         "friendList": friendList,
         "friendNotifs": friendNotifs,
         "collectedStampList": collectedStampList,
+        "stampNotifs": stampNotifs,
       };
 }

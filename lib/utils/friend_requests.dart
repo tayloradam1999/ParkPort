@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../providers/auth_state.dart';
 import '../models/user.dart';
+import './messages.dart';
 
 Stream<List<PPUser>>? getMatchingUsers(String userName, PPUser currentUser) {
   if (userName != '') {
@@ -27,7 +28,6 @@ Stream<List<PPUser>>? getMatchingUsers(String userName, PPUser currentUser) {
 Future<void> sendFriendRequest(String currentUser, String userID) async {
   // Create reference to Firestore database users collection
   final usersRef = FirebaseFirestore.instance.collection('users');
-
   // Get current user's friendRequests list
   await usersRef.doc(userID).update({
     'friendNotifs': FieldValue.arrayUnion([currentUser])
@@ -46,10 +46,10 @@ Future<List<PPUser>> getInfoAboutFriendRequests(PPUser currentUser) async {
   return friendInfo;
 }
 
-acceptFriendRequest(String currentUser, String userID) async {
+Future<void> acceptFriendRequest(
+    context, String currentUser, String userID) async {
   // Create reference to Firestore database users collection
   final usersRef = FirebaseFirestore.instance.collection('users');
-
   // Update current user's friendList and remove the notification
   await usersRef.doc(currentUser).update({
     'friendNotifs': FieldValue.arrayRemove([userID]),
@@ -59,10 +59,15 @@ acceptFriendRequest(String currentUser, String userID) async {
   await usersRef.doc(userID).update({
     'friendList': FieldValue.arrayUnion([currentUser])
   });
+  // Display toast message
+  acceptFriendMessage(context);
 }
 
-denyFriendRequest(currentUser, userID) async{
+Future<void> denyFriendRequest(context, currentUser, userID) async {
+  // Remove userID from currentUser's friendNotifs
   await FirebaseFirestore.instance.collection('users').doc(currentUser).update({
     'friendNotifs': FieldValue.arrayRemove([userID]),
   });
+  // Display toast message
+  denyFriendMessage(context);
 }

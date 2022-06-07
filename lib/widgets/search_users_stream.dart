@@ -12,11 +12,11 @@ class SearchUsers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser = Provider.of<AppState>(context).currentUser;
+    PPUser currentUser = Provider.of<AppState>(context, listen: false).currentUser;
 
     return StreamBuilder<List<PPUser>>(
         stream: getMatchingUsers(searchText.toLowerCase(), currentUser),
-        builder: (context, snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<List<PPUser>> snapshot) {
           if (searchText != '') {
             if (snapshot.hasData && snapshot.data!.length != 0) {
               final users = snapshot.data!;

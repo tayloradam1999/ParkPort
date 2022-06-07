@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import '../models/user.dart';
 import '../providers/app_state.dart';
+import '../utils/_temp_stamp.dart';
 import '../utils/storage_service.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/change_profile_field.dart';
@@ -38,6 +40,8 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    PPUser currentUser = Provider.of<AppState>(context, listen: false).currentUser;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -78,8 +82,12 @@ class _SettingsState extends State<Settings> {
                           .profilePicUrl = url;
                     });
                   }),
-              // ChangeProfileField(label: 'Take New Photo', onChange: () async {}),
             ]),
+            TextButton(
+                onPressed: () {
+                  addStampToUser(context, currentUser.userID, 'FGsLCt5wF1mufMdheXzq');
+                },
+                child: Text('Button!'))
           ],
         ),
       ),
