@@ -36,7 +36,7 @@ class SearchUsers extends StatelessWidget {
                             action: isPendingFriend(user, currentUser.userID)
                                 .toString(),
                             collectedStampList: user.collectedStampList,
-                            friendList: currentUser.friendList,
+                            friendList: user.friendList,
                           );
                   },
                 ).toList(),

@@ -39,8 +39,8 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser =
-        Provider.of<AppState>(context, listen: false).currentUser;
+    String currentUserID =
+        Provider.of<AppState>(context, listen: false).currentUser.userID;
 
     return Container(
       padding: const EdgeInsets.only(bottom: 10),
@@ -124,7 +124,7 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
                   width: 120,
                   child: ElevatedButton(
                       onPressed: () {
-                        sendFriendRequest(currentUser.userID, widget.userID);
+                        sendFriendRequest(currentUserID, widget.userID);
                         setState(() {});
                       },
                       child: const Text('Send Request',

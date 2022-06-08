@@ -29,7 +29,7 @@ class LeaderboardList extends StatelessWidget {
                     userID: user.userID,
                     action: 'friend',
                     collectedStampList: user.collectedStampList,
-                    friendList: currentUser.friendList,
+                    friendList: user.friendList,
                   );
                 },
               ).toList(),
