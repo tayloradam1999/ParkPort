@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:park_port/models/user.dart';
+import 'package:park_port/widgets/remove_notification_button.dart';
 import 'package:provider/provider.dart';
 import '../providers/app_state.dart';
+import './congratulate_button.dart';
 import '../screens/Notifications.dart';
 import './accept_request_button.dart';
 import './deny_request_button.dart';
@@ -28,7 +30,8 @@ class _NotificationItemState extends State<NotificationItem> {
   @override
   Widget build(BuildContext context) {
     String userID = widget.userID;
-    PPUser currentUser = Provider.of<AppState>(context, listen: false).currentUser;
+    PPUser currentUser =
+        Provider.of<AppState>(context, listen: false).currentUser;
 
     return Container(
       padding: const EdgeInsets.only(bottom: 10),
@@ -88,6 +91,13 @@ class _NotificationItemState extends State<NotificationItem> {
                 ],
               ),
             ),
+          if (widget.action == 'got_stamp')
+            Container(
+              padding: const EdgeInsets.only(left: 10, top: 5),
+              child: Row(
+                children: [CongratulateButton(), RemoveNotification()],
+              ),
+            )
         ],
       ),
       // horizontal line
