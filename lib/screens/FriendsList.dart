@@ -93,8 +93,8 @@ class _FriendsListState extends State<FriendsList> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(children: [
+      body: Column(
+        children: [
           Container(
             padding: const EdgeInsets.only(top: 10),
             child: Text(
@@ -110,7 +110,7 @@ class _FriendsListState extends State<FriendsList> {
           SearchUsers(
             searchText: _searchController.text,
           ),
-        ]),
+        ],
       ),
       bottomNavigationBar: BottomMenuBar(),
     );

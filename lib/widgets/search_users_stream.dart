@@ -12,7 +12,8 @@ class SearchUsers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser = Provider.of<AppState>(context, listen: false).currentUser;
+    PPUser currentUser =
+        Provider.of<AppState>(context, listen: false).currentUser;
 
     return StreamBuilder<List<PPUser>>(
         stream: getMatchingUsers(searchText.toLowerCase(), currentUser),
@@ -26,25 +27,39 @@ class SearchUsers extends StatelessWidget {
                   (user) {
                     return isFriend(currentUser, user.userID)
                         ? Container()
-                        : GestureDetector(
-                            onTap: () {
-                              Navigator.pushReplacementNamed(
-                                  context, '/Profile');
-                            },
-                            child: UsersSearchResultsWidget(
-                              name: user.userName,
-                              merits: user.points.toString(),
-                              imgUrl: user.profilePicUrl,
-                              userID: user.userID,
-                              action: isPendingFriend(user, currentUser.userID)
-                                  .toString(),
-                            ),
+                        : UsersSearchResultsWidget(
+                            name: user.userName,
+                            merits: user.points.toString(),
+                            imgUrl: user.profilePicUrl,
+                            userID: user.userID,
+                            action: isPendingFriend(user, currentUser.userID)
+                                .toString(),
+                            collectedStampList: user.collectedStampList,
+                            friendList: currentUser.friendList,
                           );
                   },
                 ).toList(),
               );
             } else {
-              return Text('No users with that name');
+              return Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'No users found',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Icon(
+                      Icons.sentiment_dissatisfied,
+                      size: 40,
+                      color: Color(0xFFe05e4a),
+                    ),
+                  ],
+                ),
+              );
             }
           } else {
             return Container();

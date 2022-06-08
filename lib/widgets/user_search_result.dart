@@ -11,6 +11,8 @@ class UsersSearchResultsWidget extends StatefulWidget {
   final String imgUrl;
   final String userID;
   final String action;
+  final List<String> collectedStampList;
+  final List<String> friendList;
 
   const UsersSearchResultsWidget({
     Key? key,
@@ -19,6 +21,8 @@ class UsersSearchResultsWidget extends StatefulWidget {
     required this.imgUrl,
     required this.userID,
     required this.action,
+    required this.collectedStampList,
+    required this.friendList,
   }) : super(key: key);
 
   @override
@@ -35,7 +39,8 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser = Provider.of<AppState>(context, listen: false).currentUser;
+    PPUser currentUser =
+        Provider.of<AppState>(context, listen: false).currentUser;
 
     return Container(
       padding: const EdgeInsets.only(bottom: 10),
@@ -61,11 +66,16 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
+                      color: Color(0xFFe05e4a),
                     ),
                   ),
                 ),
                 Text(
-                  widget.merits + ' merits ',
+                  widget.collectedStampList.length.toString() +
+                      ' stamps' +
+                      ' • ' +
+                      widget.friendList.length.toString() +
+                      ' friends',
                   style: const TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
@@ -74,28 +84,54 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
               ],
             ),
           ),
-          if (widget.action == 'friend') Container(),
+          if (widget.action == 'friend')
+            GestureDetector(
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/Profile');
+              },
+              child: Container(
+                margin: const EdgeInsets.only(top: 20, right: 10),
+                child: Icon(
+                  Icons.arrow_circle_right_outlined,
+                  color: Color(0xFFe05e4a),
+                  size: 40,
+                ),
+              ),
+            ),
           if (widget.action == 'true')
             Container(
-              margin: const EdgeInsets.only(right: 10, top: 10),
+              margin: const EdgeInsets.only(right: 10, top: 20),
               child: Container(
+                  height: 40,
+                  width: 120,
                   child: ElevatedButton(
                       onPressed: () {},
-                      child: const Text('Pending Friend Request'),
+                      child: const Text(
+                        'Pending',
+                        textAlign: TextAlign.center,
+                      ),
                       style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Color(0xFFe7b732))))),
+                        backgroundColor: MaterialStateProperty.all(
+                          Color(0xFFe7b732),
+                        ),
+                      ))),
             ),
           if (widget.action == 'false')
             Container(
-              margin: const EdgeInsets.only(right: 10, top: 10),
+              margin: const EdgeInsets.only(right: 10, top: 20),
               child: Container(
+                  height: 40,
+                  width: 120,
                   child: ElevatedButton(
                       onPressed: () {
                         sendFriendRequest(currentUser.userID, widget.userID);
                         setState(() {});
                       },
-                      child: const Text('Send Friend Request'),
+                      child: const Text('Send Request',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 12,
+                          )),
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Color(0xFF8eb057))))),

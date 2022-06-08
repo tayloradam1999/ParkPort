@@ -25,16 +25,15 @@ class SearchFriends extends StatelessWidget {
               children: users.map(
                 (user) {
                   return isFriend(currentUser, user.userID)
-                      ? GestureDetector(
-                          onTap: () {
-                            Navigator.pushReplacementNamed(context, '/Profile');
-                          },
+                      ? Container(
                           child: UsersSearchResultsWidget(
                             name: user.userName,
                             merits: user.points.toString(),
                             imgUrl: user.profilePicUrl,
                             userID: user.userID,
                             action: 'friend',
+                            collectedStampList: user.collectedStampList,
+                            friendList: currentUser.friendList,
                           ),
                         )
                       : Container();
@@ -42,7 +41,28 @@ class SearchFriends extends StatelessWidget {
               ).toList(),
             );
           } else {
-            return Text('No users with that name');
+            return Center(
+              child: Container(
+                margin: EdgeInsets.symmetric(vertical: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'No friends found',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Icon(
+                      Icons.emoji_people,
+                      size: 40,
+                      color: Color(0xFFe05e4a),
+                    ),
+                  ],
+                ),
+              ),
+            );
           }
         });
   }
