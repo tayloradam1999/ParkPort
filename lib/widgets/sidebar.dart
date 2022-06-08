@@ -155,11 +155,11 @@ class SideBarMenuState extends State<SideBarMenu> {
                       Navigator.pushReplacementNamed(context, '/Passport');
                     }),
                 SideBarTile(
-                    icon: Icons.park_outlined,
-                    title: 'Park Details',
+                    icon: Icons.emoji_people,
+                    title: 'Friends',
                     onTap: () {
-                      appState.setpageIndex = 3;
-                      Navigator.pushReplacementNamed(context, '/ParkDetails');
+                      appState.setpageIndex = 10;
+                      Navigator.pushReplacementNamed(context, '/FriendsList');
                     }),
                 SideBarTile(
                     icon: Icons.bar_chart,
@@ -169,11 +169,11 @@ class SideBarMenuState extends State<SideBarMenu> {
                       Navigator.pushReplacementNamed(context, '/Leaderboards');
                     }),
                 SideBarTile(
-                    icon: Icons.emoji_people,
-                    title: 'Friends',
+                    icon: Icons.park_outlined,
+                    title: 'Park Details',
                     onTap: () {
-                      appState.setpageIndex = 10;
-                      Navigator.pushReplacementNamed(context, '/FriendsList');
+                      appState.setpageIndex = 3;
+                      Navigator.pushReplacementNamed(context, '/ParkDetails');
                     }),
                 ListTile(
                   title: Text('Settings and privacy',

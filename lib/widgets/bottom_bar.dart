@@ -16,7 +16,7 @@ class _BottomMenuBarState extends State<BottomMenuBar> {
     Icons.home,
     Icons.notification_add_outlined,
     Icons.menu_book,
-    Icons.park_outlined,
+    Icons.emoji_people,
     Icons.bar_chart,
   ];
 
@@ -43,7 +43,7 @@ class _BottomMenuBarState extends State<BottomMenuBar> {
                 break;
               case 3:
                 appState.setpageIndex = 3;
-                Navigator.pushReplacementNamed(context, '/ParkDetails');
+                Navigator.pushReplacementNamed(context, '/FriendsList');
                 break;
               case 4:
                 appState.setpageIndex = 4;

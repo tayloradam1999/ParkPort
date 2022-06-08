@@ -158,8 +158,10 @@ class _SignInState extends State<SignIn> {
               alignment: Alignment.centerRight,
               margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
               child: GestureDetector(
-                onTap: () =>
-                    {Navigator.pushReplacementNamed(context, '/SignUp')},
+                onTap: () => {
+                  print(size.height),
+                  Navigator.pushReplacementNamed(context, '/SignUp')
+                },
                 child: Text(
                   "Don't Have an Account? Sign up",
                   style: TextStyle(fontSize: 13, color: Color(0xFF7a8e4d)),
