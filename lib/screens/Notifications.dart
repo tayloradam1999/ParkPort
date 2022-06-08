@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:park_port/widgets/notif-friend_requests.dart';
 import 'package:provider/provider.dart';
 import '../utils/friend_requests.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/no_notifications.dart';
+import '../widgets/notif-got_stamp.dart';
 import '../widgets/notification_item.dart';
 import '../widgets/sidebar.dart';
 
@@ -47,31 +49,11 @@ class _NotificationsState extends State<Notifications> {
           );
         }),
       ),
-      body: FutureBuilder<List<PPUser>>(
-        future: getInfoAboutFriendRequests(currentUser),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            if (snapshot.data!.length != 0) {
-              return ListView.builder(
-                itemCount: snapshot.data?.length,
-                itemBuilder: (context, index) {
-                  return NotificationItem(
-                    name: snapshot.data![index].userName,
-                    action: 'friend_request',
-                    imgUrl: snapshot.data![index].profilePicUrl,
-                    userID: snapshot.data![index].userID,
-                  );
-                },
-              );
-            } else {
-              return NoNotifications();
-            }
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+      body: Column(
+        children: [
+          FriendRequests(),
+          GotStamp(),
+        ],
       ),
       bottomNavigationBar: BottomMenuBar(),
     );

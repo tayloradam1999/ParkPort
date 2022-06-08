@@ -53,11 +53,13 @@ Future<void> acceptFriendRequest(
   // Update current user's friendList and remove the notification
   await usersRef.doc(currentUser).update({
     'friendNotifs': FieldValue.arrayRemove([userID]),
-    'friendList': FieldValue.arrayUnion([userID])
+    'friendList': FieldValue.arrayUnion([userID]),
+    'points': FieldValue.increment(10)
   });
   // Add current user to the other user's friendList
   await usersRef.doc(userID).update({
-    'friendList': FieldValue.arrayUnion([currentUser])
+    'friendList': FieldValue.arrayUnion([currentUser]),
+    'points': FieldValue.increment(10)
   });
   // Display toast message
   acceptFriendMessage(context);

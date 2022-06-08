@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:park_port/models/user.dart';
+import 'package:provider/provider.dart';
+import '../providers/app_state.dart';
 import '../screens/Notifications.dart';
 import './accept_request_button.dart';
 import './deny_request_button.dart';
@@ -25,6 +28,7 @@ class _NotificationItemState extends State<NotificationItem> {
   @override
   Widget build(BuildContext context) {
     String userID = widget.userID;
+    PPUser currentUser = Provider.of<AppState>(context, listen: false).currentUser;
 
     return Container(
       padding: const EdgeInsets.only(bottom: 10),
@@ -46,7 +50,7 @@ class _NotificationItemState extends State<NotificationItem> {
                 Container(
                   padding: const EdgeInsets.only(top: 7.5),
                   child: Text(
-                    widget.name,
+                    currentUser.userID == widget.userID ? "You" : widget.name,
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -56,7 +60,7 @@ class _NotificationItemState extends State<NotificationItem> {
                 ),
                 if (widget.action == 'friend_request')
                   Text(
-                    'Sent you a friend request',
+                    'Sent you a friend request!',
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -64,7 +68,7 @@ class _NotificationItemState extends State<NotificationItem> {
                   ),
                 if (widget.action == 'got_stamp')
                   Text(
-                    'Got a stamp',
+                    'Got a stamp!',
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,

@@ -14,14 +14,15 @@ final stampsRef =
               snapshot.data() ?? {},
             );
           },
-          toFirestore: (user, _) => user.toJson(),
+          toFirestore: (stamp, _) => stamp.toJson(),
         );
 
 Future<void> addStampToUser(context, userID, stampID) async {
   // Update user's stamps list and notifications in Firestore
   AuthState().usersRef.doc(userID).update({
     'collectedStampList': FieldValue.arrayUnion([stampID]),
-    'stampNotifs': FieldValue.arrayUnion([userID])
+    'stampNotifs': FieldValue.arrayUnion([userID]),
+    'points': FieldValue.increment(10)
   });
   PPUser currentUser =
       Provider.of<AppState>(context, listen: false).currentUser;
@@ -38,8 +39,7 @@ Future<void> addStampToUser(context, userID, stampID) async {
 }
 
 Stream<List<Stamp>>? getAllStamps() {
-  return stampsRef.snapshots()
-  .map((snapshot) =>
+  return stampsRef.snapshots().map((snapshot) =>
       snapshot.docs.map((doc) => Stamp.fromJson(doc.data().toJson())).toList());
 }
 
@@ -47,10 +47,16 @@ bool userHasStamp(currentUser, stampID) {
   return currentUser.collectedStampList.contains(stampID);
 }
 
-// Stream<List<Stamp>>? getCollectedStamps(PPUser currentUser, String stampID) {
-//   return stampsRef
-//   .where(currentUser.collectedStampList, arrayContains: stampID)
-//   .snapshots()
-//   .map((snapshot) =>
-//       snapshot.docs.map((doc) => Stamp.fromJson(doc.data().toJson())).toList());
-// }
+Future<List<PPUser>> getInfoAboutNewStamp(PPUser currentUser) async {
+  List<PPUser> friendInfo = [];
+  final List<String> stampNotifs = currentUser.stampNotifs;
+  for (int i = 0; i < stampNotifs.length; i++) {
+    // For every ID in friendRequests, get the user's info and add to friendInfo list
+    final userID = stampNotifs[i];
+    if (currentUser.stampNotifs.contains(userID)) {
+      final users = await AuthState().getUserByID(userID);
+      friendInfo.add(users);
+    }
+  }
+  return friendInfo;
+}

@@ -77,9 +77,7 @@ class _SettingsState extends State<Settings> {
                     // Trigger file picker steps and set state so will re-render
                     String url = await pickImageFromDevice(context);
                     setState(() {
-                      Provider.of<AppState>(context, listen: false)
-                          .currentUser
-                          .profilePicUrl = url;
+                      currentUser.profilePicUrl = url;
                     });
                   }),
             ]),

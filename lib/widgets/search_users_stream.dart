@@ -26,6 +26,7 @@ class SearchUsers extends StatelessWidget {
                 children: users.map(
                   (user) {
                     return isFriend(currentUser, user.userID)
+                    // If not friend, that is displayed in search_friends_stream so don't include here
                         ? Container()
                         : UsersSearchResultsWidget(
                             name: user.userName,
