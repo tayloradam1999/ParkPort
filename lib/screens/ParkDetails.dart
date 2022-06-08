@@ -43,26 +43,26 @@ class _ParkDetailsState extends State<ParkDetails> {
           );
         }),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            CarouselSlider(
-              items: [ParkDetailsCard(), ParkDetailsCard(), ParkDetailsCard()],
-              options: CarouselOptions(
-                height: size.height,
-                viewportFraction: 0.95,
-                // enlargeCenterPage: true, // looks great, but overflows on transition
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 4),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                autoPlayCurve: Curves.fastOutSlowIn,
-                pauseAutoPlayOnTouch: true,
-                scrollDirection: Axis.horizontal,
-              ),
-            ),
+      body: PageView(children: [
+        SingleChildScrollView(
+            child: Column(
+          children: [
+            ParkDetailsCard(),
           ],
-        ),
-      ),
+        )),
+        SingleChildScrollView(
+            child: Column(
+          children: [
+            ParkDetailsCard(),
+          ],
+        )),
+        SingleChildScrollView(
+            child: Column(
+          children: [
+            ParkDetailsCard(),
+          ],
+        )),
+      ]),
       bottomNavigationBar: BottomMenuBar(),
     );
   }

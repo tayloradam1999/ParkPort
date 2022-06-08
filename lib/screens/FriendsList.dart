@@ -93,24 +93,26 @@ class _FriendsListState extends State<FriendsList> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
-              'Friends',
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w600,
-                color: Color(0xFFe05e4a),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.only(top: 10),
+              child: Text(
+                'Friends',
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFFe05e4a),
+                ),
               ),
             ),
-          ),
-          SearchFriends(searchText: _searchController.text),
-          SearchUsers(
-            searchText: _searchController.text,
-          ),
-        ],
+            SearchFriends(searchText: _searchController.text),
+            SearchUsers(
+              searchText: _searchController.text,
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomMenuBar(),
     );

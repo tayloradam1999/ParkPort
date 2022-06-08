@@ -5,7 +5,7 @@ import '../models/user.dart';
 import '../providers/app_state.dart';
 import '../utils/friend_requests.dart';
 
-class UsersSearchResultsWidget extends StatefulWidget {
+class LeaderboardsResult extends StatefulWidget {
   final String name;
   final String merits;
   final String imgUrl;
@@ -14,7 +14,7 @@ class UsersSearchResultsWidget extends StatefulWidget {
   final List<String> collectedStampList;
   final List<String> friendList;
 
-  const UsersSearchResultsWidget({
+  const LeaderboardsResult({
     Key? key,
     required this.name,
     required this.merits,
@@ -26,11 +26,10 @@ class UsersSearchResultsWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<UsersSearchResultsWidget> createState() =>
-      _UsersSearchResultsWidgetState();
+  State<LeaderboardsResult> createState() => _LeaderboardsResultState();
 }
 
-class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
+class _LeaderboardsResultState extends State<LeaderboardsResult> {
   @override
   @mustCallSuper
   void initState() {
@@ -56,32 +55,38 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
             ),
           ),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(top: 7.5),
-                  child: Text(
-                    widget.name,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFFe05e4a),
+            child: Padding(
+              padding: EdgeInsets.only(top: 5),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(top: 7.5),
+                    child: Text(
+                      widget.name,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFFe05e4a),
+                      ),
                     ),
                   ),
-                ),
-                Text(
-                  widget.collectedStampList.length.toString() +
-                      ' stamps' +
-                      ' • ' +
-                      widget.friendList.length.toString() +
-                      ' friends',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey,
+                  Text(
+                    widget.collectedStampList.length.toString() +
+                        ' stamps' +
+                        ' • ' +
+                        widget.friendList.length.toString() +
+                        ' friends' +
+                        ' • ' +
+                        widget.merits +
+                        ' merits',
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           if (widget.action == 'friend')

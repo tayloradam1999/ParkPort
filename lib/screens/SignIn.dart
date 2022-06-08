@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:park_port/widgets/background_without_icon.dart';
 import 'package:provider/provider.dart';
 import '../providers/app_state.dart';
 import '../providers/auth_state.dart';
@@ -43,13 +44,13 @@ class _SignInState extends State<SignIn> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Background(
+      body: BackgroundWithoutIcon(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.symmetric(horizontal: 40),
+              padding: EdgeInsets.only(left: 40, right: 40, top: 20),
               child: Text(
                 "SIGN IN",
                 style: TextStyle(
@@ -59,7 +60,6 @@ class _SignInState extends State<SignIn> {
                 textAlign: TextAlign.left,
               ),
             ),
-            SizedBox(height: size.height * 0.03),
             Container(
               alignment: Alignment.center,
               margin: EdgeInsets.symmetric(horizontal: 40),
@@ -110,7 +110,7 @@ class _SignInState extends State<SignIn> {
             SizedBox(height: size.height * 0.05),
             Container(
               alignment: Alignment.centerRight,
-              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+              margin: EdgeInsets.symmetric(horizontal: 40),
               child: RaisedButton(
                 // What is this???
                 // Answer: button.
@@ -134,8 +134,9 @@ class _SignInState extends State<SignIn> {
                     }
                   },
                   child: Container(
+                    margin: EdgeInsets.all(0),
                     alignment: Alignment.center,
-                    height: 50.0,
+                    height: 50,
                     width: size.width * 0.575,
                     decoration: new BoxDecoration(
                         borderRadius: BorderRadius.circular(80.0),
@@ -161,7 +162,7 @@ class _SignInState extends State<SignIn> {
                     {Navigator.pushReplacementNamed(context, '/SignUp')},
                 child: Text(
                   "Don't Have an Account? Sign up",
-                  style: TextStyle(fontSize: 14, color: Color(0xFF7a8e4d)),
+                  style: TextStyle(fontSize: 13, color: Color(0xFF7a8e4d)),
                 ),
               ),
             )

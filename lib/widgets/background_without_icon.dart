@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/app_state.dart';
-import 'edit_profile_button.dart';
-
-class Background extends StatelessWidget {
+class BackgroundWithoutIcon extends StatelessWidget {
   final Widget child;
 
-  const Background({
+  const BackgroundWithoutIcon({
     Key? key,
     required this.child,
   }) : super(key: key);
@@ -38,12 +35,6 @@ class Background extends StatelessWidget {
               width: size.width,
               opacity: AlwaysStoppedAnimation(0.5),
             ),
-          ),
-          Positioned(
-            top: 60,
-            left: 22.5,
-            child: Image.asset("assets/images/pplogo2.png",
-                width: size.width * 0.25, height: size.width * 0.25),
           ),
           Positioned(
             bottom: 0,

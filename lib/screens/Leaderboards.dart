@@ -39,9 +39,52 @@ class _LeaderboardsState extends State<Leaderboards> {
           );
         }),
       ),
-      body: LeaderboardList(),
-      
-      
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    RaisedButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Global',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white,
+                        ),
+                      ),
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      color: Color(0xFFe7b732),
+                    ),
+                    RaisedButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Friends',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white,
+                        ),
+                      ),
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      color: Color(0xFFe7b732),
+                    ),
+                  ]),
+            ),
+            LeaderboardList(),
+          ],
+        ),
+      ),
       // Column(
       //   children: [
       //     SizedBox(height: 5.0),
@@ -120,7 +163,6 @@ class _LeaderboardsState extends State<Leaderboards> {
       //     ),
       //   ],
       // ),
-
 
       bottomNavigationBar: BottomMenuBar(),
     );

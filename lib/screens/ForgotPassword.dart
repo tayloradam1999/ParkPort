@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:park_port/widgets/background_without_icon.dart';
 import '../providers/auth_state.dart';
 import '../utils/messages.dart';
 import '../widgets/submit_button.dart';
@@ -35,19 +36,22 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Background(
+      body: BackgroundWithoutIcon(
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  "Forgot Password",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF8eb057),
-                      fontSize: 36),
-                  textAlign: TextAlign.left,
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    "Forgot Password",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF8eb057),
+                        fontSize: 32),
+                    textAlign: TextAlign.left,
+                  ),
                 ),
                 const SizedBox(height: 20.0),
                 Container(
@@ -63,7 +67,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20.0),
                 Container(
                   alignment: Alignment.center,
                   margin: EdgeInsets.symmetric(horizontal: 40),

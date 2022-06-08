@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:park_port/widgets/user_leaderboards_result.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
@@ -22,7 +23,7 @@ class LeaderboardList extends StatelessWidget {
               shrinkWrap: true,
               children: users.map(
                 (user) {
-                  return UsersSearchResultsWidget(
+                  return LeaderboardsResult(
                     name: user.userName,
                     merits: user.points.toString(),
                     imgUrl: user.profilePicUrl,
