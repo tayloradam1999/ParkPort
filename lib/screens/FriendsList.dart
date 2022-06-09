@@ -39,35 +39,37 @@ class _FriendsListState extends State<FriendsList> {
         backgroundColor: Colors.transparent,
         bottomOpacity: 0.0,
         elevation: 0.0,
-        title: TextField(
-          cursorColor: Color(0xFFe05e4a),
-          controller: _searchController,
-          decoration: InputDecoration(
-            hintText: 'Search',
-            hintStyle: TextStyle(
-              color: Colors.grey,
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
-            ),
-            prefixIcon: Icon(
-              Icons.search,
-              color: Colors.grey,
-            ),
-            suffixIcon: IconButton(
-              icon: Icon(
-                Icons.clear,
+        title: Container(
+          child: TextField(
+            cursorColor: Color(0xFFe05e4a),
+            controller: _searchController,
+            decoration: InputDecoration(
+              hintText: 'Search',
+              hintStyle: TextStyle(
+                color: Colors.grey,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+              prefixIcon: Icon(
+                Icons.search,
                 color: Colors.grey,
               ),
-              onPressed: () {
-                // clear search
-                _searchController.clear();
-              },
-            ),
-            filled: true,
-            fillColor: Colors.white,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide.none,
+              suffixIcon: IconButton(
+                icon: Icon(
+                  Icons.clear,
+                  color: Colors.grey,
+                ),
+                onPressed: () {
+                  // clear search
+                  _searchController.clear();
+                },
+              ),
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: BorderSide.none,
+              ),
             ),
           ),
         ),
