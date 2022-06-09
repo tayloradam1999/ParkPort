@@ -14,7 +14,8 @@ class AppState extends ChangeNotifier {
       friendList: [],
       friendNotifs: [],
       collectedStampList: [],
-      stampNotifs: []);
+      stampNotifs: [],
+      notifs: []);
   PPUser get currentUser => _currentUser;
   set currentUser(PPUser value) {
     _currentUser = value;

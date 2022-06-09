@@ -19,14 +19,15 @@ class MapState extends State<Map> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GoogleMap(
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: _center,
-          zoom: 15.0,
-        ),
-      ),
-    );
+    return Container();
+    // Expanded(
+      // child: GoogleMap(
+      //   onMapCreated: _onMapCreated,
+      //   initialCameraPosition: CameraPosition(
+      //     target: _center,
+      //     zoom: 17.5,
+      //   ),
+      // ),
+    // );
   }
 }

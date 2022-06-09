@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import './sidebar_tile.dart';
-import '../models/user.dart';
 import '../providers/app_state.dart';
 import '../providers/auth_state.dart';
+import './sidebar_tile.dart';
 
 class SideBarMenu extends StatefulWidget {
   const SideBarMenu({Key? key}) : super(key: key);

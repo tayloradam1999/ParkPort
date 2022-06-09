@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:park_port/widgets/notif-friend_requests.dart';
 import 'package:provider/provider.dart';
-import '../utils/friend_requests.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
 import '../widgets/bottom_bar.dart';
-import '../widgets/no_notifications.dart';
-import '../widgets/notif-got_stamp.dart';
-import '../widgets/notification_item.dart';
+import '../widgets/notifications_stream.dart';
 import '../widgets/sidebar.dart';
 
 class Notifications extends StatefulWidget {
@@ -49,12 +44,14 @@ class _NotificationsState extends State<Notifications> {
           );
         }),
       ),
-      body: Column(
-        children: [
-          FriendRequests(),
-          GotStamp(),
-        ],
-      ),
+      body: NotificationsList(),
+      
+      // Column(
+      //   children: [
+      //     FriendRequests(),
+      //     GotStamp(),
+      //   ],
+      // ),
       bottomNavigationBar: BottomMenuBar(),
     );
   }

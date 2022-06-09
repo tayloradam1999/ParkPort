@@ -11,14 +11,14 @@ class Stamp {
     required this.imageURL,
   });
 
-  // named constructor for when get JSON object from firebase
+  // Named constructor for when getting JSON object from firebase
   factory Stamp.fromJson(Map<String, dynamic> map) => Stamp(
         stampID: map['stampID'],
         parkName: map['parkName'],
         imageURL: map['imageURL'],
       );
 
-  // instance method that returns Map<String, dynamic> so can be stored in firestore
+  // Instance method that returns Map<String, dynamic> so can be stored in firestore
   Map<String, dynamic> toJson() => {
         "stampID": stampID,
         "parkName": parkName,

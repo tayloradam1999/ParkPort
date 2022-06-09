@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:park_port/widgets/search_friends_stream.dart';
+import '../widgets/search_friends_stream.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/search_users_stream.dart';
 import '../widgets/sidebar.dart';

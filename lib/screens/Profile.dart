@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:park_port/widgets/bottom_bar.dart';
-import 'package:park_port/widgets/sidebar.dart';
+import 'package:provider/provider.dart';
+import '../providers/app_state.dart';
+import '../widgets/bottom_bar.dart';
+import '../widgets/sidebar.dart';
 import '../widgets/edit_profile_button.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_status.dart';
 import '../widgets/profile_stamps.dart';
-import 'package:provider/provider.dart';
-import '../models/user.dart';
-import '../providers/app_state.dart';
-import '../providers/auth_state.dart';
 
 class Profile extends StatelessWidget {
   @override

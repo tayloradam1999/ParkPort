@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:park_port/widgets/stamp_list_stream.dart';
+import '../widgets/stamp_list_stream.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/sidebar.dart';
 

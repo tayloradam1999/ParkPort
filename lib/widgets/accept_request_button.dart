@@ -1,23 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:park_port/screens/Notifications.dart';
 import 'package:provider/provider.dart';
-import '../models/user.dart';
 import '../providers/app_state.dart';
-import '../utils/friend_requests.dart';
+import '../utils/notifications.dart';
+import '../utils/messages.dart';
 
-class AcceptRequestButton extends StatefulWidget {
-  final String userID;
-  const AcceptRequestButton({Key? key, required this.userID}) : super(key: key);
+class AcceptRequestButton extends StatelessWidget {
+  final String otherUser;
+  final String notifID;
+  const AcceptRequestButton({Key? key, required this.otherUser, required this.notifID}) : super(key: key);
 
-  @override
-  State<AcceptRequestButton> createState() => _AcceptRequestButtonState();
-}
-
-class _AcceptRequestButtonState extends State<AcceptRequestButton> {
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser = Provider.of<AppState>(context, listen: false).currentUser;
-    String otherUser = widget.userID;
+    String currentUser = Provider.of<AppState>(context, listen: false).currentUser.userID;
 
     return Container(
       child: InkWell(
@@ -25,17 +19,18 @@ class _AcceptRequestButtonState extends State<AcceptRequestButton> {
         highlightColor: Colors.blue,
         child: Icon(Icons.check_circle_outline, size: 40, color: Colors.green),
         onTap: () {
-          acceptFriendRequest(context, currentUser.userID, otherUser);
+          acceptFriendRequest(currentUser, otherUser, notifID);
+          acceptFriendMessage(context);
           // Update provider state
-          setState(() {
-            currentUser.friendList.add(otherUser);
-            currentUser.friendNotifs.remove(otherUser);
-          });
-          // Whatever - force rerender
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const Notifications()),
-          );
+          // setState(() {
+          //   currentUser.friendList.add(otherUser);
+          //   currentUser.notifs.remove(otherUser);
+          // });
+          // // Whatever - force rerender
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => const Notifications()),
+          // );
         },
       ),
     );

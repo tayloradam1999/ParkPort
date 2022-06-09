@@ -77,3 +77,23 @@ void addStampMessage(context) {
     backgroundColor: Color(0xFF8eb057),
   ));
 }
+
+void congratulateMessage(context) {
+  // Tap into scaffold to show snackbar
+  final scaffold = ScaffoldMessenger.of(context);
+  // Display snackbar
+  scaffold.showSnackBar(const SnackBar(
+    content: Text("You're a good friend!", textAlign: TextAlign.center),
+    backgroundColor: Color(0xFF8eb057),
+  ));
+}
+
+void ignoreNotificationMessage(context) {
+  // Tap into scaffold to show snackbar
+  final scaffold = ScaffoldMessenger.of(context);
+  // Display snackbar
+  scaffold.showSnackBar(const SnackBar(
+    content: Text("Message dismissed", textAlign: TextAlign.center),
+    backgroundColor: Color(0xFFe05e4a),
+  ));
+}
