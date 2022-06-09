@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:park_port/widgets/background_without_icon.dart';
 import '../providers/auth_state.dart';
-import '../screens/SignIn.dart';
-import '../widgets/background.dart';
 import '../utils/messages.dart';
+import './SignIn.dart';
+import '../widgets/background_without_icon.dart';
 
 class SignUp extends StatefulWidget {
   // Stateful widget with no parameters passed in

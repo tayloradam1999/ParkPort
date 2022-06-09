@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:park_port/utils/user_search.dart';
-import 'package:park_port/utils/utils.dart';
 import 'package:provider/provider.dart';
-import '../providers/app_state.dart';
-import '../widgets/user_search_result.dart';
 import '../models/user.dart';
+import '../providers/app_state.dart';
+import '../utils/streams.dart';
+import './user_search_result.dart';
 
 class SearchFriends extends StatelessWidget {
   final String searchText;
@@ -24,7 +23,7 @@ class SearchFriends extends StatelessWidget {
               shrinkWrap: true,
               children: users.map(
                 (user) {
-                  return isFriend(currentUser, user.userID)
+                  return currentUser.friendList.contains(user.userID)
                       ? Container(
                           child: UsersSearchResultsWidget(
                             name: user.userName,

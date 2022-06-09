@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/app_state.dart';
+import '../utils/messages.dart';
+import '../utils/notifications.dart';
 
-class RemoveNotification extends StatefulWidget {
-  const RemoveNotification({Key? key}) : super(key: key);
+class RemoveNotification extends StatelessWidget {
+  final String notifID;
+  const RemoveNotification({Key? key, required this.notifID}) : super(key: key);
 
-  @override
-  State<RemoveNotification> createState() => _RemoveNotificationState();
-}
-
-class _RemoveNotificationState extends State<RemoveNotification> {
   @override
   Widget build(BuildContext context) {
+    String currentUser =
+        Provider.of<AppState>(context, listen: false).currentUser.userID;
+
     return Container(
       child: InkWell(
         splashColor: Colors.yellow,
         highlightColor: Colors.blue,
         child: Icon(Icons.close_rounded, size: 40, color: Colors.red),
-        onTap: () {},
-        // Force rebuild - fallback option on how to do this
+        onTap: () {
+          // Update database and show message
+          ignoreNotification(currentUser, notifID);
+          ignoreNotificationMessage(context);
+        },
       ),
     );
   }

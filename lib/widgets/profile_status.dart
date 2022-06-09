@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/app_state.dart';
 
 class ProfileStatus extends StatelessWidget {

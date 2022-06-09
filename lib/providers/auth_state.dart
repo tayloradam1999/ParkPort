@@ -84,6 +84,7 @@ class AuthState extends ChangeNotifier {
               'friendNotifs': [],
               'collectedStampList': [],
               'stampNotifs': [],
+              'notifs': [],
             }));
       }
     } on FirebaseAuthException catch (e) {
@@ -103,8 +104,6 @@ class AuthState extends ChangeNotifier {
     } on FirebaseAuthException catch (e) {
       _status = (handleException(e));
     }
-    // Not sure if this is necessary
-    // notifyListeners();
     return _status;
   }
 

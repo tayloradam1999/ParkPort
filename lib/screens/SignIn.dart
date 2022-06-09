@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:park_port/widgets/background_without_icon.dart';
 import 'package:provider/provider.dart';
 import '../providers/app_state.dart';
 import '../providers/auth_state.dart';
-import '../screens/Home.dart';
-import '../widgets/background.dart';
 import '../utils/messages.dart';
+import './Home.dart';
+import '../widgets/background_without_icon.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -159,7 +158,6 @@ class _SignInState extends State<SignIn> {
               margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
               child: GestureDetector(
                 onTap: () => {
-                  print(size.height),
                   Navigator.pushReplacementNamed(context, '/SignUp')
                 },
                 child: Text(

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:park_port/utils/utils.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
-import '../utils/friend_requests.dart';
+import '../utils/notifications.dart';
 
 class LeaderboardsResult extends StatefulWidget {
   final String name;
@@ -38,8 +37,8 @@ class _LeaderboardsResultState extends State<LeaderboardsResult> {
 
   @override
   Widget build(BuildContext context) {
-    String currentUserID =
-        Provider.of<AppState>(context, listen: false).currentUser.userID;
+    PPUser currentUser =
+        Provider.of<AppState>(context, listen: false).currentUser;
 
     return Container(
       padding: const EdgeInsets.only(bottom: 10),
@@ -129,7 +128,7 @@ class _LeaderboardsResultState extends State<LeaderboardsResult> {
                   width: 120,
                   child: ElevatedButton(
                       onPressed: () {
-                        sendFriendRequest(currentUserID, widget.userID);
+                        sendFriendRequest(currentUser, widget.userID);
                         setState(() {});
                       },
                       child: const Text('Send Request',

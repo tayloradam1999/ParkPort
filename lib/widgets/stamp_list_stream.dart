@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../models/stamp.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
-import '../utils/_temp_stamp.dart';
+import '../utils/streams.dart';
 
 class StampList extends StatelessWidget {
   const StampList({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class StampList extends StatelessWidget {
               shrinkWrap: true,
               children: stamps.map(
                 (stamp) {
-                  return userHasStamp(currentUser, stamp.stampID)
+                  return currentUser.collectedStampList.contains(stamp.stampID)
                       ? CircleAvatar(
                           radius: 50,
                           backgroundImage: NetworkImage(stamp.imageURL),

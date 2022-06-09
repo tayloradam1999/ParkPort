@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../providers/app_state.dart';
-import 'edit_profile_button.dart';
 
 class Background extends StatelessWidget {
   final Widget child;

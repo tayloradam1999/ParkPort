@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:park_port/utils/utils.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
-import '../utils/friend_requests.dart';
+import '../utils/notifications.dart';
 
 class UsersSearchResultsWidget extends StatefulWidget {
   final String name;
@@ -39,8 +38,8 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    String currentUserID =
-        Provider.of<AppState>(context, listen: false).currentUser.userID;
+    PPUser currentUser =
+        Provider.of<AppState>(context, listen: false).currentUser;
 
     return Container(
       padding: const EdgeInsets.only(bottom: 10),
@@ -98,7 +97,7 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
                 ),
               ),
             ),
-          if (widget.action == 'true')
+          if (widget.action == 'pending')
             Container(
               margin: const EdgeInsets.only(right: 10, top: 20),
               child: Container(
@@ -116,7 +115,7 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
                         ),
                       ))),
             ),
-          if (widget.action == 'false')
+          if (widget.action == 'other')
             Container(
               margin: const EdgeInsets.only(right: 10, top: 20),
               child: Container(
@@ -124,7 +123,7 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
                   width: 120,
                   child: ElevatedButton(
                       onPressed: () {
-                        sendFriendRequest(currentUserID, widget.userID);
+                        sendFriendRequest(currentUser, widget.userID);
                         setState(() {});
                       },
                       child: const Text('Send Request',

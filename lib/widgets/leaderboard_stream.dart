@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:park_port/widgets/user_leaderboards_result.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
-import '../utils/leaderboard.dart';
-import 'user_search_result.dart';
+import '../utils/streams.dart';
+import './user_leaderboards_result.dart';
 
 class LeaderboardList extends StatelessWidget {
   const LeaderboardList({Key? key}) : super(key: key);

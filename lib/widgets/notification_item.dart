@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:park_port/models/user.dart';
-import 'package:park_port/widgets/remove_notification_button.dart';
 import 'package:provider/provider.dart';
+import '../models/user.dart';
 import '../providers/app_state.dart';
+import './remove_notification_button.dart';
 import './congratulate_button.dart';
-import '../screens/Notifications.dart';
 import './accept_request_button.dart';
 import './deny_request_button.dart';
 
@@ -13,6 +12,7 @@ class NotificationItem extends StatefulWidget {
   final String imgUrl;
   final String action;
   final String userID;
+  final String notifID;
 
   NotificationItem({
     Key? key,
@@ -20,6 +20,7 @@ class NotificationItem extends StatefulWidget {
     required this.imgUrl,
     required this.action,
     required this.userID,
+    required this.notifID,
   }) : super(key: key);
 
   @override
@@ -30,6 +31,7 @@ class _NotificationItemState extends State<NotificationItem> {
   @override
   Widget build(BuildContext context) {
     String userID = widget.userID;
+    String notifID = widget.notifID;
     PPUser currentUser =
         Provider.of<AppState>(context, listen: false).currentUser;
 
@@ -77,6 +79,14 @@ class _NotificationItemState extends State<NotificationItem> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
+                if (widget.action == 'send_congrats')
+                  Text(
+                    'Congratulated you on your new stamp!',
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
               ],
             ),
           ),
@@ -86,16 +96,43 @@ class _NotificationItemState extends State<NotificationItem> {
               padding: const EdgeInsets.only(left: 10, top: 5),
               child: Row(
                 children: [
-                  AcceptRequestButton(userID: userID),
-                  DenyRequestButton(userID: userID),
+                  AcceptRequestButton(otherUser: userID, notifID: notifID),
+                  DenyRequestButton(notifID: notifID),
                 ],
               ),
             ),
           if (widget.action == 'got_stamp')
+            widget.userID == currentUser.userID
+                ? Container(
+                    padding: const EdgeInsets.only(left: 10, top: 5),
+                    child: Row(
+                      children: [
+                        // If user is being notified of own stamp, just show remove button
+                        RemoveNotification(notifID: notifID),
+                      ],
+                    ),
+                  )
+                : Container(
+                    padding: const EdgeInsets.only(left: 10, top: 5),
+                    child: Row(
+                      children: [
+                        CongratulateButton(
+                          otherUser: userID,
+                          notifID: notifID,
+                        ),
+                        RemoveNotification(notifID: notifID),
+                      ],
+                    ),
+                  ),
+          if (widget.action == 'send_congrats')
             Container(
               padding: const EdgeInsets.only(left: 10, top: 5),
               child: Row(
-                children: [CongratulateButton(), RemoveNotification()],
+                children: [
+                  RemoveNotification(
+                    notifID: notifID,
+                  )
+                ],
               ),
             )
         ],

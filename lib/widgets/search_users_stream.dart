@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:park_port/utils/utils.dart';
 import 'package:provider/provider.dart';
-import '../providers/app_state.dart';
-import '../utils/friend_requests.dart';
-import '../widgets/user_search_result.dart';
 import '../models/user.dart';
+import '../providers/app_state.dart';
+import '../utils/streams.dart';
+import './user_search_result.dart';
 
 class SearchUsers extends StatelessWidget {
   final String searchText;
@@ -25,7 +24,7 @@ class SearchUsers extends StatelessWidget {
                 shrinkWrap: true,
                 children: users.map(
                   (user) {
-                    return isFriend(currentUser, user.userID)
+                    return currentUser.friendList.contains(user.userID)
                     // If not friend, that is displayed in search_friends_stream so don't include here
                         ? Container()
                         : UsersSearchResultsWidget(
@@ -33,8 +32,7 @@ class SearchUsers extends StatelessWidget {
                             merits: user.points.toString(),
                             imgUrl: user.profilePicUrl,
                             userID: user.userID,
-                            action: isPendingFriend(user, currentUser.userID)
-                                .toString(),
+                            action: user.notifs.contains(currentUser.userID) ? 'pending' : 'other',
                             collectedStampList: user.collectedStampList,
                             friendList: user.friendList,
                           );
