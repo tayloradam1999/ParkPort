@@ -14,7 +14,7 @@ class NotificationsList extends StatelessWidget {
   Widget build(BuildContext context) {
     PPUser currentUser =
         Provider.of<AppState>(context, listen: false).currentUser;
-
+    print(currentUser);
     return StreamBuilder<List<Notif>>(
         stream: getUsersNotifications(currentUser),
         builder: (BuildContext context, AsyncSnapshot<List<Notif>> snapshot) {

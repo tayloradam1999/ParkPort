@@ -6,12 +6,15 @@ import '../utils/notifications.dart';
 
 class RemoveNotification extends StatelessWidget {
   final String notifID;
-  const RemoveNotification({Key? key, required this.notifID}) : super(key: key);
+  final String type;
+  const RemoveNotification({Key? key, required this.notifID, required this.type}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     String currentUser =
         Provider.of<AppState>(context, listen: false).currentUser.userID;
+    print("NOTFIID: $notifID");
+
 
     return Container(
       child: InkWell(
@@ -20,7 +23,7 @@ class RemoveNotification extends StatelessWidget {
         child: Icon(Icons.close_rounded, size: 40, color: Colors.red),
         onTap: () {
           // Update database and show message
-          ignoreNotification(currentUser, notifID);
+          ignoreNotification(currentUser, notifID, type);
           ignoreNotificationMessage(context);
         },
       ),

@@ -84,6 +84,10 @@ class _SettingsState extends State<Settings> {
                 onPressed: () {
                   addStampToUser(
                       context, currentUser, 'FGsLCt5wF1mufMdheXzq');
+                  setState(() {
+                    currentUser.collectedStampList.add('FGsLCt5wF1mufMdheXzq');
+                    currentUser.points += 10;
+                  });
                 },
                 child: Text('Button!'))
           ],

@@ -20,7 +20,7 @@ class DenyRequestButton extends StatelessWidget {
         child: Icon(Icons.close_rounded, size: 40, color: Colors.red),
         onTap: () {
           // Update database and show message
-          ignoreNotification(currentUser, notifID);
+          ignoreFriendNotification(currentUser, notifID);
           denyFriendMessage(context);
         },
       ),

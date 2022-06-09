@@ -108,7 +108,7 @@ class _NotificationItemState extends State<NotificationItem> {
                     child: Row(
                       children: [
                         // If user is being notified of own stamp, just show remove button
-                        RemoveNotification(notifID: notifID),
+                        RemoveNotification(notifID: notifID, type: "own_stamp"),
                       ],
                     ),
                   )
@@ -120,7 +120,7 @@ class _NotificationItemState extends State<NotificationItem> {
                           otherUser: userID,
                           notifID: notifID,
                         ),
-                        RemoveNotification(notifID: notifID),
+                        RemoveNotification(notifID: notifID, type: "other_stamp"),
                       ],
                     ),
                   ),
@@ -131,6 +131,7 @@ class _NotificationItemState extends State<NotificationItem> {
                 children: [
                   RemoveNotification(
                     notifID: notifID,
+                    type: "send_congrats",
                   )
                 ],
               ),

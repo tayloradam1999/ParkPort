@@ -19,18 +19,8 @@ class AcceptRequestButton extends StatelessWidget {
         highlightColor: Colors.blue,
         child: Icon(Icons.check_circle_outline, size: 40, color: Colors.green),
         onTap: () {
-          acceptFriendRequest(currentUser, otherUser, notifID);
+          acceptFriendRequest(context, currentUser, otherUser, notifID);
           acceptFriendMessage(context);
-          // Update provider state
-          // setState(() {
-          //   currentUser.friendList.add(otherUser);
-          //   currentUser.notifs.remove(otherUser);
-          // });
-          // // Whatever - force rerender
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => const Notifications()),
-          // );
         },
       ),
     );
