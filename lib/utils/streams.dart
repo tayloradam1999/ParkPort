@@ -52,9 +52,11 @@ Stream<List<Stamp>>? getAllStamps() {
 
 Stream<List<Notif>>? getUsersNotifications(PPUser currentUser) {
   return notifsRef
-  .where('recipientList', arrayContains: currentUser.userID)
-  .snapshots().map((snapshot) =>
-      snapshot.docs.map((doc) => Notif.fromJson(doc.data().toJson())).toList());
+      .where('recipientList', arrayContains: currentUser.userID)
+      .snapshots()
+      .map((snapshot) => snapshot.docs
+          .map((doc) => Notif.fromJson(doc.data().toJson()))
+          .toList());
 }
 
 Stream<List<PPUser>>? getTop10Users() {

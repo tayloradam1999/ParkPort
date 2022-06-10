@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../models/user.dart';
-import '../providers/app_state.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/notifications_stream.dart';
 import '../widgets/sidebar.dart';
@@ -15,9 +12,6 @@ class Notifications extends StatefulWidget {
 class _NotificationsState extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser =
-        Provider.of<AppState>(context, listen: false).currentUser;
-
     return Scaffold(
       drawer: SideBarMenu(),
       appBar: AppBar(
@@ -45,13 +39,6 @@ class _NotificationsState extends State<Notifications> {
         }),
       ),
       body: NotificationsList(),
-      
-      // Column(
-      //   children: [
-      //     FriendRequests(),
-      //     GotStamp(),
-      //   ],
-      // ),
       bottomNavigationBar: BottomMenuBar(),
     );
   }

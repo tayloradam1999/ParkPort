@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../models/notif.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
 import './remove_notification_button.dart';
@@ -12,7 +13,7 @@ class NotificationItem extends StatefulWidget {
   final String imgUrl;
   final String action;
   final String userID;
-  final String notifID;
+  final Notif notif;
 
   NotificationItem({
     Key? key,
@@ -20,7 +21,7 @@ class NotificationItem extends StatefulWidget {
     required this.imgUrl,
     required this.action,
     required this.userID,
-    required this.notifID,
+    required this.notif,
   }) : super(key: key);
 
   @override
@@ -31,7 +32,7 @@ class _NotificationItemState extends State<NotificationItem> {
   @override
   Widget build(BuildContext context) {
     String userID = widget.userID;
-    String notifID = widget.notifID;
+    Notif notif = widget.notif;
     PPUser currentUser =
         Provider.of<AppState>(context, listen: false).currentUser;
 
@@ -96,8 +97,8 @@ class _NotificationItemState extends State<NotificationItem> {
               padding: const EdgeInsets.only(left: 10, top: 5),
               child: Row(
                 children: [
-                  AcceptRequestButton(otherUser: userID, notifID: notifID),
-                  DenyRequestButton(notifID: notifID),
+                  AcceptRequestButton(otherUser: userID, notifID: notif.notifID),
+                  DenyRequestButton(notif: notif),
                 ],
               ),
             ),
@@ -108,7 +109,7 @@ class _NotificationItemState extends State<NotificationItem> {
                     child: Row(
                       children: [
                         // If user is being notified of own stamp, just show remove button
-                        RemoveNotification(notifID: notifID, type: "own_stamp"),
+                        RemoveNotification(notifID: notif.notifID, type: "own_stamp"),
                       ],
                     ),
                   )
@@ -118,9 +119,9 @@ class _NotificationItemState extends State<NotificationItem> {
                       children: [
                         CongratulateButton(
                           otherUser: userID,
-                          notifID: notifID,
+                          notifID: notif.notifID,
                         ),
-                        RemoveNotification(notifID: notifID, type: "other_stamp"),
+                        RemoveNotification(notifID: notif.notifID, type: "other_stamp"),
                       ],
                     ),
                   ),
@@ -130,7 +131,7 @@ class _NotificationItemState extends State<NotificationItem> {
               child: Row(
                 children: [
                   RemoveNotification(
-                    notifID: notifID,
+                    notifID: notif.notifID,
                     type: "send_congrats",
                   )
                 ],

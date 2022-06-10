@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
+import '../screens/ProfileScreen2.dart';
 import '../utils/notifications.dart';
 
 class UsersSearchResultsWidget extends StatefulWidget {
@@ -86,7 +87,11 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
           if (widget.action == 'friend')
             GestureDetector(
               onTap: () {
-                Navigator.pushReplacementNamed(context, '/Profile');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Profile2(userID: widget.userID)),
+                );
               },
               child: Container(
                 margin: const EdgeInsets.only(top: 20, right: 10),

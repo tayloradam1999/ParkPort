@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
+import '../screens/ProfileScreen2.dart';
 import '../utils/notifications.dart';
 
 class LeaderboardsResult extends StatefulWidget {
@@ -91,7 +92,11 @@ class _LeaderboardsResultState extends State<LeaderboardsResult> {
           if (widget.action == 'friend')
             GestureDetector(
               onTap: () {
-                Navigator.pushReplacementNamed(context, '/Profile');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Profile2(userID: widget.userID)),
+                );
               },
               child: Container(
                 margin: const EdgeInsets.only(top: 20, right: 10),

@@ -35,7 +35,7 @@ class LeaderboardList extends StatelessWidget {
               ).toList(),
             );
           } else {
-            return Text('No stamps yet');
+            return Text('No leaderboard yet');
           }
         });
   }

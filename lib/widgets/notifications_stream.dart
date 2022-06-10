@@ -14,7 +14,6 @@ class NotificationsList extends StatelessWidget {
   Widget build(BuildContext context) {
     PPUser currentUser =
         Provider.of<AppState>(context, listen: false).currentUser;
-    print(currentUser);
     return StreamBuilder<List<Notif>>(
         stream: getUsersNotifications(currentUser),
         builder: (BuildContext context, AsyncSnapshot<List<Notif>> snapshot) {
@@ -30,14 +29,14 @@ class NotificationsList extends StatelessWidget {
                             action: 'got_stamp',
                             imgUrl: currentUser.profilePicUrl,
                             userID: currentUser.userID,
-                            notifID: notif.notifID,
+                            notif: notif,
                           )
                         : NotificationItem(
                             name: notif.senderName,
                             action: notif.type,
                             imgUrl: notif.senderPic,
                             userID: notif.senderID,
-                            notifID: notif.notifID,
+                            notif: notif,
                           );
                   },
                 ).toList());

@@ -7,14 +7,14 @@ import '../utils/notifications.dart';
 class RemoveNotification extends StatelessWidget {
   final String notifID;
   final String type;
-  const RemoveNotification({Key? key, required this.notifID, required this.type}) : super(key: key);
+  const RemoveNotification(
+      {Key? key, required this.notifID, required this.type})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     String currentUser =
         Provider.of<AppState>(context, listen: false).currentUser.userID;
-    print("NOTFIID: $notifID");
-
 
     return Container(
       child: InkWell(

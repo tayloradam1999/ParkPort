@@ -4,7 +4,6 @@ import '../models/notif.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
 import '../providers/auth_state.dart';
-import '../utils/general.dart';
 import './general.dart';
 
 Future<void> sendFriendRequest(PPUser currentUser, String userID) async {
@@ -25,6 +24,7 @@ Future<void> sendFriendRequest(PPUser currentUser, String userID) async {
   // Add notification to other user's notification list
   await AuthState().usersRef.doc(userID).update({
     'notifs': FieldValue.arrayUnion([notifID]),
+    'friendNotifs': FieldValue.arrayUnion([currentUser.userID]),
   });
   // Couldn't assign ID before added to Firestore but go back and update now
   await notifsRef.doc(notifID).update({
@@ -37,24 +37,29 @@ Future<void> acceptFriendRequest(context, String currentUser, String userID, Str
   final usersRef = FirebaseFirestore.instance.collection('users');
   // Update current user's friendList and remove the notification
   await usersRef.doc(currentUser).update({
-    'notifs': FieldValue.arrayRemove([userID]),
+    'notifs': FieldValue.arrayRemove([notifID]),
     'friendList': FieldValue.arrayUnion([userID]),
-    'points': FieldValue.increment(10)
+    'points': FieldValue.increment(10),
+    'friendNotifs': FieldValue.arrayRemove([userID]),
   });
   // Add current user to the other user's friendList
   await usersRef.doc(userID).update({
     'friendList': FieldValue.arrayUnion([currentUser]),
-    'points': FieldValue.increment(10)
+    'points': FieldValue.increment(10),
   });
   Provider.of<AppState>(context, listen: false).currentUser.friendList.add(userID);
   // Only ever one friend_request recipient so delete entire document once dealt with
-  // await FirebaseFirestore.instance.collection('notifications').doc(notifID).delete();
+  // await FirebaseFirestore.instance.collection('notifications').doc(notifID).update({
+  //  'recipientList': FieldValue.arrayRemove([currentUser]),
+  // });
+  await notifsRef.doc(notifID).delete();
 }
 
-Future<void> ignoreFriendNotification(String currentUser, String notifID) async {
+Future<void> ignoreFriendNotification(String currentUser, String userID, String notifID) async {
   // Remove userID from currentUser's friendNotifs
   await FirebaseFirestore.instance.collection('users').doc(currentUser).update({
     'notifs': FieldValue.arrayRemove([notifID]),
+    'friendNotifs': FieldValue.arrayRemove([userID])
   });
   await FirebaseFirestore.instance.collection('notifications').doc(notifID).update({
     'recipientList': FieldValue.arrayRemove([currentUser]),

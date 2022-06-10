@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../models/user.dart';
 import '../providers/app_state.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/sidebar.dart';
@@ -11,6 +12,9 @@ import '../widgets/profile_stamps.dart';
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    PPUser currentUser =
+        Provider.of<AppState>(context, listen: false).currentUser;
+
     return Scaffold(
       drawer: SideBarMenu(),
       floatingActionButton: Builder(
@@ -29,9 +33,9 @@ class Profile extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ProfileHeader(),
-            ProfileStatus(),
-            ProfileStamps(),
+            ProfileHeader(user: currentUser),
+            ProfileStatus(user: currentUser),
+            ProfileStamps(user: currentUser),
             SizedBox(height: 110.0),
             if (Provider.of<AppState>(context, listen: false).pageIndex == 5)
               EditProfileButton(),

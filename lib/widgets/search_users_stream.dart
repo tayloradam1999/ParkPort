@@ -32,7 +32,7 @@ class SearchUsers extends StatelessWidget {
                             merits: user.points.toString(),
                             imgUrl: user.profilePicUrl,
                             userID: user.userID,
-                            action: user.notifs.contains(currentUser.userID) ? 'pending' : 'other',
+                            action: user.friendNotifs.contains(currentUser.userID) ? 'pending' : 'other',
                             collectedStampList: user.collectedStampList,
                             friendList: user.friendList,
                           );

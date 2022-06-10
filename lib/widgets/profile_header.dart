@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../models/user.dart';
-import '../providers/app_state.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({Key? key}) : super(key: key);
+  final PPUser user;
+  const ProfileHeader({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser =
-        Provider.of<AppState>(context, listen: false).currentUser;
-
     return Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -26,14 +22,14 @@ class ProfileHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CircleAvatar(
-                  backgroundImage: NetworkImage(currentUser.profilePicUrl),
+                  backgroundImage: NetworkImage(user.profilePicUrl),
                   radius: 50.0,
                 ),
                 SizedBox(
                   height: 10.0,
                 ),
                 Text(
-                  currentUser.userName,
+                  user.userName,
                   style: TextStyle(
                     fontSize: 28.0,
                     fontWeight: FontWeight.w600,
@@ -68,8 +64,7 @@ class ProfileHeader extends StatelessWidget {
                                 height: 5.0,
                               ),
                               Text(
-                                currentUser.collectedStampList.length
-                                    .toString(),
+                                user.collectedStampList.length.toString(),
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   color: Color(0xFFe7b732),
@@ -93,7 +88,7 @@ class ProfileHeader extends StatelessWidget {
                                 height: 5.0,
                               ),
                               Text(
-                                currentUser.points.toString(),
+                                user.points.toString(),
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   color: Color(0xFFe7b732),
@@ -117,7 +112,7 @@ class ProfileHeader extends StatelessWidget {
                                 height: 5.0,
                               ),
                               Text(
-                                currentUser.friendList.length.toString(),
+                                user.friendList.length.toString(),
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   color: Color(0xFFe7b732),
