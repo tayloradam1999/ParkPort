@@ -21,8 +21,8 @@ class _PassportsState extends State<Passports> {
           'Passport',
           style: TextStyle(
             color: Color(0xFFe05e4a),
-            fontWeight: FontWeight.w800,
-            fontSize: 26,
+            fontWeight: FontWeight.w900,
+            fontSize: 30,
           ),
         ),
         backgroundColor: Color.fromARGB(199, 192, 231, 130),

@@ -38,7 +38,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: size.height < 700
+      body: size.height < 750
           ? BackgroundWithoutIcon(
               child: Center(
                 child: SingleChildScrollView(

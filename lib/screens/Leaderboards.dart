@@ -21,8 +21,8 @@ class _LeaderboardsState extends State<Leaderboards> {
           'Leaderboards',
           style: TextStyle(
             color: Color(0xFFe05e4a),
-            fontWeight: FontWeight.w800,
-            fontSize: 26,
+            fontWeight: FontWeight.w900,
+            fontSize: 30,
           ),
         ),
         backgroundColor: Color.fromARGB(199, 192, 231, 130),
@@ -48,21 +48,20 @@ class _LeaderboardsState extends State<Leaderboards> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     RaisedButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Global',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.white,
+                        onPressed: () {},
+                        child: Text(
+                          'Global',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      color: Color(0xFFe7b732),
-                    ),
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        color: Color(0xFFe05e4a)),
                     RaisedButton(
                       onPressed: () {},
                       child: Text(
@@ -77,7 +76,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      color: Color(0xFFe7b732),
+                      color: Color(0xFFe05e4a),
                     ),
                   ]),
             ),

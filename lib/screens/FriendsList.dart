@@ -103,8 +103,8 @@ class _FriendsListState extends State<FriendsList> {
               child: Text(
                 'Friends',
                 style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w900,
                   color: Color(0xFFe05e4a),
                 ),
               ),

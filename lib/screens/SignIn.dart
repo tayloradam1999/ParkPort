@@ -44,7 +44,7 @@ class _SignInState extends State<SignIn> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: size.height < 700
+      body: size.height < 750
           ? BackgroundWithoutIcon(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -47,7 +47,10 @@ class _ProfileCardState extends State<ProfileCard> {
         ),
         subtitle: Text(
           '${currentUser.collectedStampList.length} Stamps, ${currentUser.points} Merits',
-          style: TextStyle(color: Color(0xFFe7b732)),
+          style: TextStyle(
+            color: Color(0xFFe7b732),
+            fontWeight: FontWeight.w600,
+          ),
         ),
         trailing: GFToggle(
           value: true,
@@ -55,11 +58,11 @@ class _ProfileCardState extends State<ProfileCard> {
           enabledTrackColor: Color(0xFFe05e4a),
         ),
       ),
-      elevation: 15,
+      elevation: 20,
       shadowColor: Color(0xFFe05e4a),
       shape: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: Color(0xFFe05e4a), width: 1.5)),
+          borderSide: BorderSide(color: Color(0xFFe05e4a), width: 2)),
     );
   }
 }

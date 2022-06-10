@@ -55,7 +55,7 @@ class _SignUpState extends State<SignUp> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: size.height < 700
+      body: size.height < 750
           ? BackgroundWithoutIcon(
               child: SingleChildScrollView(
                 child: Column(
