@@ -7,8 +7,8 @@ import '../utils/streams.dart';
 import './notification_item.dart';
 import './no_notifications.dart';
 
-class NotificationsList extends StatelessWidget {
-  const NotificationsList({Key? key}) : super(key: key);
+class NotificationsStream extends StatelessWidget {
+  const NotificationsStream({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

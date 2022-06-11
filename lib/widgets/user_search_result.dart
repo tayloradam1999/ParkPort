@@ -7,20 +7,18 @@ import '../utils/notifications.dart';
 
 class UsersSearchResultsWidget extends StatefulWidget {
   final String name;
-  final String merits;
   final String imgUrl;
   final String userID;
-  final String action;
+  final String type;
   final List<String> collectedStampList;
   final List<String> friendList;
 
   const UsersSearchResultsWidget({
     Key? key,
     required this.name,
-    required this.merits,
     required this.imgUrl,
     required this.userID,
-    required this.action,
+    required this.type,
     required this.collectedStampList,
     required this.friendList,
   }) : super(key: key);
@@ -63,10 +61,12 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
                   padding: const EdgeInsets.only(top: 7.5),
                   child: Text(
                     widget.name,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFFe05e4a),
+                      color: widget.type == 'self'
+                          ? Color(0xFF8eb057)
+                          : Color(0xFFe05e4a),
                     ),
                   ),
                 ),
@@ -84,7 +84,7 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
               ],
             ),
           ),
-          if (widget.action == 'friend')
+          if (widget.type == 'friend')
             GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -102,7 +102,7 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
                 ),
               ),
             ),
-          if (widget.action == 'pending')
+          if (widget.type == 'pending')
             Container(
               margin: const EdgeInsets.only(right: 10, top: 20),
               child: Container(
@@ -120,7 +120,7 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
                         ),
                       ))),
             ),
-          if (widget.action == 'other')
+          if (widget.type == 'other')
             Container(
               margin: const EdgeInsets.only(right: 10, top: 20),
               child: Container(
@@ -129,7 +129,6 @@ class _UsersSearchResultsWidgetState extends State<UsersSearchResultsWidget> {
                   child: ElevatedButton(
                       onPressed: () {
                         sendFriendRequest(currentUser, widget.userID);
-                        setState(() {});
                       },
                       child: const Text('Send Request',
                           textAlign: TextAlign.center,

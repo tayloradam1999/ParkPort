@@ -6,7 +6,6 @@ import '../providers/app_state.dart';
 import './general.dart';
 
 // Friend Requests
-// Perfect
 Future<void> sendFriendRequest(PPUser currentUser, String userID) async {
   // Create notification object
   Notif notification = Notif(
@@ -34,7 +33,6 @@ Future<void> sendFriendRequest(PPUser currentUser, String userID) async {
   });
 }
 
-// Perfect
 Future<void> acceptFriendRequest(context, String currentUser, String userID, String notifID) async {
   // Update current user's friendList and remove the notification
   await usersRef.doc(currentUser).update({
@@ -54,7 +52,6 @@ Future<void> acceptFriendRequest(context, String currentUser, String userID, Str
   await notifsRef.doc(notifID).delete();
 }
 
-// Perfect
 Future<void> ignoreFriendNotification(String currentUser, String userID, String notifID) async {
   // Remove userID from currentUser's friendNotifs
   await usersRef.doc(currentUser).update({
@@ -117,8 +114,7 @@ Future<void> congratulateFriend(PPUser currentUser, String userID, String existi
       .collection('notifications')
       .add(notification.toJson())
       .then((docRef) => docRef.id);
-  // Update send_congrats notification in Firestore
-  // Couldn't assign ID before added to Firestore but go back and update now
+  // Update new send_congrats notification in Firestore
   await notifsRef.doc(newNotifID).update({
     'notifID': newNotifID,
   });
@@ -126,7 +122,7 @@ Future<void> congratulateFriend(PPUser currentUser, String userID, String existi
   await usersRef.doc(userID).update({
     'notifs': FieldValue.arrayUnion([newNotifID]),
   });
-  // Remove got_stamp notification  from current user's notification list
+  // Remove got_stamp notification from current user's notification list
   await usersRef.doc(currentUser.userID).update({
     'notifs': FieldValue.arrayRemove([existingNotifID]),
   });

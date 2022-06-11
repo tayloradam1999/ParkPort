@@ -46,7 +46,7 @@ class _ProfileCardState extends State<ProfileCard> {
           ],
         ),
         subtitle: Text(
-          '${currentUser.collectedStampList.length} Stamps, ${currentUser.points} Merits',
+          '${currentUser.collectedStampList.length} Stamps, ${currentUser.friendList.length} Friends',
           style: TextStyle(color: Color(0xFFe7b732)),
         ),
         trailing: GFToggle(

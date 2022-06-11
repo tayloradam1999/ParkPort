@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:park_port/utils/utils.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
 import '../utils/streams.dart';
-import 'leaderboard_result.dart';
+import './user_search_result.dart';
 
-class LeaderboardList extends StatelessWidget {
-  const LeaderboardList({Key? key}) : super(key: key);
+class GlobalLeaderboardStream extends StatelessWidget {
+  const GlobalLeaderboardStream({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +23,11 @@ class LeaderboardList extends StatelessWidget {
               shrinkWrap: true,
               children: users.map(
                 (user) {
-                  return LeaderboardsResult(
+                  return UsersSearchResultsWidget(
                     name: user.userName,
-                    merits: user.points.toString(),
                     imgUrl: user.profilePicUrl,
                     userID: user.userID,
-                    action: 'friend',
+                    type: whatTypeOfUser(currentUser, user),
                     collectedStampList: user.collectedStampList,
                     friendList: user.friendList,
                   );

@@ -38,7 +38,7 @@ class _NotificationsState extends State<Notifications> {
           );
         }),
       ),
-      body: NotificationsList(),
+      body: NotificationsStream(),
       bottomNavigationBar: BottomMenuBar(),
     );
   }

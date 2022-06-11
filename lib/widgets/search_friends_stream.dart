@@ -5,9 +5,9 @@ import '../providers/app_state.dart';
 import '../utils/streams.dart';
 import './user_search_result.dart';
 
-class SearchFriends extends StatelessWidget {
+class SearchFriendsStream extends StatelessWidget {
   final String searchText;
-  const SearchFriends({Key? key, required this.searchText}) : super(key: key);
+  const SearchFriendsStream({Key? key, required this.searchText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +27,9 @@ class SearchFriends extends StatelessWidget {
                       ? Container(
                           child: UsersSearchResultsWidget(
                             name: user.userName,
-                            merits: user.points.toString(),
                             imgUrl: user.profilePicUrl,
                             userID: user.userID,
-                            action: 'friend',
+                            type: 'friend',
                             collectedStampList: user.collectedStampList,
                             friendList: user.friendList,
                           ),
