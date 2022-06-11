@@ -68,3 +68,15 @@ Stream<List<PPUser>> getTop10Users() {
           .map((doc) => PPUser.fromJson(doc.data().toJson()))
           .toList());
 }
+
+Stream<List<PPUser>> getTopFriends() {
+  return usersRef
+      // Only want 10 results max
+      .orderBy('points', descending: true)
+      // Get snapshot of every piece of data from Firestore that matches the query
+      .snapshots()
+      // For each document in snapshot, convert to PPUser and return list
+      .map((snapshot) => snapshot.docs
+          .map((doc) => PPUser.fromJson(doc.data().toJson()))
+          .toList());
+}

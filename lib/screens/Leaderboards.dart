@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:park_port/widgets/leaderboard_switch.dart';
 import '../widgets/bottom_bar.dart';
-import '../widgets/leaderboard_stream.dart';
+import '../widgets/leaderboard_stream-friends.dart';
+import '../widgets/leaderboard_stream-global.dart';
 import '../widgets/sidebar.dart';
 
 class Leaderboards extends StatefulWidget {
@@ -39,52 +41,10 @@ class _LeaderboardsState extends State<Leaderboards> {
           );
         }),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    RaisedButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Global',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.white,
-                        ),
-                      ),
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      color: Color(0xFFe7b732),
-                    ),
-                    RaisedButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Friends',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.white,
-                        ),
-                      ),
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      color: Color(0xFFe7b732),
-                    ),
-                  ]),
-            ),
-            GlobalLeaderboardStream(),
-          ],
-        ),
-      ),
+      body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+        return SingleChildScrollView(child: LeaderboardSwitch());
+      }),
       bottomNavigationBar: BottomMenuBar(),
     );
   }
