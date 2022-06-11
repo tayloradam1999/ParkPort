@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/user.dart';
 import '../providers/auth_state.dart';
+import '../utils/general.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/sidebar.dart';
 import '../widgets/profile_header.dart';
@@ -30,7 +31,7 @@ class Profile2 extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: FutureBuilder(
         // Run async code dependent on results of "future" query listed below
-        future: AuthState().getUserByID(userID),
+        future: getUserByID(userID),
         builder: (BuildContext context, AsyncSnapshot<PPUser> snapshot) {
           if (snapshot.hasData &&
               snapshot.connectionState == ConnectionState.done) {

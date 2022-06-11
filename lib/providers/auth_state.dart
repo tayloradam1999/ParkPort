@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/user.dart';
+import '../utils/general.dart';
 
 // Define Errors type coming back from Firebase used in Future<Errors> etc
 enum Errors {
@@ -17,17 +17,6 @@ enum Errors {
 class AuthState extends ChangeNotifier {
   // Initialize FirebaseAuth with instance
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
-  // Create reference to Firestore database users collection
-  final usersRef =
-      FirebaseFirestore.instance.collection('users').withConverter<PPUser>(
-            fromFirestore: (snapshot, _) {
-              return PPUser.fromJson(
-                snapshot.data() ?? {},
-              );
-            },
-            toFirestore: (user, _) => user.toJson(),
-          );
 
   Errors handleException(e) {
     // Depending on Errors code from Firebase, return Errors type
@@ -117,22 +106,12 @@ class AuthState extends ChangeNotifier {
     await _auth.sendPasswordResetEmail(email: email);
   }
 
-
-    Future<PPUser> getCurrentUserModel() async {
+  Future<PPUser> getCurrentUserModel() async {
     // Get the user from Firebase users collection
     final snapshot = await usersRef.doc(_auth.currentUser!.uid).get();
     // Convert data to JSON format
     final user = snapshot.data()?.toJson();
     // Convert JSON to PPUser - there is no way to convert from Firestore snapshot to PPUser directly
     return PPUser.fromJson(user!);
-  }
-
-  Future<PPUser> getUserByID(String userID) async {
-    // Get the user from Firebase users collection
-    final snapshot = await usersRef.doc(userID).get();
-    // Convert data to JSON format
-    final user = snapshot.data()!.toJson();
-    // Return JSON converted to PPUser object
-    return PPUser.fromJson(user);
   }
 }

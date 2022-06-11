@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
 import '../utils/streams.dart';
-import './user_leaderboards_result.dart';
+import 'leaderboard_result.dart';
 
 class LeaderboardList extends StatelessWidget {
   const LeaderboardList({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class LeaderboardList extends StatelessWidget {
               ).toList(),
             );
           } else {
-            return Text('No leaderboard yet');
+            return Container();
           }
         });
   }

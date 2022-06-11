@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
 import '../providers/auth_state.dart';
+import '../utils/general.dart';
 
 class ProfileStatus extends StatelessWidget {
   final PPUser user;
@@ -15,7 +16,7 @@ class ProfileStatus extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
         child: FutureBuilder(
           // Run async code dependent on results of "future" query listed below
-          future: AuthState().getUserByID(user.userID),
+          future: getUserByID(user.userID),
           builder: (BuildContext context, AsyncSnapshot<PPUser> snapshot) {
             if (snapshot.hasData &&
                 snapshot.connectionState == ConnectionState.done) {

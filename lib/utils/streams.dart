@@ -1,4 +1,3 @@
-import '../providers/auth_state.dart';
 import '../models/notif.dart';
 import '../models/stamp.dart';
 import '../models/user.dart';
@@ -6,8 +5,7 @@ import './general.dart';
 
 Stream<List<PPUser>>? getAllUsers(
     context, String userName, PPUser currentUser) {
-  return AuthState()
-      .usersRef
+  return usersRef
       .where('lowercaseName', isNotEqualTo: currentUser.lowercaseName)
       // This allows for partial strings
       // Any string between actual userName and the username plus last character possible
@@ -25,8 +23,7 @@ Stream<List<PPUser>>? getAllUsers(
 
 Stream<List<PPUser>>? getMatchingUsers(String userName, PPUser currentUser) {
   if (userName != '') {
-    return AuthState()
-        .usersRef
+    return usersRef
         .where('lowercaseName', isNotEqualTo: currentUser.lowercaseName)
         // This allows for partial strings
         // Any string between actual userName and the username plus last character possible
@@ -50,18 +47,17 @@ Stream<List<Stamp>>? getAllStamps() {
       snapshot.docs.map((doc) => Stamp.fromJson(doc.data().toJson())).toList());
 }
 
-Stream<List<Notif>>? getUsersNotifications(PPUser currentUser) {
+Stream<List<Notif>> getUsersNotifications(String currentUser) {
   return notifsRef
-      .where('recipientList', arrayContains: currentUser.userID)
+      .where('recipientList', arrayContains: currentUser)
       .snapshots()
       .map((snapshot) => snapshot.docs
           .map((doc) => Notif.fromJson(doc.data().toJson()))
           .toList());
 }
 
-Stream<List<PPUser>>? getTop10Users() {
-  return AuthState()
-      .usersRef
+Stream<List<PPUser>> getTop10Users() {
+  return usersRef
       // Only want 10 results max
       .limit(10)
       .orderBy('points', descending: true)

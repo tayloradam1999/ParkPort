@@ -14,16 +14,19 @@ class NotificationsList extends StatelessWidget {
   Widget build(BuildContext context) {
     PPUser currentUser =
         Provider.of<AppState>(context, listen: false).currentUser;
+
     return StreamBuilder<List<Notif>>(
-        stream: getUsersNotifications(currentUser),
+        stream: getUsersNotifications(currentUser.userID),
         builder: (BuildContext context, AsyncSnapshot<List<Notif>> snapshot) {
-          if (snapshot.hasData && snapshot.data!.length > 0) {
+          if (snapshot.hasData && snapshot.data!.length != 0) {
             final notifs = snapshot.data!;
+            print(notifs);
             return ListView(
                 shrinkWrap: true,
                 children: notifs.map(
                   (notif) {
-                    return currentUser.userID == notif.senderID
+                    // If alerting you of own new stamp, special case
+                    return notif.senderID == currentUser.userID
                         ? NotificationItem(
                             name: currentUser.userName,
                             action: 'got_stamp',
@@ -31,6 +34,7 @@ class NotificationsList extends StatelessWidget {
                             userID: currentUser.userID,
                             notif: notif,
                           )
+                        // Otherwise, pass notif info to NotificationItem
                         : NotificationItem(
                             name: notif.senderName,
                             action: notif.type,
