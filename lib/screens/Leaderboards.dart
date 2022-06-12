@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:park_port/widgets/leaderboard_switch.dart';
+import '../widgets/leaderboard_switch.dart';
 import '../widgets/bottom_bar.dart';
-import '../widgets/leaderboard_stream-friends.dart';
-import '../widgets/leaderboard_stream-global.dart';
 import '../widgets/sidebar.dart';
 
 class Leaderboards extends StatefulWidget {

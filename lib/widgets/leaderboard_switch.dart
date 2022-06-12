@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:park_port/widgets/leaderboard_stream-friends.dart';
-import 'package:park_port/widgets/leaderboard_stream-global.dart';
+import './leaderboard_stream-friends.dart';
+import './leaderboard_stream-global.dart';
 
 class LeaderboardSwitch extends StatefulWidget {
   @override

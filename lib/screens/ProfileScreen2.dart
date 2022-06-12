@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../models/user.dart';
-import '../providers/auth_state.dart';
 import '../utils/general.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/sidebar.dart';

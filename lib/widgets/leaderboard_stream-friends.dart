@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:park_port/utils/utils.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
 import '../utils/streams.dart';
+import '../utils/utils.dart';
 import './user_search_result.dart';
 
 class FriendsLeaderboardStream extends StatelessWidget {

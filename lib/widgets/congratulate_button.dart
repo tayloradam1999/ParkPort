@@ -22,16 +22,6 @@ class CongratulateButton extends StatelessWidget {
         onTap: () {
           congratulateFriend(currentUser, otherUser, notifID);
           congratulateMessage(context);
-          // Update provider state
-          // setState(() {
-          //   currentUser.friendList.add(otherUser);
-          //   currentUser.notifs.remove(otherUser);
-          // });
-          // // Whatever - force rerender
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => const Notifications()),
-          // );
         },
       ),
     );
