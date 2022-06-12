@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
@@ -19,6 +21,7 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   late TextEditingController _emailEditingController;
   late TextEditingController _passwordEditingController;
+  File? image;
 
   @override
   void initState() {
@@ -33,6 +36,8 @@ class _SettingsState extends State<Settings> {
     _passwordEditingController.dispose();
     super.dispose();
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +76,16 @@ class _SettingsState extends State<Settings> {
                   label: 'Upload New Profile Pic',
                   onChange: () async {
                     // Trigger file picker steps and set state so will re-render
-                    String url = await pickImageFromDevice(context);
+                    String url = await pickImage(context, 'gallery');
+                    setState(() {
+                      currentUser.profilePicUrl = url;
+                    });
+                  }),
+                  ChangeProfilePic(
+                  label: 'Take New Profile Pic',
+                  onChange: () async {
+                    // Trigger file picker steps and set state so will re-render
+                    String url = await pickImage(context, 'camera');
                     setState(() {
                       currentUser.profilePicUrl = url;
                     });
