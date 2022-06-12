@@ -20,7 +20,6 @@ class NotificationsStream extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<List<Notif>> snapshot) {
           if (snapshot.hasData && snapshot.data!.length != 0) {
             final notifs = snapshot.data!;
-            print(notifs);
             return ListView(
                 shrinkWrap: true,
                 children: notifs.map(

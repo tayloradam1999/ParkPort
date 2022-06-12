@@ -22,7 +22,7 @@ class DenyRequestButton extends StatelessWidget {
         onTap: () {
           // Update database and show message
           ignoreFriendNotification(currentUser, notif.senderID, notif.notifID);
-          denyFriendMessage(context);
+          showMessage(context, 'Friend request removed', 'red');
         },
       ),
     );

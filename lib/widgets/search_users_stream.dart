@@ -15,7 +15,7 @@ class SearchUsersStream extends StatelessWidget {
         Provider.of<AppState>(context, listen: false).currentUser;
 
     return StreamBuilder<List<PPUser>>(
-        stream: getMatchingUsers(searchText.toLowerCase(), currentUser),
+        stream: get10MatchingUsers(searchText.toLowerCase(), currentUser),
         builder: (BuildContext context, AsyncSnapshot<List<PPUser>> snapshot) {
           if (searchText != '') {
             if (snapshot.hasData && snapshot.data!.length != 0) {

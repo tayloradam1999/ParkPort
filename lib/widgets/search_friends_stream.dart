@@ -15,7 +15,7 @@ class SearchFriendsStream extends StatelessWidget {
         Provider.of<AppState>(context, listen: false).currentUser;
 
     return StreamBuilder<List<PPUser>>(
-        stream: getAllUsers(context, searchText.toLowerCase(), currentUser),
+        stream: getAllMatchingUsers(context, searchText.toLowerCase(), currentUser),
         builder: (BuildContext context, AsyncSnapshot<List<PPUser>> snapshot) {
           if (snapshot.hasData && snapshot.data!.length != 0) {
             final users = snapshot.data!;
@@ -23,6 +23,8 @@ class SearchFriendsStream extends StatelessWidget {
               shrinkWrap: true,
               children: users.map(
                 (user) {
+                  print(currentUser.friendList);
+                  print(user.userID);
                   return currentUser.friendList.contains(user.userID)
                       ? Container(
                           child: UsersSearchResultsWidget(

@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
 import '../models/notif.dart';
 import '../models/user.dart';
-import '../providers/app_state.dart';
 import './general.dart';
 
 // Friend Requests
@@ -33,7 +31,7 @@ Future<void> sendFriendRequest(PPUser currentUser, String userID) async {
   });
 }
 
-Future<void> acceptFriendRequest(context, String currentUser, String userID, String notifID) async {
+Future<void> acceptFriendRequest(String currentUser, String userID, String notifID) async {
   // Update current user's friendList and remove the notification
   await usersRef.doc(currentUser).update({
     'notifs': FieldValue.arrayRemove([notifID]),
@@ -46,23 +44,12 @@ Future<void> acceptFriendRequest(context, String currentUser, String userID, Str
     'friendList': FieldValue.arrayUnion([currentUser]),
     'points': FieldValue.increment(10),
   });
-  // Make sure currentUser updated
-  Provider.of<AppState>(context, listen: false).currentUser.friendList.add(userID);
   // Remove notification - only ever one friend request per user
   await notifsRef.doc(notifID).delete();
 }
 
-Future<void> ignoreFriendNotification(String currentUser, String userID, String notifID) async {
-  // Remove userID from currentUser's friendNotifs
-  await usersRef.doc(currentUser).update({
-    'notifs': FieldValue.arrayRemove([notifID]),
-    'friendNotifs': FieldValue.arrayRemove([userID])
-  });
-  await notifsRef.doc(notifID).delete();
-}
-
 // Stamp notifications
-Future<void> addStampToUser(context, PPUser currentUser, String stampID) async {
+Future<void> addStampToUser(PPUser currentUser, String stampID) async {
   Notif notification = Notif(
     notifID: '',
     type: 'got_stamp',
@@ -87,9 +74,6 @@ Future<void> addStampToUser(context, PPUser currentUser, String stampID) async {
     'notifs': FieldValue.arrayUnion([notifID]),
     'points': FieldValue.increment(10)
   });
-  // Update currentUser in AppState
-  Provider.of<AppState>(context, listen: false).currentUser.points += 10;
-  Provider.of<AppState>(context, listen: false).currentUser.collectedStampList.add(stampID);
   // Send notification to friends also
   for (String friendID in currentUser.friendList) {
     usersRef.doc(friendID).update({
@@ -98,7 +82,8 @@ Future<void> addStampToUser(context, PPUser currentUser, String stampID) async {
   }
 }
 
-Future<void> congratulateFriend(PPUser currentUser, String userID, String existingNotifID) async {
+Future<void> congratulateFriend(
+    PPUser currentUser, String userID, String existingNotifID) async {
   // Create notification object
   Notif notification = Notif(
     notifID: '',
@@ -126,18 +111,43 @@ Future<void> congratulateFriend(PPUser currentUser, String userID, String existi
   await usersRef.doc(currentUser.userID).update({
     'notifs': FieldValue.arrayRemove([existingNotifID]),
   });
-  // Remove current user from got_stamp notification list
-  await notifsRef.doc(existingNotifID).update({
-    'recipientList': FieldValue.arrayRemove([currentUser.userID]),
+  // If recipientList only has this notification, delete it
+  await notifsRef.doc(existingNotifID).get().then((doc) {
+    if (doc.data()!.recipientList.length <= 0) {
+      notifsRef.doc(existingNotifID).delete();
+    } else {
+      // Else remove current user from got_stamp notification list
+      notifsRef.doc(existingNotifID).update({
+        'recipientList': FieldValue.arrayRemove([currentUser.userID]),
+      });
+    }
   });
 }
 
-Future<void> ignoreNotification(String currentUser, String notifID, String type) async {
+// Ignore notifications
+Future<void> ignoreNotification(String currentUser, String notifID) async {
   // Remove userID from currentUser's friendNotifs
   await usersRef.doc(currentUser).update({
     'notifs': FieldValue.arrayRemove([notifID]),
   });
-  await notifsRef.doc(notifID).update({
-    'recipientList': FieldValue.arrayRemove([currentUser]),
+  // If recipientList is empty, delete notification
+  await notifsRef.doc(notifID).get().then((doc) {
+    if (doc.data()!.recipientList.length <= 1) {
+      notifsRef.doc(notifID).delete();
+    } else {
+      notifsRef.doc(notifID).update({
+        'recipientList': FieldValue.arrayRemove([currentUser]),
+      });
+    }
   });
+}
+
+Future<void> ignoreFriendNotification(
+    String currentUser, String userID, String notifID) async {
+  // Remove userID from currentUser's friendNotifs
+  await usersRef.doc(currentUser).update({
+    'notifs': FieldValue.arrayRemove([notifID]),
+    'friendNotifs': FieldValue.arrayRemove([userID])
+  });
+  await notifsRef.doc(notifID).delete();
 }

@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
+import '../utils/messages.dart';
 import '../utils/notifications.dart';
 import '../utils/storage_service.dart';
 import '../widgets/bottom_bar.dart';
@@ -36,8 +36,6 @@ class _SettingsState extends State<Settings> {
     _passwordEditingController.dispose();
     super.dispose();
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +79,7 @@ class _SettingsState extends State<Settings> {
                       currentUser.profilePicUrl = url;
                     });
                   }),
-                  ChangeProfilePic(
+              ChangeProfilePic(
                   label: 'Take New Profile Pic',
                   onChange: () async {
                     // Trigger file picker steps and set state so will re-render
@@ -93,8 +91,8 @@ class _SettingsState extends State<Settings> {
             ]),
             TextButton(
                 onPressed: () {
-                  addStampToUser(
-                      context, currentUser, 'FGsLCt5wF1mufMdheXzq');
+                  addStampToUser(currentUser, 'FGsLCt5wF1mufMdheXzq');
+                  showMessage(context, 'You have a new stamp!', 'green');
                   setState(() {
                     currentUser.collectedStampList.add('FGsLCt5wF1mufMdheXzq');
                     currentUser.points += 10;

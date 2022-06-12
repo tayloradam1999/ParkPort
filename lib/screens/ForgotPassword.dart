@@ -91,7 +91,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     label: 'Submit',
                     onPressed: () async {
                       AuthState().resetPassword(_emailController.text);
-                      sendResetPassword(context);
+                      showMessage(context, 'Check your email to reset your password!', 'green');
                       Navigator.pushNamed(context, '/SignIn');
                     },
                   ),

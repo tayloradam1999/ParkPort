@@ -20,7 +20,6 @@ class AuthState extends ChangeNotifier {
 
   Errors handleException(e) {
     // Depending on Errors code from Firebase, return Errors type
-    print(e);
     Errors _status;
     switch (e.code) {
       case "weak-password":

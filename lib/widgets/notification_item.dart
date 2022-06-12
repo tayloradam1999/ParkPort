@@ -97,7 +97,8 @@ class _NotificationItemState extends State<NotificationItem> {
               padding: const EdgeInsets.only(left: 10, top: 5),
               child: Row(
                 children: [
-                  AcceptRequestButton(otherUser: userID, notifID: notif.notifID),
+                  AcceptRequestButton(
+                      otherUser: userID, notifID: notif.notifID),
                   DenyRequestButton(notif: notif),
                 ],
               ),
@@ -109,7 +110,7 @@ class _NotificationItemState extends State<NotificationItem> {
                     child: Row(
                       children: [
                         // If user is being notified of own stamp, just show remove button
-                        RemoveNotification(notifID: notif.notifID, type: "own_stamp"),
+                        RemoveNotification(notifID: notif.notifID),
                       ],
                     ),
                   )
@@ -121,7 +122,7 @@ class _NotificationItemState extends State<NotificationItem> {
                           otherUser: userID,
                           notifID: notif.notifID,
                         ),
-                        RemoveNotification(notifID: notif.notifID, type: "other_stamp"),
+                        RemoveNotification(notifID: notif.notifID),
                       ],
                     ),
                   ),
@@ -132,7 +133,6 @@ class _NotificationItemState extends State<NotificationItem> {
                 children: [
                   RemoveNotification(
                     notifID: notif.notifID,
-                    type: "send_congrats",
                   )
                 ],
               ),

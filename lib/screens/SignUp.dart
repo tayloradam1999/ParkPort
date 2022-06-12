@@ -169,10 +169,10 @@ class _SignUpState extends State<SignUp> {
                       // Return message based on Errors return
                       // If successful, navigate to signin screen
                       if (msg == Errors.none) {
-                        showMessage(context, msg, 'signup');
+                        showAuthMessage(context, msg, 'signup');
                         Navigator.pushReplacementNamed(context, '/SignIn');
                       } else {
-                        showMessage(context, msg, 'signup');
+                        showAuthMessage(context, msg, 'signup');
                       }
                     },
                     shape: RoundedRectangleBorder(

@@ -3,7 +3,7 @@ import '../models/stamp.dart';
 import '../models/user.dart';
 import './general.dart';
 
-Stream<List<PPUser>>? getAllUsers(
+Stream<List<PPUser>>? getAllMatchingUsers(
     context, String userName, PPUser currentUser) {
   return usersRef
       .where('lowercaseName', isNotEqualTo: currentUser.lowercaseName)
@@ -11,8 +11,6 @@ Stream<List<PPUser>>? getAllUsers(
       // Any string between actual userName and the username plus last character possible
       .where('lowercaseName', isGreaterThanOrEqualTo: userName)
       .where('lowercaseName', isLessThanOrEqualTo: userName + '\uf8ff')
-      // Only want 10 results max
-      .limit(10)
       // Get snapshot of every piece of data from Firestore that matches the query
       .snapshots()
       // For each document in snapshot, convert to PPUser and return list
@@ -21,7 +19,7 @@ Stream<List<PPUser>>? getAllUsers(
           .toList());
 }
 
-Stream<List<PPUser>>? getMatchingUsers(String userName, PPUser currentUser) {
+Stream<List<PPUser>>? get10MatchingUsers(String userName, PPUser currentUser) {
   if (userName != '') {
     return usersRef
         .where('lowercaseName', isNotEqualTo: currentUser.lowercaseName)

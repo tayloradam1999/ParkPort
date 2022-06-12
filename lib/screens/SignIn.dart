@@ -123,13 +123,13 @@ class _SignInState extends State<SignIn> {
                     Errors msg = await AuthState().attemptLogin(
                         _emailController.text, _passwordController.text);
                     if (msg == Errors.none) {
-                      showMessage(context, msg, 'login');
+                      showAuthMessage(context, msg, 'login');
                       Provider.of<AppState>(context, listen: false)
                           .setpageIndex = 0;
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Home()));
                     } else {
-                      showMessage(context, msg, 'login');
+                      showAuthMessage(context, msg, 'login');
                     }
                   },
                   child: Container(
