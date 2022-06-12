@@ -17,21 +17,18 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  late TextEditingController _nameEditingController;
   late TextEditingController _emailEditingController;
   late TextEditingController _passwordEditingController;
 
   @override
   void initState() {
     super.initState();
-    _nameEditingController = TextEditingController();
     _emailEditingController = TextEditingController();
     _passwordEditingController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _nameEditingController.dispose();
     _emailEditingController.dispose();
     _passwordEditingController.dispose();
     super.dispose();

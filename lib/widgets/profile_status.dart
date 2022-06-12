@@ -13,10 +13,9 @@ class ProfileStatus extends StatefulWidget {
 }
 
 class _ProfileStatusState extends State<ProfileStatus> {
-// Define property types
+  // Define property types
   late TextEditingController _statusController;
 
-// Decorators don't do anything - just for clarity
   @override
   @mustCallSuper
   void initState() {

@@ -5,6 +5,7 @@ class PPUser {
   String userName;
   String status;
   String lowercaseName;
+  String location;
   DateTime dateJoined;
   String profilePicUrl;
   int points;
@@ -20,6 +21,7 @@ class PPUser {
     required this.email,
     required this.userName,
     required this.lowercaseName,
+    required this.location,
     required this.status,
     required this.dateJoined,
     required this.profilePicUrl,
@@ -37,6 +39,7 @@ class PPUser {
         email: map['email'],
         userName: map['userName'],
         lowercaseName: map['lowercaseName'],
+        location: map['location'],
         status: map['status'],
         // Firebase stores dates as "timestamp" so need to convert to DateTime
         dateJoined: DateTime.fromMillisecondsSinceEpoch(
@@ -57,6 +60,7 @@ class PPUser {
         "userName": userName,
         "lowercaseName": lowercaseName,
         "status": status,
+        "location": location,
         "dateJoined": dateJoined,
         "profilePicUrl": profilePicUrl,
         "points": points,
