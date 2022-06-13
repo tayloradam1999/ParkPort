@@ -91,12 +91,18 @@ class _SettingsState extends State<Settings> {
             ]),
             TextButton(
                 onPressed: () {
-                  addStampToUser(currentUser, 'FGsLCt5wF1mufMdheXzq');
-                  showMessage(context, 'You have a new stamp!', 'green');
-                  setState(() {
-                    currentUser.collectedStampList.add('FGsLCt5wF1mufMdheXzq');
-                    currentUser.points += 10;
-                  });
+                  if (currentUser.collectedStampList
+                      .contains('FGsLCt5wF1mufMdheXzq')) {
+                    showMessage(context, 'You already have that stamp!', 'red');
+                  } else {
+                    addStampToUser(currentUser, 'FGsLCt5wF1mufMdheXzq');
+                    showMessage(context, 'You have a new stamp!', 'green');
+                    setState(() {
+                      currentUser.collectedStampList
+                          .add('FGsLCt5wF1mufMdheXzq');
+                      currentUser.points += 10;
+                    });
+                  }
                 },
                 child: Text('Button!'))
           ],

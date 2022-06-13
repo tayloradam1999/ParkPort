@@ -70,6 +70,7 @@ class _BottomMenuBarState extends State<BottomMenuBar> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      color: Color.fromARGB(199, 192, 231, 130),
       elevation: 0.0,
       child: SizedBox(
         height: 60,

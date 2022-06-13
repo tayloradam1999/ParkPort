@@ -29,7 +29,7 @@ class SideBarMenuState extends State<SideBarMenu> {
 
   @override
   Widget build(BuildContext context) {
-    PPUser currentUser =
+     PPUser currentUser =
         Provider.of<AppState>(context, listen: false).currentUser;
 
     return Consumer<AppState>(
@@ -112,6 +112,15 @@ class SideBarMenuState extends State<SideBarMenu> {
                               const SizedBox(width: 10), // psuedo spacing
                               Text(
                                 '${currentUser.collectedStampList.length} Stamps',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                              const SizedBox(width: 10), // psuedo spacing
+                              Text(
+                                '${Provider.of<AppState>(context, listen: false).currentUser.points} Merits',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 15,

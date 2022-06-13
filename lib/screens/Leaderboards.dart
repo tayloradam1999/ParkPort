@@ -23,8 +23,6 @@ class _LeaderboardsState extends State<Leaderboards> {
   }
 
   void dispose() {
-    // widgetHolder.dispose();
-    // widgetBool.dispose();
     super.dispose();
   }
 
@@ -38,8 +36,8 @@ class _LeaderboardsState extends State<Leaderboards> {
           'Leaderboards',
           style: TextStyle(
             color: Color(0xFFe05e4a),
-            fontWeight: FontWeight.w800,
-            fontSize: 26,
+            fontWeight: FontWeight.w900,
+            fontSize: 30,
           ),
         ),
         backgroundColor: Color.fromARGB(199, 192, 231, 130),
@@ -58,61 +56,62 @@ class _LeaderboardsState extends State<Leaderboards> {
       ),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-        return SingleChildScrollView(child: Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            RaisedButton(
-              onPressed: () {
-                setState(() {
-                  widgetHolder = globalLeaderboardStream();
-                  widgetBool = false;
-                });
-              },
-              child: Text(
-                'Global',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.white,
-                ),
-              ),
-              elevation: 10,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              color:
-                  !widgetBool ? Color(0xFF8eb057) : Color(0xFFe7b732),
+        return SingleChildScrollView(
+            child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    RaisedButton(
+                      onPressed: () {
+                        setState(() {
+                          widgetHolder = globalLeaderboardStream();
+                          widgetBool = false;
+                        });
+                      },
+                      child: Text(
+                        'Global',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white,
+                        ),
+                      ),
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      color:
+                          !widgetBool ? Color(0xFF8eb057) : Color(0xFFe7b732),
+                    ),
+                    RaisedButton(
+                      onPressed: () {
+                        setState(() {
+                          widgetHolder = friendsLeaderboardStream();
+                          widgetBool = true;
+                        });
+                      },
+                      child: Text(
+                        'Friends',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white,
+                        ),
+                      ),
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      color: widgetBool ? Color(0xFF8eb057) : Color(0xFFe7b732),
+                    ),
+                  ]),
             ),
-            RaisedButton(
-              onPressed: () {
-                setState(() {
-                  widgetHolder = friendsLeaderboardStream();
-                  widgetBool = true;
-                });
-              },
-              child: Text(
-                'Friends',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.white,
-                ),
-              ),
-              elevation: 10,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              color: widgetBool ? Color(0xFF8eb057) : Color(0xFFe7b732),
-            ),
-          ]),
-        ),
-        widgetHolder,
-      ],
-    )
-    );
+            widgetHolder,
+          ],
+        ));
       }),
       bottomNavigationBar: BottomMenuBar(),
     );

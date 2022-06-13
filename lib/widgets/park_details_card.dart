@@ -21,7 +21,7 @@ class _ParkDetailsCardState extends State<ParkDetailsCard> {
           Stack(
             children: [
               Ink.image(
-                image: AssetImage('assets/images/chandler.jpg'),
+                image: AssetImage('assets/images/chandler.png'),
                 child: InkWell(
                   onTap: () {},
                 ),
@@ -57,7 +57,7 @@ class _ParkDetailsCardState extends State<ParkDetailsCard> {
           Padding(
             padding: const EdgeInsets.all(16.0).copyWith(bottom: 0),
             child: const Text(
-              '192 acres of wooded area with natural beauty and panoramic views of Tulsa and Sand Springs. There is a splash park, rock climbing, trails, baseball complex, playgrounds, restrooms, picnic shelters, 18-hole disc golf course and community center.',
+              '192 acres of wooded area with natural beauty and panoramic views of Tulsa and Sand Springs. There is a splash park, rock climbing, trails, baseball complex, playgrounds, restrooms, picnic shelters, 18-hole disc golf course, and community center.',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
@@ -103,47 +103,6 @@ class _ParkDetailsCardState extends State<ParkDetailsCard> {
               TextButton(
                 onPressed: () {},
                 child: const Text('Stamp1',
-                    style: TextStyle(color: Color(0xFFe05e4a))),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text('Stamp2',
-                    style: TextStyle(color: Color(0xFFe05e4a))),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text('Stamp3',
-                    style: TextStyle(color: Color(0xFFe05e4a))),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0).copyWith(bottom: 0),
-            child: Text(
-              'Events Available:',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          ButtonBar(
-            alignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () {},
-                child: const Text('Event1',
-                    style: TextStyle(color: Color(0xFFe05e4a))),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text('Event2',
-                    style: TextStyle(color: Color(0xFFe05e4a))),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text('Event3',
                     style: TextStyle(color: Color(0xFFe05e4a))),
               ),
             ],
