@@ -74,9 +74,7 @@ class _PassportsState extends State<Passports> {
         ),
         child: Column(
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 500,
+            Expanded(
               child: PageView.builder(
                   itemCount: images.length,
                   pageSnapping: true,
