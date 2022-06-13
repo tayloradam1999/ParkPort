@@ -29,7 +29,7 @@ android {
     compileSdkVersion flutter.compileSdkVersion
 
     lintOptions {
-        abortOnError false
+        checkReleaseBuilds false
     }
 
     compileOptions {
