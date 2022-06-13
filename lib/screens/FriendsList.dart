@@ -109,8 +109,8 @@ class _FriendsListState extends State<FriendsList> {
                 ),
               ),
             ),
-            SearchFriends(searchText: _searchController.text),
-            SearchUsers(
+            SearchFriendsStream(searchText: _searchController.text),
+            SearchUsersStream(
               searchText: _searchController.text,
             ),
           ],

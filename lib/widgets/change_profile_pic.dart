@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 class ChangeProfilePic extends StatefulWidget {
   final String label;
   final onChange;
-  
 
   const ChangeProfilePic(
       {Key? key, required this.label, required this.onChange})

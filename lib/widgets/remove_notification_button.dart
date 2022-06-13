@@ -6,7 +6,9 @@ import '../utils/notifications.dart';
 
 class RemoveNotification extends StatelessWidget {
   final String notifID;
-  const RemoveNotification({Key? key, required this.notifID}) : super(key: key);
+  const RemoveNotification(
+      {Key? key, required this.notifID})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class RemoveNotification extends StatelessWidget {
         onTap: () {
           // Update database and show message
           ignoreNotification(currentUser, notifID);
-          ignoreNotificationMessage(context);
+          showMessage(context, 'Message dismissed', 'red');
         },
       ),
     );

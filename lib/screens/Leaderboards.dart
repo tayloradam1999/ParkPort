@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import '../widgets/leaderboard_stream-friends.dart';
+import '../widgets/leaderboard_stream-global.dart';
 import '../widgets/bottom_bar.dart';
-import '../widgets/leaderboard_stream.dart';
 import '../widgets/sidebar.dart';
 
 class Leaderboards extends StatefulWidget {
@@ -11,6 +12,20 @@ class Leaderboards extends StatefulWidget {
 }
 
 class _LeaderboardsState extends State<Leaderboards> {
+  late Widget widgetHolder;
+  late bool widgetBool;
+
+  void initState() {
+    // Initially set to global leaderboard
+    widgetHolder = globalLeaderboardStream();
+    widgetBool = false;
+    super.initState();
+  }
+
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,8 +54,10 @@ class _LeaderboardsState extends State<Leaderboards> {
           );
         }),
       ),
-      body: SingleChildScrollView(
-        child: Column(
+      body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+        return SingleChildScrollView(
+            child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 10),
@@ -48,22 +65,34 @@ class _LeaderboardsState extends State<Leaderboards> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     RaisedButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Global',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w800,
-                            color: Colors.white,
-                          ),
+                      onPressed: () {
+                        setState(() {
+                          widgetHolder = globalLeaderboardStream();
+                          widgetBool = false;
+                        });
+                      },
+                      child: Text(
+                        'Global',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white,
                         ),
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        color: Color(0xFFe05e4a)),
+                      ),
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      color:
+                          !widgetBool ? Color(0xFF8eb057) : Color(0xFFe7b732),
+                    ),
                     RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          widgetHolder = friendsLeaderboardStream();
+                          widgetBool = true;
+                        });
+                      },
                       child: Text(
                         'Friends',
                         style: TextStyle(
@@ -76,94 +105,23 @@ class _LeaderboardsState extends State<Leaderboards> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      color: Color(0xFFe05e4a),
+                      color: widgetBool ? Color(0xFF8eb057) : Color(0xFFe7b732),
                     ),
                   ]),
             ),
-            LeaderboardList(),
+            widgetHolder,
           ],
-        ),
-      ),
-      // Column(
-      //   children: [
-      //     SizedBox(height: 5.0),
-      //     Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      //       RaisedButton(
-      //         onPressed: () {},
-      //         child: Text(
-      //           'Global',
-      //           style: TextStyle(
-      //             fontSize: 16,
-      //             fontFamily: GoogleFonts.poppins().fontFamily,
-      //             fontWeight: FontWeight.w800,
-      //             color: Colors.white,
-      //           ),
-      //         ),
-      //         elevation: 10,
-      //         shape: RoundedRectangleBorder(
-      //           borderRadius: BorderRadius.circular(15),
-      //         ),
-      //         color: Color(0xFFe7b732),
-      //       ),
-      //       RaisedButton(
-      //         onPressed: () {},
-      //         child: Text(
-      //           'Friends',
-      //           style: TextStyle(
-      //             fontSize: 16,
-      //             fontFamily: GoogleFonts.poppins().fontFamily,
-      //             fontWeight: FontWeight.w800,
-      //             color: Colors.white,
-      //           ),
-      //         ),
-      //         elevation: 10,
-      //         shape: RoundedRectangleBorder(
-      //           borderRadius: BorderRadius.circular(15),
-      //         ),
-      //         color: Color(0xFFe7b732),
-      //       ),
-      //     ]),
-      //     Container(
-      //       margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
-      //       child: SizedBox(
-      //         height: MediaQuery.of(context).size.height - 250,
-      //         child: ListView.separated(
-      //             shrinkWrap: true,
-      //             itemBuilder: (context, index) {
-      //               return ListTile(
-      //                 title: Row(
-      //                   children: [
-      //                     CircleAvatar(
-      //                       backgroundImage: NetworkImage(
-      //                           'https://www.woolha.com/media/2020/03/flutter-circleavatar-minradius-maxradius.jpg'),
-      //                     ),
-      //                     SizedBox(
-      //                       width: 3,
-      //                     ),
-      //                     Text("Adam Taylor")
-      //                   ],
-      //                 ),
-      //                 leading: Text(
-      //                   "#${index + 1}",
-      //                   style: TextStyle(fontWeight: FontWeight.bold),
-      //                 ),
-      //                 trailing: Text("Merits: 0",
-      //                     style: TextStyle(fontWeight: FontWeight.bold)),
-      //               );
-      //             },
-      //             separatorBuilder: (context, index) => Divider(
-      //                   thickness: 1,
-      //                   color: Color(0xFFe05e4a),
-      //                   indent: 10,
-      //                   endIndent: 10,
-      //                 ),
-      //             itemCount: 10),
-      //       ),
-      //     ),
-      //   ],
-      // ),
-
+        ));
+      }),
       bottomNavigationBar: BottomMenuBar(),
     );
+  }
+
+  Widget globalLeaderboardStream() {
+    return GlobalLeaderboardStream();
+  }
+
+  Widget friendsLeaderboardStream() {
+    return FriendsLeaderboardStream();
   }
 }

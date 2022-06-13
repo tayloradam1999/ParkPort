@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../models/notif.dart';
 import '../providers/app_state.dart';
 import '../utils/notifications.dart';
 import '../utils/messages.dart';
 
 class DenyRequestButton extends StatelessWidget {
-  final String notifID;
-  const DenyRequestButton({Key? key, required this.notifID}) : super(key: key);
+  final Notif notif;
+  const DenyRequestButton({Key? key, required this.notif}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +21,8 @@ class DenyRequestButton extends StatelessWidget {
         child: Icon(Icons.close_rounded, size: 40, color: Colors.red),
         onTap: () {
           // Update database and show message
-          ignoreNotification(currentUser, notifID);
-          denyFriendMessage(context);
+          ignoreFriendNotification(currentUser, notif.senderID, notif.notifID);
+          showMessage(context, 'Friend request removed', 'red');
         },
       ),
     );

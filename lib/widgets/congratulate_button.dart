@@ -21,17 +21,7 @@ class CongratulateButton extends StatelessWidget {
         child: Icon(Icons.celebration, size: 40, color: Colors.green),
         onTap: () {
           congratulateFriend(currentUser, otherUser, notifID);
-          congratulateMessage(context);
-          // Update provider state
-          // setState(() {
-          //   currentUser.friendList.add(otherUser);
-          //   currentUser.notifs.remove(otherUser);
-          // });
-          // // Whatever - force rerender
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => const Notifications()),
-          // );
+          showMessage(context , 'You\'re a good friend!', 'green');
         },
       ),
     );

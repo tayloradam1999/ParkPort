@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import '../models/user.dart';
 
 class ProfileStamps extends StatelessWidget {
-  const ProfileStamps({Key? key}) : super(key: key);
+  final PPUser user;
+  const ProfileStamps({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

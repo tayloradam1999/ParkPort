@@ -21,11 +21,11 @@ class Notif {
 
   // Named constructor for when getting JSON object from firebase
   factory Notif.fromJson(Map<String, dynamic> map) => Notif(
-    notifID: map['notifID'],
+        notifID: map['notifID'],
         type: map['type'],
         senderID: map['senderID'],
         senderName: map['senderName'],
-        senderPic: map['senderProfilePicURL'],
+        senderPic: map['senderPic'],
         recipientList: List<String>.from(map['recipientList']),
         otherInfo: map['otherInfo'],
       );
@@ -36,7 +36,7 @@ class Notif {
         "type": type,
         "senderID": senderID,
         "senderName": senderName,
-        "senderProfilePicURL": senderPic,
+        "senderPic": senderPic,
         "recipientList": List<dynamic>.from(recipientList),
         "otherInfo": otherInfo,
       };

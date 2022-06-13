@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../providers/app_state.dart';
+import '../utils/messages.dart';
 import '../utils/notifications.dart';
 import '../utils/storage_service.dart';
 import '../widgets/bottom_bar.dart';
@@ -17,21 +19,19 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  late TextEditingController _nameEditingController;
   late TextEditingController _emailEditingController;
   late TextEditingController _passwordEditingController;
+  File? image;
 
   @override
   void initState() {
     super.initState();
-    _nameEditingController = TextEditingController();
     _emailEditingController = TextEditingController();
     _passwordEditingController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _nameEditingController.dispose();
     _emailEditingController.dispose();
     _passwordEditingController.dispose();
     super.dispose();
@@ -74,7 +74,16 @@ class _SettingsState extends State<Settings> {
                   label: 'Upload New Profile Pic',
                   onChange: () async {
                     // Trigger file picker steps and set state so will re-render
-                    String url = await pickImageFromDevice(context);
+                    String url = await pickImage(context, 'gallery');
+                    setState(() {
+                      currentUser.profilePicUrl = url;
+                    });
+                  }),
+              ChangeProfilePic(
+                  label: 'Take New Profile Pic',
+                  onChange: () async {
+                    // Trigger file picker steps and set state so will re-render
+                    String url = await pickImage(context, 'camera');
                     setState(() {
                       currentUser.profilePicUrl = url;
                     });
@@ -82,8 +91,18 @@ class _SettingsState extends State<Settings> {
             ]),
             TextButton(
                 onPressed: () {
-                  addStampToUser(
-                      context, currentUser, 'FGsLCt5wF1mufMdheXzq');
+                  if (currentUser.collectedStampList
+                      .contains('FGsLCt5wF1mufMdheXzq')) {
+                    showMessage(context, 'You already have that stamp!', 'red');
+                  } else {
+                    addStampToUser(currentUser, 'FGsLCt5wF1mufMdheXzq');
+                    showMessage(context, 'You have a new stamp!', 'green');
+                    setState(() {
+                      currentUser.collectedStampList
+                          .add('FGsLCt5wF1mufMdheXzq');
+                      currentUser.points += 10;
+                    });
+                  }
                 },
                 child: Text('Button!'))
           ],
