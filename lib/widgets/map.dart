@@ -24,7 +24,7 @@ class MapState extends State<Map> {
         onMapCreated: _onMapCreated,
         initialCameraPosition: CameraPosition(
           target: _center,
-          zoom: 17.5,
+          zoom: 18,
         ),
       ),
     );
