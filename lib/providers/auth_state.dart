@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:park_port/providers/app_state.dart';
+import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../utils/general.dart';
 
@@ -64,10 +66,10 @@ class AuthState extends ChangeNotifier {
               'email': signedInUser.email,
               'userName': name,
               'lowercaseName': name.toLowerCase(),
-              'location': 'Tulsa, OK',
               'status': 'Excited about Tulsa parks!',
-              'dateJoined': DateTime.now(),
+              'location': 'Tulsa, OK',
               'profilePicUrl': 'https://i.postimg.cc/nV3fQKp5/PP-logo.png',
+              'dateJoined': DateTime.now(),
               'points': 0,
               'friendList': [],
               'friendNotifs': [],

@@ -33,7 +33,7 @@ class _HomeState extends State<Home> {
     });
   }
 
-  _populateCurrentUserInfo() async {
+  Future<void> _populateCurrentUserInfo() async {
     PPUser user = await AuthState().getCurrentUserModel();
     setState(() {
       // Get user data from Firebase

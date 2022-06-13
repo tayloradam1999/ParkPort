@@ -23,8 +23,6 @@ class SearchFriendsStream extends StatelessWidget {
               shrinkWrap: true,
               children: users.map(
                 (user) {
-                  print(currentUser.friendList);
-                  print(user.userID);
                   return currentUser.friendList.contains(user.userID)
                       ? Container(
                           child: UsersSearchResultsWidget(
