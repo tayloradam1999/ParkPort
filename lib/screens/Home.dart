@@ -16,7 +16,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late bool _switchView = false;
+  late bool _switchView = true;
 
   @override
   void initState() {
@@ -77,12 +77,34 @@ class _HomeState extends State<Home> {
           ProfileCard(),
           Expanded(
             child: Stack(children: [
-              Container(child: _switchView ? Map() : Text('No map!')),
+              Container(
+                child: _switchView
+                    ? Map()
+                    : Container(
+                        margin: EdgeInsets.only(top: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Switch to Map View',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w900,
+                                color: Color(0xFFe05e4a),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+              ),
               Container(
                 alignment: Alignment.topRight,
                 child: Switch(
                   onChanged: toggleSwitch,
                   value: _switchView,
+                  activeColor: Color(0xFFe05e4a),
+                  activeTrackColor: Color(0xFFe7b732),
+                  inactiveThumbColor: Color(0xFFe05e4a),
                 ),
               ),
             ]),

@@ -52,10 +52,10 @@ class _ProfileCardState extends State<ProfileCard> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        trailing: GFToggle(
-          value: true,
-          onChanged: (value) {},
-          enabledTrackColor: Color(0xFFe05e4a),
+        trailing: Image.asset(
+          'assets/images/indian_blanket.jpg',
+          fit: BoxFit.contain,
+          height: 75,
         ),
       ),
       elevation: 20,

@@ -4,7 +4,7 @@ import '../utils/general.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/sidebar.dart';
 import '../widgets/profile_header.dart';
-import '../widgets/profile_status.dart';
+import '../widgets/profile_status2.dart';
 import '../widgets/profile_stamps.dart';
 
 class Profile2 extends StatelessWidget {
@@ -39,7 +39,7 @@ class Profile2 extends StatelessWidget {
               child: Column(
                 children: [
                   ProfileHeader(user: snapshot.data!),
-                  ProfileStatus(user: snapshot.data!),
+                  ProfileStatus2(user: snapshot.data!),
                   ProfileStamps(user: snapshot.data!),
                   SizedBox(height: 110.0),
                 ],

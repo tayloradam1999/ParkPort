@@ -8,7 +8,7 @@ class ProfileStamps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Padding(
+      child: Container(
         padding: const EdgeInsets.only(top: 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
