@@ -16,16 +16,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  late bool _switchView = false;
+
   @override
   void initState() {
     // init state
-    super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _populateCurrentUserInfo();
     });
+    super.initState();
   }
 
-  _populateCurrentUserInfo() async {
+  void toggleSwitch(bool value) {
+    setState(() {
+      _switchView = !_switchView;
+    });
+  }
+
+  Future<void> _populateCurrentUserInfo() async {
     PPUser user = await AuthState().getCurrentUserModel();
     setState(() {
       // Get user data from Firebase
@@ -65,7 +73,21 @@ class _HomeState extends State<Home> {
         }),
       ),
       body: Container(
-        child: Column(children: [ProfileCard(), Map()]),
+        child: Column(children: [
+          ProfileCard(),
+          Expanded(
+            child: Stack(children: [
+              Container(child: _switchView ? Map() : Text('No map!')),
+              Container(
+                alignment: Alignment.topRight,
+                child: Switch(
+                  onChanged: toggleSwitch,
+                  value: _switchView,
+                ),
+              ),
+            ]),
+          )
+        ]),
       ),
       bottomNavigationBar: BottomMenuBar(),
     );
