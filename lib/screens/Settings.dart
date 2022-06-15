@@ -10,6 +10,7 @@ import '../widgets/bottom_bar.dart';
 import '../widgets/change_profile_field.dart';
 import '../widgets/change_profile_pic.dart';
 import '../widgets/profile_card.dart';
+import '../widgets/get_stamp.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -65,46 +66,35 @@ class _SettingsState extends State<Settings> {
         child: Column(
           children: <Widget>[
             ProfileCard(),
-            ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
-              ChangeProfileField(label: 'Change Name', onChange: () async {}),
-              ChangeProfileField(label: 'Change Email', onChange: () async {}),
-              ChangeProfileField(
-                  label: 'Change Password', onChange: () async {}),
-              ChangeProfilePic(
-                  label: 'Upload New Profile Pic',
-                  onChange: () async {
-                    // Trigger file picker steps and set state so will re-render
-                    String url = await pickImage(context, 'gallery');
-                    setState(() {
-                      currentUser.profilePicUrl = url;
-                    });
-                  }),
-              ChangeProfilePic(
-                  label: 'Take New Profile Pic',
-                  onChange: () async {
-                    // Trigger file picker steps and set state so will re-render
-                    String url = await pickImage(context, 'camera');
-                    setState(() {
-                      currentUser.profilePicUrl = url;
-                    });
-                  }),
-            ]),
-            TextButton(
-                onPressed: () {
-                  if (currentUser.collectedStampList
-                      .contains('FGsLCt5wF1mufMdheXzq')) {
-                    showMessage(context, 'You already have that stamp!', 'red');
-                  } else {
-                    addStampToUser(currentUser, 'FGsLCt5wF1mufMdheXzq');
-                    showMessage(context, 'You have a new stamp!', 'green');
-                    setState(() {
-                      currentUser.collectedStampList
-                          .add('FGsLCt5wF1mufMdheXzq');
-                      currentUser.points += 10;
-                    });
-                  }
-                },
-                child: Text('Button!'))
+            ButtonBar(
+              alignment: MainAxisAlignment.center,
+              children: <Widget>[
+                ChangeProfileField(label: 'Change Name', onChange: () async {}),
+                ChangeProfileField(
+                    label: 'Change Email', onChange: () async {}),
+                ChangeProfileField(
+                    label: 'Change Password', onChange: () async {}),
+                ChangeProfilePic(
+                    label: 'Upload New Profile Pic',
+                    onChange: () async {
+                      // Trigger file picker steps and set state so will re-render
+                      String url = await pickImage(context, 'gallery');
+                      setState(() {
+                        currentUser.profilePicUrl = url;
+                      });
+                    }),
+                ChangeProfilePic(
+                    label: 'Take New Profile Pic',
+                    onChange: () async {
+                      // Trigger file picker steps and set state so will re-render
+                      String url = await pickImage(context, 'camera');
+                      setState(() {
+                        currentUser.profilePicUrl = url;
+                      });
+                    }),
+                GetStamp(),
+              ],
+            ),
           ],
         ),
       ),

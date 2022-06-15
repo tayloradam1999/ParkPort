@@ -36,38 +36,40 @@ class _FriendsListState extends State<FriendsList> {
     return Scaffold(
       drawer: SideBarMenu(),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color.fromARGB(199, 192, 231, 130),
         bottomOpacity: 0.0,
         elevation: 0.0,
         title: Container(
           child: TextField(
+            style: TextStyle(
+              fontSize: 18,
+              color: Color(0xFFe05e4a),
+            ),
             cursorColor: Color(0xFFe05e4a),
             controller: _searchController,
             decoration: InputDecoration(
               hintText: 'Search',
               hintStyle: TextStyle(
-                color: Colors.grey,
+                color: Color(0xFFe05e4a),
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
               ),
               prefixIcon: Icon(
                 Icons.search,
-                color: Colors.grey,
+                color: Color(0xFFe05e4a),
               ),
               suffixIcon: IconButton(
                 icon: Icon(
                   Icons.clear,
-                  color: Colors.grey,
+                  color: Color(0xFFe05e4a),
                 ),
                 onPressed: () {
                   // clear search
                   _searchController.clear();
                 },
               ),
-              filled: true,
-              fillColor: Colors.white,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(50.0),
                 borderSide: BorderSide.none,
               ),
             ),
