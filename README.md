@@ -103,8 +103,6 @@ Before you can use Flutter, you must agree to the licenses of the Android SDK pl
     
 2.  Open an elevated console window and run the following command to begin signing licenses.
     
-    _content_copy_
-    
     ```
     $ flutter doctor --android-licenses
     ```
