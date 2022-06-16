@@ -7,6 +7,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
 import 'package:maps_toolkit/maps_toolkit.dart' hide LatLng;
 
+
 void main() => runApp(const Map());
 
 class Map extends StatefulWidget {
@@ -34,17 +35,9 @@ class MapState extends State<Map> {
       LatLng(36.15619284753777, -95.99520190638034),
     ],
     visible: true,
-  );
-  Polygon neighbourhood = const Polygon(
-    polygonId: PolygonId('home'),
-    points: <LatLng>[
-      LatLng(37.42650362286202, -122.09008400922292),
-      LatLng(37.42427450616306, -122.07819280096706),
-      LatLng(37.41805289302726, -122.07714657878147),
-      LatLng(37.41888382240903, -122.0896502097801),
-      LatLng(37.42650362286202, -122.09008400922292),
-    ],
-    visible: true,
+    fillColor: Color.fromARGB(59, 231, 183, 50),
+    strokeColor: Color.fromARGB(255, 89, 114, 32),
+    strokeWidth: 3,
   );
 
   void toggleSwitch(bool value) {
@@ -55,6 +48,7 @@ class MapState extends State<Map> {
 
   void _onMapCreated(GoogleMapController controller) async {
     mapController = controller;
+
     location.onLocationChanged.listen((youAreHere) {
       mapController.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
         target: LatLng(youAreHere.latitude!, youAreHere.longitude!),
@@ -67,7 +61,6 @@ class MapState extends State<Map> {
     Set<Polygon> polygonSet = {};
     // call set of polygons from database here
     polygonSet.add(holberton);
-    polygonSet.add(neighbourhood);
     return polygonSet;
   }
 
@@ -90,9 +83,9 @@ class MapState extends State<Map> {
           // width: size.width * 0.7,
           // height: size.height * 0.7,
           child: GoogleMap(
+              mapType: MapType.terrain,
               onMapCreated: _onMapCreated,
               myLocationEnabled: true,
-              myLocationButtonEnabled: false,
               markers: markers,
               polygons: getPolygons(),
               zoomControlsEnabled: false,
@@ -127,6 +120,8 @@ class MapState extends State<Map> {
       ],
     );
   }
+
+  
 
   Future<LatLng> _determinePosition() async {
     bool serviceEnabled;
