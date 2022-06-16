@@ -13,7 +13,7 @@ Future<void> sendFriendRequest(PPUser currentUser, String userID) async {
     senderName: currentUser.userName,
     senderPic: currentUser.profilePicUrl,
     recipientList: [userID],
-    otherInfo: '',
+    notifSent: DateTime.now(),
   );
   // Add to notifications collection and get reference to it
   String notifID = await FirebaseFirestore.instance
@@ -57,7 +57,8 @@ Future<void> addStampToUser(PPUser currentUser, String stampID) async {
     senderName: currentUser.userName,
     senderPic: currentUser.profilePicUrl,
     recipientList: [...currentUser.friendList, currentUser.userID],
-    otherInfo: stampID,
+    notifSent: DateTime.now(),
+    stampID: stampID,
   );
   // Add to notifications collection and get reference to it
   String notifID = await FirebaseFirestore.instance
@@ -92,7 +93,7 @@ Future<void> congratulateFriend(
     senderName: currentUser.userName,
     senderPic: currentUser.profilePicUrl,
     recipientList: [userID],
-    otherInfo: '',
+    notifSent: DateTime.now(),
   );
   // Add to notifications collection and get reference to it
   String newNotifID = await FirebaseFirestore.instance

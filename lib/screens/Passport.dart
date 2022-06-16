@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/user.dart';
+import '../providers/app_state.dart';
 import '../widgets/bottom_bar.dart';
 import '../widgets/sidebar.dart';
 
@@ -22,6 +25,11 @@ class _PassportsState extends State<Passports> {
   List<String> titles = [
     'Holbie',
     'Chandler',
+  ];
+
+  List<String> ids = [
+    'R9BqEfgqVkHu4icod6CB',
+    'FGsLCt5wF1mufMdheXzq',
   ];
 
   // Controls the current page of the carousel
@@ -87,13 +95,14 @@ class _PassportsState extends State<Passports> {
                   itemBuilder: (context, pagePosition) {
                     bool active = pagePosition == activePage;
                     return GestureDetector(
-                      child: slider(images, pagePosition, active),
+                      child: slider(images, pagePosition, active, context),
                       onTap: () async {
                         await showDialog(
                             context: context,
                             builder: (_) => ImageDialog(
                                 image: images[pagePosition],
-                                name: titles[pagePosition]));
+                                name: titles[pagePosition],
+                                id: ids[pagePosition]));
                       },
                     );
                   }),
@@ -120,9 +129,15 @@ class _PassportsState extends State<Passports> {
   }
 }
 
-AnimatedContainer slider(images, pagePosition, active) {
+AnimatedContainer slider(images, pagePosition, active, context) {
   double margin = active ? 10 : 20;
+  PPUser currentUser =
+      Provider.of<AppState>(context, listen: false).currentUser;
 
+  List<String> ids = [
+    'R9BqEfgqVkHu4icod6CB',
+    'FGsLCt5wF1mufMdheXzq',
+  ];
   // I think this is where the condition will be to check
   // if the user has or has not collected a stamp.
 
@@ -136,8 +151,9 @@ AnimatedContainer slider(images, pagePosition, active) {
     decoration: BoxDecoration(
       image: DecorationImage(
         scale: 0.75,
-        // colorFilter: ColorFilter.mode(
-        //     Colors.black.withOpacity(active ? 0.5 : 0), BlendMode.darken),
+        colorFilter: currentUser.collectedStampList.contains(ids[pagePosition])
+            ? null : ColorFilter.mode(
+                Colors.black.withOpacity(active ? 0.5 : 0), BlendMode.darken),
         image: Image.asset(
           images[pagePosition],
           fit: BoxFit.cover,
@@ -190,8 +206,13 @@ List<Widget> indicators(imagesLength, currentIndex) {
 class ImageDialog extends StatelessWidget {
   final String image;
   final String name;
+  final String id;
 
-  const ImageDialog({Key? key, required this.image, required this.name})
+  const ImageDialog(
+      {Key? key,
+      required this.image,
+      required this.name,
+      required this.id})
       : super(key: key);
 
   // On click, opens the stamp in dialog.
@@ -206,9 +227,17 @@ class ImageDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PPUser currentUser =
+        Provider.of<AppState>(context, listen: false).currentUser;
+
+    List<String> ids = [
+      'R9BqEfgqVkHu4icod6CB',
+      'FGsLCt5wF1mufMdheXzq',
+    ];
+
     return Dialog(
       child: Container(
-        height: 500,
+        height: 300,
         width: MediaQuery.of(context).size.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -251,55 +280,61 @@ class ImageDialog extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      icon: Icon(
-                        Icons.check_circle_outline,
-                        color: Colors.green,
-                      ),
+                      icon: currentUser.collectedStampList
+                              .contains(id)
+                          ? Icon(
+                              Icons.check_circle_outline,
+                              color: Colors.green,
+                            )
+                          : Icon(
+                              Icons.check_circle_outline,
+                              color: Colors.red,
+                            ),
                       onPressed: () {},
                     ),
                   ],
                 ),
               ),
             ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    'Date Collected:',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  Text(
-                    '12/12/2020',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    'Times Collected:',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  Text(
-                    '3',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Container(
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //     children: [
+            //       Text(
+            //         'Date Collected:',
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //         ),
+            //       ),
+            //       Text(
+            //         '12/12/2020',
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // Container(
+            //   margin: EdgeInsets.only(top: 10),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //     children: [
+            //       Text(
+            //         'Times Collected:',
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //         ),
+            //       ),
+            //       Text(
+            //         '3',
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),

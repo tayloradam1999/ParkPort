@@ -88,5 +88,3 @@ class _BottomMenuBarState extends State<BottomMenuBar> {
     );
   }
 }
-
-class ChatScreen {}

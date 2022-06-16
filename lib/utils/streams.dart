@@ -40,14 +40,11 @@ Stream<List<PPUser>>? get10MatchingUsers(String userName, PPUser currentUser) {
   }
 }
 
-Stream<List<Stamp>>? getAllStamps() {
-  return stampsRef.snapshots().map((snapshot) =>
-      snapshot.docs.map((doc) => Stamp.fromJson(doc.data().toJson())).toList());
-}
-
 Stream<List<Notif>> getUsersNotifications(String currentUser) {
   return notifsRef
       .where('recipientList', arrayContains: currentUser)
+      // Attempt to sort in chronological order
+      // .orderBy('notifSent', descending: true)
       .snapshots()
       .map((snapshot) => snapshot.docs
           .map((doc) => Notif.fromJson(doc.data().toJson()))

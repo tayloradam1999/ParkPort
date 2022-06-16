@@ -6,7 +6,8 @@ class Notif {
   String senderName;
   String senderPic;
   List<String> recipientList;
-  String? otherInfo;
+  DateTime notifSent;
+  String? stampID;
 
   // Constructor to initialize all fields
   Notif({
@@ -16,7 +17,8 @@ class Notif {
     required this.senderName,
     required this.senderPic,
     required this.recipientList,
-    this.otherInfo,
+    required this.notifSent,
+    this.stampID,
   });
 
   // Named constructor for when getting JSON object from firebase
@@ -27,7 +29,9 @@ class Notif {
         senderName: map['senderName'],
         senderPic: map['senderPic'],
         recipientList: List<String>.from(map['recipientList']),
-        otherInfo: map['otherInfo'],
+        notifSent: DateTime.fromMillisecondsSinceEpoch(
+            map['notifSent'].millisecondsSinceEpoch),
+        stampID: map['stampID'],
       );
 
   // Instance method that returns Map<String, dynamic> so can be stored in firestore
@@ -37,7 +41,8 @@ class Notif {
         "senderID": senderID,
         "senderName": senderName,
         "senderPic": senderPic,
-        "recipientList": List<dynamic>.from(recipientList),
-        "otherInfo": otherInfo,
+        "recipientList": recipientList,
+        "notifSent": notifSent,
+        "stampID": stampID,
       };
 }
