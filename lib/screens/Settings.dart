@@ -69,11 +69,11 @@ class _SettingsState extends State<Settings> {
             ButtonBar(
               alignment: MainAxisAlignment.center,
               children: <Widget>[
-                ChangeProfileField(label: 'Change Name', onChange: () async {}),
-                ChangeProfileField(
-                    label: 'Change Email', onChange: () async {}),
-                ChangeProfileField(
-                    label: 'Change Password', onChange: () async {}),
+                // ChangeProfileField(label: 'Change Name', onChange: () async {}),
+                // ChangeProfileField(
+                //     label: 'Change Email', onChange: () async {}),
+                // ChangeProfileField(
+                //     label: 'Change Password', onChange: () async {}),
                 ChangeProfilePic(
                     label: 'Upload New Profile Pic',
                     onChange: () async {

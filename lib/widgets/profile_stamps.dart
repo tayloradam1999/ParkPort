@@ -20,6 +20,23 @@ class ProfileStamps extends StatelessWidget {
                   fontStyle: FontStyle.normal,
                   fontSize: 28.0),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Image.asset('assets/images/holbie_stamp.png',
+                    color:
+                        user.collectedStampList.contains('R9BqEfgqVkHu4icod6CB')
+                            ? null
+                            : Color.fromRGBO(155, 155, 155, 0.5),
+                    colorBlendMode: BlendMode.modulate),
+                Image.asset('assets/images/chandler_stamp.png',
+                    color:
+                        user.collectedStampList.contains('FGsLCt5wF1mufMdheXzq')
+                            ? null
+                            : const Color.fromRGBO(155, 155, 155, 0.5),
+                    colorBlendMode: BlendMode.modulate),
+              ],
+            )
           ],
         ),
       ),

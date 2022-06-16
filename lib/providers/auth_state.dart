@@ -66,7 +66,7 @@ class AuthState extends ChangeNotifier {
               'email': signedInUser.email,
               'userName': name,
               'lowercaseName': name.toLowerCase(),
-              'status': 'Excited about Tulsa parks!',
+              'status': 'Excited for ParkPort!',
               'location': 'Tulsa, OK',
               'profilePicUrl': 'https://i.postimg.cc/nV3fQKp5/PP-logo.png',
               'dateJoined': DateTime.now(),
