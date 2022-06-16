@@ -99,7 +99,7 @@ class _HomeState extends State<Home> {
                       ),
               ),
               Container(
-                alignment: Alignment.topRight,
+                alignment: Alignment.topLeft,
                 child: Switch(
                   onChanged: toggleSwitch,
                   value: _switchView,
