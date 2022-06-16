@@ -37,55 +37,52 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        height: size.height * 0.925,
-        color: Color.fromARGB(199, 192, 231, 130),
-        child: Stack(
-          children: [
-            ARView(
+      body: Column(
+        children: [
+          Expanded(
+            child: ARView(
               onARViewCreated: onARViewCreated,
               planeDetectionConfig: PlaneDetectionConfig.horizontal,
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RaisedButton(
-                      onPressed: onRemoveEverything,
-                      child: Text(
-                        'Remove Everything',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      color: Color(0xFFe05e4a),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+          ),
+          Align(
+            alignment: FractionalOffset.bottomCenter,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  RaisedButton(
+                    onPressed: onRemoveEverything,
+                    child: Text(
+                      'Remove Everything',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                    RaisedButton(
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/Home');
-                      },
-                      child: Text(
-                        'Back To Home',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      color: Color(0xFFe05e4a),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                    color: Color(0xFFe05e4a),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  RaisedButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/Home');
+                    },
+                    child: Text(
+                      'Back To Home',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                  ]),
-            ),
-          ],
-        ),
+                    color: Color(0xFFe05e4a),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ]),
+          ),
+        ],
       ),
     );
   }
