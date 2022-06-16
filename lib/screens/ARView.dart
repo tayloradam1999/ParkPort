@@ -42,7 +42,9 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
           Expanded(
             child: ARView(
               onARViewCreated: onARViewCreated,
-              planeDetectionConfig: PlaneDetectionConfig.horizontal,
+              planeDetectionConfig: anchors.length <= 2
+                  ? PlaneDetectionConfig.horizontal
+                  : PlaneDetectionConfig.none,
             ),
           ),
           Align(
