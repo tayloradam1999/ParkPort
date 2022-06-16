@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 
 class ParkDetailsCard extends StatefulWidget {
-  ParkDetailsCard({Key? key}) : super(key: key);
+  late String title;
+  late String summary;
+  late String picture;
+  late String address;
+  late String stamps;
+
+  ParkDetailsCard({
+    Key? key,
+    required this.title,
+    required this.summary,
+    required this.picture,
+    required this.address,
+    required this.stamps,
+  }) : super(key: key);
 
   @override
   State<ParkDetailsCard> createState() => _ParkDetailsCardState();
@@ -21,19 +34,19 @@ class _ParkDetailsCardState extends State<ParkDetailsCard> {
           Stack(
             children: [
               Ink.image(
-                image: AssetImage('assets/images/chandler.png'),
+                image: AssetImage(widget.picture),
                 child: InkWell(
                   onTap: () {},
                 ),
                 height: 240,
                 fit: BoxFit.cover,
               ),
-              const Positioned(
+              Positioned(
                 bottom: 16,
                 right: 16,
                 left: 16,
                 child: Text(
-                  'Chandler Park',
+                  widget.title,
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -56,8 +69,8 @@ class _ParkDetailsCardState extends State<ParkDetailsCard> {
           ),
           Padding(
             padding: const EdgeInsets.all(16.0).copyWith(bottom: 0),
-            child: const Text(
-              '192 acres of wooded area with natural beauty and panoramic views of Tulsa and Sand Springs. There is a splash park, rock climbing, trails, baseball complex, playgrounds, restrooms, picnic shelters, 18-hole disc golf course, and community center.',
+            child: Text(
+              widget.summary,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
@@ -81,7 +94,7 @@ class _ParkDetailsCardState extends State<ParkDetailsCard> {
             children: [
               TextButton(
                 onPressed: () {},
-                child: const Text('6500 W 21st St, Tulsa, OK 74107',
+                child: Text(widget.address,
                     style: TextStyle(color: Color(0xFFe05e4a))),
               ),
             ],
@@ -102,7 +115,7 @@ class _ParkDetailsCardState extends State<ParkDetailsCard> {
             children: [
               TextButton(
                 onPressed: () {},
-                child: const Text('Stamp1',
+                child: Text(widget.stamps,
                     style: TextStyle(color: Color(0xFFe05e4a))),
               ),
             ],
