@@ -148,6 +148,35 @@ flutter run
 
 ## Features
 
+### User Authentication through Firebase
+![Login](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Login.png)
 
+### Geolocation
+![Geolocation](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Home.png)
+
+### Profile Page
+![Profile](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Profile.png)
+
+### Passport Page
+![Passport](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Passport.png)
+
+### Notifications
+![Notifications](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Notifications.png)
+
+### Friends List
+![Friends](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/FriendsList.png)
+
+### Leaderboards
+![Leaderboards](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Notifications.png)
+
+### Park Details Carousel
+![Park Details](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/ParkDetails.png)
+
+### Settings Page
+![Settings](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Settings.png)
 
 ## Credits
+**Front-End Engineer**: Adam Taylor ([LinkedIn:](https://www.linkedin.com/in/tayloradam1999/))
+**Back-End Engineer**: Rachel Lewis ([LinkedIn:](https://www.linkedin.com/in/rachelarlewis/))'
+**Project Manager + Mapping Engineer**: Garrison Shoemake ([LinkedIn:](https://www.linkedin.com/in/garrison-shoemake/))
+**XR Engineer**: Stratton Brooks ([LinkedIn:](https://www.linkedin.com/in/stratton-brooks/))
