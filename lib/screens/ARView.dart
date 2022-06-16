@@ -102,7 +102,7 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
     this.arSessionManager.onInitialize(
           showFeaturePoints: false,
           showPlanes: true,
-          customPlaneTexturePath: "Images/dot_grid.png",
+          customPlaneTexturePath: "assets/images/dot_grid.png",
           showWorldOrigin: false,
         );
     this.arObjectManager.onInitialize();
@@ -140,7 +140,7 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
         //"https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF-Binary/Duck.glb"
         var newNode = ARNode(
             type: NodeType.localGLTF2,
-            uri: "scene.gltf",
+            uri: "assets/3d/scene.gltf",
             scale: Vector3(2, 2, 2),
             position: Vector3(0.0, 0.0, 0.0),
             rotation: Vector4(1.0, 0.0, 0.0, 0.0));
@@ -149,10 +149,10 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
         if (didAddNodeToAnchor!) {
           this.nodes.add(newNode);
         } else {
-          this.arSessionManager.onError("Adding Node to Anchor failed");
+          this.arSessionManager.onError("Try another spot!");
         }
       } else {
-        this.arSessionManager.onError("Adding Anchor failed");
+        this.arSessionManager.onError("Try another spot!");
       }
       /*
       // To add a node to the tapped position without creating an anchor, use the following code (Please mind: the function onRemoveEverything has to be adapted accordingly!):
