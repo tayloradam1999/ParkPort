@@ -28,7 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   maps_toolkit: ^2.0.0
-  geolocator: ^8.0.1
+  geolocator: ^7.0.3
   location: ^4.3.0
   flutter:
     sdk: flutter
@@ -52,6 +52,7 @@ dependencies:
 
   google_maps_flutter: ^2.1.6
   google_maps_flutter_web: ^0.3.3
+  ar_flutter_plugin: ^0.6.4
 
 dev_dependencies:
   flutter_test:

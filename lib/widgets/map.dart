@@ -117,9 +117,11 @@ class MapState extends State<Map> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  onPressed: () async {
-                    var position = await _determinePosition();
-                    checkPolygons(position);
+                  onPressed: () {
+                    // var position = await _determinePosition();
+                    // checkPolygons(position);
+                    Navigator.pushReplacementNamed(
+                        context, "/ObjectsOnPlanesWidget");
                   },
                 ),
               )

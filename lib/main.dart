@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:park_port/screens/ARView.dart';
 import 'package:provider/provider.dart';
 import './firebase_options.dart';
 import '../providers/app_state.dart';
@@ -60,6 +61,7 @@ class MyApp extends StatelessWidget {
           '/ParkDetails': (context) => ParkDetails(),
           '/Profile': (context) => Profile(),
           '/Notifications': (context) => Notifications(),
+          '/ObjectsOnPlanesWidget': (context) => ObjectsOnPlanesWidget(),
         },
       ),
     );

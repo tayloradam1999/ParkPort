@@ -7,6 +7,7 @@ import '../widgets/bottom_bar.dart';
 import '../widgets/sidebar.dart';
 import '../widgets/map.dart';
 import '../widgets/profile_card.dart';
+import 'ARView.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
