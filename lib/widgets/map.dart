@@ -18,7 +18,7 @@ class Map extends StatefulWidget {
 
 class MapState extends State<Map> {
   late GoogleMapController mapController;
-  late bool withinPolygon = false;
+  late bool withinPolygon = true;
   final LatLng initialCameraPosition =
       const LatLng(36.15633180705401, -95.99487937064549);
   Set<Marker> markers = {};
@@ -102,8 +102,7 @@ class MapState extends State<Map> {
               )),
         ),
         withinPolygon
-            ? Container()
-            : Container(
+            ? Container(
                 width: size.width * 0.8,
                 child: RaisedButton(
                   child: Text(
@@ -124,6 +123,7 @@ class MapState extends State<Map> {
                   },
                 ),
               )
+            : Container()
       ],
     );
   }
