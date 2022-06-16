@@ -29,7 +29,7 @@ class SideBarMenuState extends State<SideBarMenu> {
 
   @override
   Widget build(BuildContext context) {
-     PPUser currentUser =
+    PPUser currentUser =
         Provider.of<AppState>(context, listen: false).currentUser;
 
     return Consumer<AppState>(
@@ -72,9 +72,8 @@ class SideBarMenuState extends State<SideBarMenu> {
                               children: <Widget>[
                                 CircleAvatar(
                                   radius: 30,
-                                  backgroundImage: NetworkImage(
-                                      currentUser
-                                          .profilePicUrl),
+                                  backgroundImage:
+                                      NetworkImage(currentUser.profilePicUrl),
                                   backgroundColor: Colors.transparent,
                                 ),
                               ],
@@ -86,8 +85,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  currentUser
-                                      .userName,
+                                  currentUser.userName,
                                   style: TextStyle(
                                     color: Color(0xFFe05e4a),
                                     fontSize: 18,
@@ -171,7 +169,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                     icon: Icons.park_outlined,
                     title: 'Park Details',
                     onTap: () {
-                      appState.setpageIndex = 3;
+                      appState.setpageIndex = 10;
                       Navigator.pushReplacementNamed(context, '/ParkDetails');
                     }),
                 ListTile(
