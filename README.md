@@ -176,10 +176,10 @@ flutter run
 ![Settings](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Settings.png)
 
 ## Credits
-**Front-End Engineer**: Adam Taylor ([LinkedIn:](https://www.linkedin.com/in/tayloradam1999/))  
+**Front-End Engineer**: Adam Taylor ([LinkedIn](https://www.linkedin.com/in/tayloradam1999/))  
   
-**Back-End Engineer**: Rachel Lewis ([LinkedIn:](https://www.linkedin.com/in/rachelarlewis/))  
+**Back-End Engineer**: Rachel Lewis ([LinkedIn](https://www.linkedin.com/in/rachelarlewis/))  
   
-**Project Manager + Mapping Engineer**: Garrison Shoemake ([LinkedIn:](https://www.linkedin.com/in/garrison-shoemake/))  
+**Project Manager + Mapping Engineer**: Garrison Shoemake ([LinkedIn](https://www.linkedin.com/in/garrison-shoemake/))  
   
-**XR Engineer**: Stratton Brooks ([LinkedIn:](https://www.linkedin.com/in/stratton-brooks/))
+**XR Engineer**: Stratton Brooks ([LinkedIn](https://www.linkedin.com/in/stratton-brooks/))
