@@ -152,7 +152,7 @@ flutter run
 ![Login](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Login.png)
 
 ### Geolocation
-![Geolocation](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Home.png)
+![Geolocation](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Profile.png)
 
 ### Profile Page
 ![Profile](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Profile.png)
