@@ -107,7 +107,6 @@ Before you can use Flutter, you must agree to the licenses of the Android SDK pl
     
     ```
     $ flutter doctor --android-licenses
-    
     ```
     
 3.  Review the terms of each license carefully before agreeing to them.
