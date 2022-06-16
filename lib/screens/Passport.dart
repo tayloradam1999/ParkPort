@@ -18,7 +18,7 @@ class _PassportsState extends State<Passports> {
   // Links to stamp urls
   List<String> images = [
     'assets/images/holbie_stamp.png',
-    'assets/images/chandler_stamp.png',
+    'assets/images/new_chandler.png',
   ];
 
   // String to display on bottom of each carousel item
@@ -145,15 +145,16 @@ AnimatedContainer slider(images, pagePosition, active, context) {
   // collected a stamp, the image should be grayed/blackened out.
 
   return AnimatedContainer(
-    duration: Duration(milliseconds: 500),
+    duration: Duration(milliseconds: 0),
     curve: Curves.easeInOutCubic,
     margin: EdgeInsets.all(margin),
     decoration: BoxDecoration(
       image: DecorationImage(
         scale: 0.75,
         colorFilter: currentUser.collectedStampList.contains(ids[pagePosition])
-            ? null : ColorFilter.mode(
-                Colors.black.withOpacity(active ? 0.5 : 0), BlendMode.darken),
+            ? null
+            : ColorFilter.mode(
+                Colors.black.withOpacity(active ? 0.75 : 0), BlendMode.darken),
         image: Image.asset(
           images[pagePosition],
           fit: BoxFit.cover,
@@ -209,10 +210,7 @@ class ImageDialog extends StatelessWidget {
   final String id;
 
   const ImageDialog(
-      {Key? key,
-      required this.image,
-      required this.name,
-      required this.id})
+      {Key? key, required this.image, required this.name, required this.id})
       : super(key: key);
 
   // On click, opens the stamp in dialog.
@@ -280,14 +278,13 @@ class ImageDialog extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      icon: currentUser.collectedStampList
-                              .contains(id)
+                      icon: currentUser.collectedStampList.contains(id)
                           ? Icon(
                               Icons.check_circle_outline,
                               color: Colors.green,
                             )
                           : Icon(
-                              Icons.check_circle_outline,
+                              Icons.close_rounded,
                               color: Colors.red,
                             ),
                       onPressed: () {},

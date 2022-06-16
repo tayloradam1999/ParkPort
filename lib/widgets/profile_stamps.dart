@@ -27,13 +27,13 @@ class ProfileStamps extends StatelessWidget {
                     color:
                         user.collectedStampList.contains('R9BqEfgqVkHu4icod6CB')
                             ? null
-                            : Color.fromRGBO(155, 155, 155, 0.5),
+                            : Color.fromARGB(130, 155, 155, 155),
                     colorBlendMode: BlendMode.modulate),
-                Image.asset('assets/images/chandler_stamp.png',
+                Image.asset('assets/images/new_chandler.png',
                     color:
                         user.collectedStampList.contains('FGsLCt5wF1mufMdheXzq')
                             ? null
-                            : const Color.fromRGBO(155, 155, 155, 0.5),
+                            : Color.fromARGB(130, 155, 155, 155),
                     colorBlendMode: BlendMode.modulate),
               ],
             )

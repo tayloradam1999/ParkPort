@@ -36,7 +36,7 @@ class Profile extends StatelessWidget {
             ProfileHeader(user: currentUser),
             ProfileStatus(user: currentUser),
             ProfileStamps(user: currentUser),
-            SizedBox(height: 110.0),
+            SizedBox(height: 30.0),
             if (Provider.of<AppState>(context, listen: false).pageIndex == 5)
               EditProfileButton(),
             SizedBox(height: 10.0),
