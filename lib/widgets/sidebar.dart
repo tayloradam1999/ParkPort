@@ -169,6 +169,7 @@ class SideBarMenuState extends State<SideBarMenu> {
                     icon: Icons.park_outlined,
                     title: 'Park Details',
                     onTap: () {
+                      // show no index on bottom bar
                       appState.setpageIndex = 10;
                       Navigator.pushReplacementNamed(context, '/ParkDetails');
                     }),
