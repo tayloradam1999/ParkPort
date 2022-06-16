@@ -1,12 +1,11 @@
 import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
-import 'package:maps_toolkit/maps_toolkit.dart' as toolkit;
+import 'package:maps_toolkit/maps_toolkit.dart' hide LatLng;
 
 void main() => runApp(const Map());
 
@@ -19,7 +18,7 @@ class Map extends StatefulWidget {
 
 class MapState extends State<Map> {
   late GoogleMapController mapController;
-  late bool withinPolygon = false;
+  late bool withinPolygon = true;
   final LatLng initialCameraPosition =
       const LatLng(36.15633180705401, -95.99487937064549);
   Set<Marker> markers = {};
@@ -72,17 +71,14 @@ class MapState extends State<Map> {
     return polygonSet;
   }
 
-  checkPolygons(toolkit.LatLng currentLocation) {
-    
-    List<toolkit.LatLng> holbiePoints =
-        holberton.points as List<toolkit.LatLng>;
+  checkPolygons(LatLng currentLocation) {
+    List<LatLng> holbiePoints = holberton.points;
 
-    bool result = toolkit.PolygonUtil.containsLocation(
-        currentLocation, holbiePoints, false);
+    // bool withinPolygon = PolygonUtil.containsLocation(currentLocation, holbiePoints, true);
 
-    if (result) {
+    if (withinPolygon) {
       Navigator.pushReplacementNamed(context, "/FriendsList");
-    } 
+    }
   }
 
   @override
@@ -106,19 +102,33 @@ class MapState extends State<Map> {
               )),
         ),
         withinPolygon
-            ? Container()
-            : Container(
+            ? Container(
                 width: size.width * 0.8,
-                child: RaisedButton(onPressed: () async {
-                  var position = await _determinePosition();
-                  checkPolygons(position);
-                }),
-              ) 
+                child: RaisedButton(
+                  child: Text(
+                    'Enter Experience',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  color: Color(0xFFe05e4a),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  onPressed: () async {
+                    var position = await _determinePosition();
+                    checkPolygons(position);
+                  },
+                ),
+              )
+            : Container()
       ],
     );
   }
 
-  Future<toolkit.LatLng> _determinePosition() async {
+  Future<LatLng> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
 
@@ -141,8 +151,7 @@ class MapState extends State<Map> {
       return Future.error('Location permissions are permanently denied');
     }
     Position position = await Geolocator.getCurrentPosition();
-    toolkit.LatLng convertedPosition =
-        toolkit.LatLng(position.latitude, position.longitude);
+    LatLng convertedPosition = LatLng(position.latitude, position.longitude);
     return convertedPosition;
   }
 }
