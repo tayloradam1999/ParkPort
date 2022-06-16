@@ -1,0 +1,347 @@
+{
+  "accessors": [
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 318,
+      "max": [
+        0.3279981017112732,
+        0.18170222640037537,
+        1.0627024173736572
+      ],
+      "min": [
+        -0.21944382786750793,
+        -0.31672409176826477,
+        0.0009346026927232742
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 3816,
+      "componentType": 5126,
+      "count": 318,
+      "max": [
+        0.9999999403953552,
+        0.8781437277793884,
+        1.0
+      ],
+      "min": [
+        -0.9974512457847595,
+        -0.8781437277793884,
+        -0.9977281093597412
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 486,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 7632,
+      "componentType": 5126,
+      "count": 660,
+      "max": [
+        0.41496768593788147,
+        0.26917028427124023,
+        1.1976317167282104
+      ],
+      "min": [
+        -0.1272483766078949,
+        -0.3159179389476776,
+        1.046663522720337
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 15552,
+      "componentType": 5126,
+      "count": 660,
+      "max": [
+        0.9747779369354248,
+        0.9990313053131104,
+        0.9934402704238892
+      ],
+      "min": [
+        -0.981533944606781,
+        -0.9994739294052124,
+        -0.9924409985542297
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 1944,
+      "componentType": 5125,
+      "count": 1056,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 23472,
+      "componentType": 5126,
+      "count": 45,
+      "max": [
+        0.2098681479692459,
+        0.03637383133172989,
+        1.1303805112838745
+      ],
+      "min": [
+        0.08093284070491791,
+        -0.08624986559152603,
+        1.0725418329238892
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 24012,
+      "componentType": 5126,
+      "count": 45,
+      "max": [
+        0.945483922958374,
+        0.899211585521698,
+        0.9207964539527893
+      ],
+      "min": [
+        -0.9454854130744934,
+        -0.8992125391960144,
+        -0.3256688714027405
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 6168,
+      "componentType": 5125,
+      "count": 45,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "Maf'j Alvarez (https://sketchfab.com/blujay)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/calendula-flower-d813ac09f52849a3a8c57e14076e4b83",
+      "title": "Calendula flower"
+    },
+    "generator": "Sketchfab-12.67.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 6348,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 24552,
+      "byteOffset": 6348,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 30900,
+      "uri": "scene.bin"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "green",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.187821,
+          0.258183,
+          0.0423114,
+          1.0
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.8239417257461427
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "orange",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.991102,
+          0.181164,
+          0.0,
+          1.0
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.8239417257461427
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "yellow",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.955973,
+          0.450786,
+          0.000303526,
+          1.0
+        ],
+        "metallicFactor": 0.0
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "calendula-flower_green_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0
+          },
+          "indices": 2,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "calendula-flower_orange_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 4,
+            "POSITION": 3
+          },
+          "indices": 5,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "calendula-flower_yellow_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 7,
+            "POSITION": 6
+          },
+          "indices": 8,
+          "material": 2,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "ed7d5357c7d14caa88a8bb2bf0e4f225.fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4,
+        5,
+        6
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.6292067939183141e-07,
+        -0.9999999999999868,
+        0.0,
+        0.0,
+        0.9999999999999868,
+        -1.6292067939183141e-07,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "calendula-flower"
+    },
+    {
+      "mesh": 0,
+      "name": "calendula-flower_green_0"
+    },
+    {
+      "mesh": 1,
+      "name": "calendula-flower_orange_0"
+    },
+    {
+      "mesh": 2,
+      "name": "calendula-flower_yellow_0"
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ]
+}
