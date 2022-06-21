@@ -149,10 +149,10 @@ flutter run
 ![Login](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Login.png)
 
 ### Geolocation
-![Geolocation](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Geolocation.jpg)
+![Geolocation](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Geolocate.jpg)
 
 ### AR/VR
-![AR/VR](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/AR.jpg)
+![AR/VR](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/ARVR.jpg)
 
 ### Profile Page
 ![Profile](https://github.com/tayloradam1999/ParkPort/blob/main/assets/screenshots/Profile.png)
