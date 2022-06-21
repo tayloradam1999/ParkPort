@@ -42,7 +42,9 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
           Expanded(
             child: ARView(
               onARViewCreated: onARViewCreated,
-              planeDetectionConfig: PlaneDetectionConfig.horizontal,
+              planeDetectionConfig: anchors.length <= 2
+                  ? PlaneDetectionConfig.horizontal
+                  : PlaneDetectionConfig.none,
             ),
           ),
           Align(
@@ -51,7 +53,8 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   RaisedButton(
-                    onPressed: onRemoveEverything,
+                    onPressed: onTakeScreenshot,
+                    //onPressed: onRemoveEverything,
                     child: Text(
                       'Remove Everything',
                       style: TextStyle(
@@ -106,6 +109,32 @@ class _ObjectsOnPlanesWidgetState extends State<ObjectsOnPlanesWidget> {
 
     this.arSessionManager.onPlaneOrPointTap = onPlaneOrPointTapped;
     this.arObjectManager.onNodeTap = onNodeTapped;
+    addStamp();
+  }
+
+  Future<void> addStamp() async {
+    //var testAnchor =
+    //ARPlaneAnchor(transformation: singleHitTestResult.worldTransform);
+    //bool? didAddAnchor = await this.arAnchorManager.addAnchor(newAnchor);
+    var testNode = ARNode(
+        type: NodeType.localGLTF2,
+        uri: "assets/3d/scene.gltf",
+        scale: Vector3(2, 2, 2),
+        position: Vector3(1.0, 1.0, 1.0),
+        rotation: Vector4(1.0, 0.0, 0.0, 0.0));
+    await arObjectManager.addNode(testNode);
+  }
+
+  Future<void> onTakeScreenshot() async {
+    var image = await this.arSessionManager.snapshot();
+    await showDialog(
+        context: context,
+        builder: (_) => Dialog(
+              child: Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(image: image, fit: BoxFit.cover)),
+              ),
+            ));
   }
 
   Future<void> onRemoveEverything() async {
